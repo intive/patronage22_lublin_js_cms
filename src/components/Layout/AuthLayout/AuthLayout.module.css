@@ -1,0 +1,56 @@
+.form {
+    background-color: #eeee;
+    padding: 3rem;
+    box-shadow: 0 4px 5px rgba(49, 43, 43, 0.2);
+    border-radius: 15px;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 100vh;
+  }
+  
+  .form h1 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .actions {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .actions button {
+      cursor: pointer;
+      font: inherit;
+      color: white;
+      background-color: #2596be;
+      border-radius: 4px;
+      padding: 0.5rem 2.5rem;
+      width: 100%;
+      font-size: 1rem;
+    }
+    
+    .actions button:hover {
+      background-color: lightgray;
+      border-color: #fff;
+    }
+    
+    .actions .toggle {
+      margin-top: 1rem;
+      background-color: transparent;
+      color: #000;
+      border: none;
+      padding: 0.15rem 1.5rem;
+    }
+    
+    .actions .toggle:hover {
+      background-color: transparent;
+      color: #ae82cc;
+    }
