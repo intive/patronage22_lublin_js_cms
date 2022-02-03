@@ -5,17 +5,27 @@ import { useHistory } from "react-router-dom";
 
 const useHttp = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const authCtx = useContext(AuthContext);
   const history = useHistory();
 
-  const sendRequest = useCallback(
-    async (requestConfig) => {
+  const loginUserRequest = useCallback(
+    async (email, password) => {
       setIsLoading(true);
-      axios(requestConfig.url, {
-        method: requestConfig.method ? requestConfig.method : "GET",
-        data: requestConfig.data ? JSON.stringify(requestConfig.data) : null,
-        headers: requestConfig.headers ? requestConfig.headers : {},
-      })
+      axios(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB89swc_F8hFkPq8xqnZVhKGmv0MrXMkP4",
+        {
+          method: "POST",
+          data: {
+            email: email,
+            password: password,
+            returnSecureToken: true,
+          },
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
         .then((response) => {
           if (response.status === 200) {
             console.log(response.data);
@@ -27,7 +37,7 @@ const useHttp = () => {
         })
         .catch((error) => {
           console.log(error);
-          alert(error.response.data.error.message);
+          setError(error.response.data.error.message);
           setIsLoading(false);
         });
     },
@@ -36,7 +46,8 @@ const useHttp = () => {
 
   return {
     isLoading,
-    sendRequest,
+    loginUserRequest,
+    error,
   };
 };
 

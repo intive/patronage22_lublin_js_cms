@@ -42,15 +42,8 @@
   border-color: #fff;
 }
 
-.actions .toggle {
-  margin-top: 1rem;
-  background-color: transparent;
-  color: #000;
-  border: none;
-  padding: 0.15rem 1.5rem;
-}
-
-.actions .toggle:hover {
-  background-color: transparent;
-  color: #ae82cc;
+.actions .error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
 }

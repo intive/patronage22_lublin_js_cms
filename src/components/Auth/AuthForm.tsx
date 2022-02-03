@@ -4,7 +4,7 @@ import {
   FormHelperText,
   Input,
 } from "@chakra-ui/react";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 import useHttp from "../../hooks/use-http";
 import { Formik, Form } from "formik";
@@ -18,12 +18,7 @@ const AuthForm = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
-  const [isLogin, setIsLogin] = useState(true);
-  const { isLoading, sendRequest: sendAuthRequest } = useHttp();
-
-  const switchAuthModeHandler = () => {
-    setIsLogin((prevState) => !prevState);
-  };
+  const { isLoading, error, loginUserRequest: sendAuthRequest } = useHttp();
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
@@ -31,27 +26,7 @@ const AuthForm = () => {
     const enteredEmail = emailInputRef.current!.value;
     const enteredPassword = passwordInputRef.current!.value;
 
-    let url;
-    if (isLogin) {
-      url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB89swc_F8hFkPq8xqnZVhKGmv0MrXMkP4";
-    } else {
-      url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB89swc_F8hFkPq8xqnZVhKGmv0MrXMkP4";
-    }
-
-    sendAuthRequest({
-      url: url,
-      method: "POST",
-      data: {
-        email: enteredEmail,
-        password: enteredPassword,
-        returnSecureToken: true,
-      },
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    sendAuthRequest(enteredEmail, enteredPassword);
   };
 
   const initialValues: MyFormValues = { email: "", password: "" };
@@ -66,7 +41,7 @@ const AuthForm = () => {
       }}
     >
       <Form onSubmit={submitHandler} className={classes.form}>
-        <h1>{isLogin ? "Login" : "Sign Up"}</h1>
+        <h1>Login</h1>
         <FormControl>
           <FormLabel htmlFor="email">Email address</FormLabel>
           <Input
@@ -95,17 +70,9 @@ const AuthForm = () => {
         </FormControl>
 
         <div className={classes.actions}>
-          {!isLoading && (
-            <button>{isLogin ? "Login" : "Create Account"}</button>
-          )}
+          {!isLoading && <button>Login</button>}
           {isLoading && <p>Sending request...</p>}
-          <button
-            type="button"
-            className={classes.toggle}
-            onClick={switchAuthModeHandler}
-          >
-            {isLogin ? "Create new account" : "Login with existing account"}
-          </button>
+          {error && <p className={classes.error}>{error}</p>}
         </div>
       </Form>
     </Formik>
