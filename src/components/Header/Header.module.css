@@ -1,0 +1,19 @@
+.header {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  padding: 0 3%;
+  background-color: lightgreen;
+  color: #fff;
+  width: 100%;
+}
+
+.button {
+  cursor: pointer;
+  font: inherit;
+  color: #000;
+  background-color: #fafafa;
+  padding: 0 1rem;
+}
