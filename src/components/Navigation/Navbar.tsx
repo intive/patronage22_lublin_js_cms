@@ -4,8 +4,7 @@ import NavItemList from "./NavItemsList";
 
 function Navbar () {
     return (
-        <section className={classes.menu}>
-            <h1>Menu Component</h1>
+        <section className={classes.navbar}>
             <NavItemList/>
         </section>
     )

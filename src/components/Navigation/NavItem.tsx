@@ -1,10 +1,12 @@
 import React from 'react';
+import {Link as Route} from 'react-router-dom';
+import {Link} from '@chakra-ui/react'
 
 function NavItem(state: { to: string; label: string }) {
     return (
-        <li>
-            <a href={state.to}>{state.label}</a>
-        </li>
+        <li >
+            <Link as={Route} to={state.to} >{state.label}</Link >
+        </li >
     );
 }
 
