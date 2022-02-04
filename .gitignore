@@ -5,6 +5,7 @@ node_modules
 node_modules/
 /.pnp
 .pnp.js
+/.idea
 
 # misc
 .DS_Store
