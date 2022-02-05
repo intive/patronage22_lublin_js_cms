@@ -1,4 +1,4 @@
 export enum ROUTES {
-    AUTH = '/',
-    DASHBOARD = '/dashboard'
+  AUTH = "/",
+  DASHBOARD = "/dashboard",
 }

@@ -6,11 +6,13 @@ import { Container } from "@chakra-ui/react";
 
 const AuthLayout = () => {
   return (
-    <Container maxW="xl" centerContent className={classes.container}>
-      <Switch>
-        <Route exact path="/" render={() => <AuthPage />}></Route>
-      </Switch>
-    </Container>
+    <div>
+      <Container maxW="xl" centerContent className={classes.container}>
+        <Switch>
+          <Route exact path="/" render={() => <AuthPage />}></Route>
+        </Switch>
+      </Container>
+    </div>
   );
 };
 
