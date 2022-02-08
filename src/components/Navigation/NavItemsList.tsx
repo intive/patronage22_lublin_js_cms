@@ -5,12 +5,12 @@ import menuLinks from "../../types/routes";
 
 function NavItemList() {
     return (
-        <Menu >
+        <Menu>
             {
                 menuLinks.map((e) =>
                     <NavItem key={e.id} to={e.to} label={e.label} />)
             }
-        </Menu >
+        </Menu>
     )
 }
 
