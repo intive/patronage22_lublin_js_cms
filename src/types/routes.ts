@@ -1,6 +1,12 @@
 export enum ROUTES {
     AUTH = '/',
-    DASHBOARD = '/dashboard'
+    DASHBOARD = '/dashboard',
+    HOME='/dashboard',
+    PAGES='/pages',
+    CATEGORY='/category',
+    PRODUCTS='/products',
+    ORDERS='/orders',
+    CLIENTS='/clients'
 }
 
 const menuLinks = [
