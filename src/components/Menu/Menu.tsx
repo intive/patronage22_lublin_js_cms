@@ -1,12 +1,31 @@
 import React from "react";
-import classes from "./Menu.module.css";
 
 const Menu = () => {
   return (
-    <section className={classes.menu}>
-      <h1>Menu Component</h1>
+    <section>
+      <h1>Menu</h1>
     </section>
   );
 };
 
 export default Menu;
+
+/*
+<List>
+      {[
+        "Menu",
+        "Home",
+        "Strony",
+        "Kategorie",
+        "Produkty",
+        "Zamówienia",
+        "Klienci",
+      ].map((text, index) => (
+        <Link to="/products">
+          <ListItem button key={text}>
+            <ListItemText primary={text} />
+          </ListItem>
+        </Link>
+      ))}
+    </List>
+ */

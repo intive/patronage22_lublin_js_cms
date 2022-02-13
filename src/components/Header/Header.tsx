@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <header className={classes.header}>
-      <h1>Header Component</h1>
+      <h1>Header</h1>
       {isLoggedIn && (
         <button className={classes.button} onClick={logoutHandler}>
           Logout
