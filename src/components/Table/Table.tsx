@@ -1,11 +1,11 @@
 import React from "react";
 
-const Menu = () => {
+const Table = () => {
   return (
     <section>
-      <h1>Menu</h1>
+      <h1>Table</h1>
     </section>
   );
 };
 
-export default Menu;
+export default Table;
