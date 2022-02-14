@@ -11,10 +11,10 @@ import Toolbar from "@mui/material/Toolbar";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 
-let initialWidth: number;
-initialWidth = 220;
-
 const Layout = () => {
+  let initialWidth: number;
+  initialWidth = 220;
+
   return (
     <>
       <Box sx={{ display: "flex" }}>
@@ -22,7 +22,7 @@ const Layout = () => {
         <AppBar
           position="fixed"
           sx={{
-            width: `calc(100% - 220px)`,
+            width: `calc(100% - ${initialWidth}px)`,
           }}
         >
           <Header />
