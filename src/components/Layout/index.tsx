@@ -16,45 +16,43 @@ const Layout = () => {
   initialWidth = 220;
 
   return (
-    <>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
-          sx={{
-            width: `calc(100% - ${initialWidth}px)`,
-          }}
-        >
-          <Header />
-        </AppBar>
-        <Drawer
-          sx={{
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        sx={{
+          width: `calc(100% - ${initialWidth}px)`,
+        }}
+      >
+        <Header />
+      </AppBar>
+      <Drawer
+        sx={{
+          width: initialWidth,
+          flexShrink: 0,
+          "& .MuiDrawer-paper": {
             width: initialWidth,
-            flexShrink: 0,
-            "& .MuiDrawer-paper": {
-              width: initialWidth,
-              boxSizing: "border-box",
-            },
-          }}
-          variant="permanent"
-          anchor="left"
-        >
-          <Toolbar />
-          <Divider />
-          <Menu />
-        </Drawer>
-        <Box
-          component="main"
-          sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
-        >
-          <Toolbar />
-          <Table />
-          <Switch>
-            <Route exact path="/dashboard" render={() => <Dashboard />} />
-          </Switch>
-        </Box>
+            boxSizing: "border-box",
+          },
+        }}
+        variant="permanent"
+        anchor="left"
+      >
+        <Toolbar />
+        <Divider />
+        <Menu />
+      </Drawer>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
+      >
+        <Toolbar />
+        <Table />
+        <Switch>
+          <Route exact path="/dashboard" render={() => <Dashboard />} />
+        </Switch>
       </Box>
-    </>
+    </Box>
   );
 };
 
