@@ -2,15 +2,15 @@ import React from "react";
 import AuthPage from "../../../pages/AuthPage";
 import { Switch, Route } from "react-router-dom";
 import classes from "./AuthLayout.module.css";
-import { Container } from "@chakra-ui/react";
+import Box from "@mui/material/Box";
 
 const AuthLayout = () => {
   return (
-    <Container maxW="xl" centerContent className={classes.container}>
+    <Box className={classes.container}>
       <Switch>
         <Route exact path="/" render={() => <AuthPage />}></Route>
       </Switch>
-    </Container>
+    </Box>
   );
 };
 

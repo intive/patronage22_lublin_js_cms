@@ -1,9 +1,4 @@
-import {
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  Input,
-} from "@chakra-ui/react";
+import { FormControl, FormLabel, FormHelperText, Input } from "@mui/material";
 import React, { useRef } from "react";
 import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 import useHttp from "../../hooks/use-http";
@@ -49,7 +44,7 @@ const AuthForm = () => {
             type="email"
             name="email"
             placeholder="Enter email"
-            ref={emailInputRef}
+            inputRef={emailInputRef}
             required
           />
           <FormHelperText>
@@ -64,7 +59,7 @@ const AuthForm = () => {
             type="password"
             name="password"
             placeholder="Password"
-            ref={passwordInputRef}
+            inputRef={passwordInputRef}
             required
           />
         </FormControl>

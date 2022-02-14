@@ -3,6 +3,8 @@
   padding: 3rem;
   box-shadow: 0 4px 5px rgba(49, 43, 43, 0.2);
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
