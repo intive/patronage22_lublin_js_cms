@@ -8,7 +8,7 @@ const AuthLayout = () => {
   return (
     <Box className={classes.container}>
       <Switch>
-        <Route exact path="/" render={() => <AuthPage />}></Route>
+        <Route exact path="/" render={() => <AuthPage />}/>
       </Switch>
     </Box>
   );

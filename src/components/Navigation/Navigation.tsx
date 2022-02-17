@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-// import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
+import CssBaseline from '@mui/material/CssBaseline';
+// import AppBar from '@mui/material/AppBar';
 // import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 // import Typography from '@mui/material/Typography';
@@ -15,10 +15,10 @@ import ListItemText from '@mui/material/ListItemText';
 
 const drawerWidth = 'auto';
 
-export default function PermanentDrawerLeft() {
+export default function Navigation() {
     return (
         <Box sx={{ display: 'flex' }}>
-        {/*<CssBaseline />*/}
+        <CssBaseline />
         {/*<AppBar*/}
         {/*    position="fixed"*/}
         {/*    sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}*/}
