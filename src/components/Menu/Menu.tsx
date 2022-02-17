@@ -1,12 +1,9 @@
-import React from "react"
-import classes from "./Menu.module.css";
-import Navbar from "../Navigation";
+import React from "react";
 
 const Menu = () => {
   return (
-    <section className={classes.menu}>
-      <h1>Menu Component</h1>
-        <Navbar />
+    <section>
+      <h1>Menu</h1>
     </section>
   );
 };
