@@ -8,7 +8,7 @@ function NavItemList() {
         <List >
             {
                 menuLinks.map((e) =>
-                    <NavItem  to={e.to} label={e.label} />)
+                    <NavItem key={e.id} to={e.to} label={e.label} />)
             }
         </List>
     )
