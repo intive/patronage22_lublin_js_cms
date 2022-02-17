@@ -1,15 +1,19 @@
 export enum ROUTES {
     AUTH = '/',
-    DASHBOARD = '/dashboard'
+    DASHBOARD = '/dashboard',
+    PAGES = '/pages',
+    CATEGORY = '/category',
+    PRODUCTS = '/products',
+    ORDERS = '/orders',
+    CLIENTS = '/clients',
 }
 
 const menuLinks = [
-    { id:1, to: '/dashboard', text: 'Home'},
-    { id:2, to: '/pages', text: 'Strony'},
-    { id:3, to: '/category', text: 'Kategorie'},
-    { id:4, to: '/products', text: 'Produkty'},
-    { id:5, to: '/orders', text: 'Zamówienia'},
-    { id:6, to: '/clients', text: 'Klienci'},
+    {to: '/dashboard', label: 'Home'},
+    {to: '/pages', label: 'Strony'},
+    {to: '/category', label: 'Kategorie'},
+    {to: '/products', label: 'Produkty'},
+    {to: '/orders', label: 'Zamówienia'},
+    {to: '/clients', label: 'Klienci'},
 ];
-
 export default menuLinks;
