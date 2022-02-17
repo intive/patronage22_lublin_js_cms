@@ -1,0 +1,17 @@
+.menu {
+    flex-direction: column;
+    background-color: lightpink;
+    height: 100%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    flex-direction: column;
+    width: 100%;
+    background-color: lightblue;
+    list-style: none;
+    padding: 1em 1em;
+}
