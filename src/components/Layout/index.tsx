@@ -2,7 +2,6 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Dashboard from "../../pages/Dashboard";
 import Menu from "../Menu/Menu";
-import Table from "../Table/Table";
 import Header from "../Header/Header";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -47,7 +46,6 @@ const Layout = () => {
         sx={{ flexGrow: 1, bgcolor: "background.default", p: 2 }}
       >
         <Toolbar />
-        <Table />
         <Switch>
           <Route exact path="/dashboard" render={() => <Dashboard />} />
         </Switch>
