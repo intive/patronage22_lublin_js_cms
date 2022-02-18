@@ -1,9 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Button from '@mui/material/Button';
-import TextField from "@mui/material/TextField";
+import { Checkbox, FormControlLabel, Button, TextField } from "@material-ui/core";
 
 const EditCatForm = () => {
     return (
