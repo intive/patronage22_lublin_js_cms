@@ -12,32 +12,32 @@ const useHttp = () => {
   const loginUserRequest = useCallback(
     async (email, password) => {
       setIsLoading(true);
-      axios(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB89swc_F8hFkPq8xqnZVhKGmv0MrXMkP4",
-        {
-          method: "POST",
-          data: {
-            email: email,
-            password: password,
-            returnSecureToken: true,
-          },
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      axios("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        data: {
+          email: email,
+          password: password,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
         .then((response) => {
           if (response.status === 200) {
             console.log(response.data);
-            authCtx.login(response.data.idToken);
+            authCtx.login(response.data.token);
             history.replace("/dashboard");
           } else {
             throw new Error("Authenfication Fail!");
           }
         })
         .catch((error) => {
-          console.log(error);
-          setError(error.response.data.error.message);
+          if (error.response.status === 401) {
+            setError(error.response.data.msg);
+          } else {
+            setError(error.response.data.errors[0].msg);
+          }
+          console.log(error)
           setIsLoading(false);
         });
     },
