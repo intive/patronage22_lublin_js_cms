@@ -1,4 +1,5 @@
 import React from 'react';
+import type { MouseEvent } from 'react';
 import { Box } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import {
@@ -11,7 +12,7 @@ import { CustomTableHeadProps, Product } from '../../types/table';
 export const CustomTableHead = (props: CustomTableHeadProps) => {
   const { headCells, order, orderBy, onRequestSort } = props;
   const createSortHandler =
-    (property: keyof Product) => (event: React.MouseEvent<unknown>) => {
+    (property: keyof Product) => (event: MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
 
@@ -29,11 +30,11 @@ export const CustomTableHead = (props: CustomTableHeadProps) => {
             onClick={createSortHandler(headCell.id)}
           >
             {headCell.label}
-            {orderBy === headCell.id ? (
+            {orderBy === headCell.id && (
               <Box component="span" sx={visuallyHidden}>
                 {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
               </Box>
-            ) : null}
+            )}
           </StyledTableSortLabel>
         </StyledTableCell>
       ))}

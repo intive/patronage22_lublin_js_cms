@@ -1,5 +1,5 @@
 import { Chip } from '@mui/material';
-import * as React from 'react';
+import React from 'react';
 import { CustomRowProps } from '../../types/table';
 import { StyledTableCell, StyledTableRow } from './styles';
 
