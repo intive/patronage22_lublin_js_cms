@@ -1,6 +1,6 @@
 import React from 'react';
 import NavItem from './NavItem';
-import {List} from '@mui/material/';
+import {List} from '@mui/material';
 import menuLinks from "../../types/routes";
 
 function NavItemList() {

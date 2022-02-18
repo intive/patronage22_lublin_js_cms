@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link as RouterLink} from 'react-router-dom';
-import {Link,  ListItem} from '@mui/material/'
+import {Link,  ListItem} from '@mui/material'
 
 type NavItemProps = {
     to: string;

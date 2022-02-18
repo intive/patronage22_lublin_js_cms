@@ -4,7 +4,7 @@ import Navigation from "../Navigation/Navigation";
 const Menu = () => {
   return (
       <section>
-        <h1>Menu</h1>
+        Menu
         <Navigation/>
       </section>
   );
