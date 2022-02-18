@@ -6,38 +6,10 @@ import {
   StyledTableRow,
   StyledTableSortLabel,
 } from './styles';
-import { CustomTableHeadProps, HeadCell, Product } from '../../types/table';
-
-const headCells: HeadCell[] = [
-  {
-    id: 'id',
-    numeric: true,
-    label: 'ID',
-  },
-  {
-    id: 'title',
-    numeric: false,
-    label: 'TITLE',
-  },
-  {
-    id: 'price',
-    numeric: true,
-    label: 'PRICE',
-  },
-  {
-    id: 'description',
-    numeric: false,
-    label: 'DESCRIPTION',
-  },
-  {
-    id: 'published',
-    numeric: false,
-    label: 'PUBLISHED',
-  },
-];
+import { CustomTableHeadProps, Product } from '../../types/table';
 
 export const CustomTableHead = (props: CustomTableHeadProps) => {
-  const { order, orderBy, onRequestSort } = props;
+  const { headCells, order, orderBy, onRequestSort } = props;
   const createSortHandler =
     (property: keyof Product) => (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);

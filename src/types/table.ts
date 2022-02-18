@@ -20,7 +20,11 @@ export interface TablePaginationActionsProps {
     newPage: number
   ) => void;
 }
-
+export interface HeadCell {
+  id: keyof Product;
+  numeric: boolean;
+  label: string;
+}
 export interface CustomTableHeadProps {
   onRequestSort: (
     event: React.MouseEvent<unknown>,
@@ -29,15 +33,13 @@ export interface CustomTableHeadProps {
   order: Order;
   orderBy: string;
   rowCount: number;
+  headCells: HeadCell[];
 }
 
 export interface CustomTableProps {
   data: Product[];
+  headCells: HeadCell[];
+  disablePagination?: boolean;
 }
 
-export interface HeadCell {
-  id: keyof Product;
-  numeric: boolean;
-  label: string;
-}
 export type Order = 'asc' | 'desc';

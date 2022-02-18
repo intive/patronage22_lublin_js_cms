@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Product } from '../../types/table';
+import { HeadCell, Product } from '../../types/table';
 import CustomTable from './CustomTable';
 
 const initialState = [
@@ -26,9 +26,37 @@ const initialState = [
   },
 ];
 
+const headCells: HeadCell[] = [
+  {
+    id: 'id',
+    numeric: true,
+    label: 'ID',
+  },
+  {
+    id: 'title',
+    numeric: false,
+    label: 'TITLE',
+  },
+  {
+    id: 'price',
+    numeric: true,
+    label: 'PRICE',
+  },
+  {
+    id: 'description',
+    numeric: false,
+    label: 'DESCRIPTION',
+  },
+  {
+    id: 'published',
+    numeric: false,
+    label: 'PUBLISHED',
+  },
+];
+
 const Table = () => {
   const [products] = useState<Product[]>(initialState);
-  return <CustomTable data={products} />;
+  return <CustomTable headCells={headCells} data={products} />;
 };
 
 export default Table;

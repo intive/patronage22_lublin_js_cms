@@ -3,7 +3,7 @@ import * as React from 'react';
 import { CustomRowProps } from '../../types/table';
 import { StyledTableCell, StyledTableRow } from './styles';
 
-const CustomRow: React.FC<CustomRowProps> = ({ product }) => {
+const ProductsRow: React.FC<CustomRowProps> = ({ product }) => {
   const { id, title, price, description, published } = product;
   return (
     <StyledTableRow>
@@ -30,4 +30,4 @@ const CustomRow: React.FC<CustomRowProps> = ({ product }) => {
   );
 };
 
-export default CustomRow;
+export default ProductsRow;

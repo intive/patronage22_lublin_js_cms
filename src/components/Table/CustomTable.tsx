@@ -4,15 +4,19 @@ import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
-import CustomRow from './CustomRow';
+import CustomRow from './ProductsRow';
 import TablePaginationActions from './Pagination';
-import { TableFooter, TablePagination } from '@mui/material';
+import { TableFooter, TablePagination, Typography } from '@mui/material';
 import { StyledTableCell, StyledTableRow } from './styles';
 import { CustomTableHead } from './CustomTableHead';
 import { getComparator, stableSort } from './sortUtils';
 import { CustomTableProps, Order, Product } from '../../types/table';
 
-const CustomTable: React.FC<CustomTableProps> = ({ data }) => {
+const CustomTable: React.FC<CustomTableProps> = ({
+  headCells,
+  data,
+  disablePagination,
+}) => {
   const [page, setPage] = React.useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
   const [order, setOrder] = React.useState<Order>('asc');
@@ -45,13 +49,14 @@ const CustomTable: React.FC<CustomTableProps> = ({ data }) => {
   };
 
   return (
-    <TableContainer
-      component={Paper}
-      sx={{ width: '85%', margin: '42px auto' }}
-    >
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer component={Paper} sx={{ margin: '32px 0' }}>
+      <Typography variant="h4" p={2} sx={{ color: '#0f0f0f' }}>
+        Latest products...
+      </Typography>
+      <Table aria-label="simple table">
         <TableHead>
           <CustomTableHead
+            headCells={headCells}
             order={order}
             orderBy={orderBy}
             onRequestSort={handleRequestSort}
@@ -72,23 +77,25 @@ const CustomTable: React.FC<CustomTableProps> = ({ data }) => {
         </TableBody>
         <TableFooter>
           <StyledTableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={6}
-              count={data.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'rows per page',
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-              sx={{ width: 'auto' }}
-            />
+            {!disablePagination && (
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                colSpan={6}
+                count={data.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                SelectProps={{
+                  inputProps: {
+                    'aria-label': 'rows per page',
+                  },
+                  native: true,
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+                sx={{ width: 'auto' }}
+              />
+            )}
           </StyledTableRow>
         </TableFooter>
       </Table>
