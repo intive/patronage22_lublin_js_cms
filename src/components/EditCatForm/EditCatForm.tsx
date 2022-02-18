@@ -9,7 +9,11 @@ const EditCatForm = () => {
     return (
         <Formik
             initialValues={{title: ''}}
-            onSubmit={}
+            onSubmit={(values, actions) => {
+                console.log({ values, actions });
+                alert(JSON.stringify(values, null, 2));
+                actions.setSubmitting(false);
+            }}
         >
             <TextField id="outlined-basic" label="New Title" variant="outlined" />
             
