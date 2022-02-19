@@ -1,4 +1,5 @@
-import { Flex } from "@chakra-ui/react";
+import Box from "@mui/material/Box";
+
 import React from "react";
 
 interface NavBarContainerProps {
@@ -7,18 +8,8 @@ interface NavBarContainerProps {
 
 export default function NavBarContainer(props: NavBarContainerProps) {
   return (
-    <Flex
-      as="nav"
-      align="center"
-      justify="space-between"
-      wrap="wrap"
-      w="100%"
-      mb={8}
-      p={8}
-      bg={["blue.900", "blue.900"]}
-      color={["white", "white"]}
-    >
+    <Box sx={{ display: "flex", justifyContent: "space-between" }}>
       {props.children}
-    </Flex>
+    </Box>
   );
 }
