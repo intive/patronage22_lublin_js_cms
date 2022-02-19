@@ -21,21 +21,14 @@ const Header = () => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <NavBarContainer>
-      {/* Simple logo, now only as String */}
-      <Logo></Logo>
-      <MenuToggle toggle={toggle} isOpen={isOpen}></MenuToggle>
-      {/* Place for Menu Component Wrapper */}
-    </NavBarContainer>
-
-    // <header className={classes.header}>
-    //   <h1>Header Component</h1>
-    //   {isLoggedIn && (
-    //     <button className={classes.button} onClick={logoutHandler}>
-    //       Logout
-    //     </button>
-    //   )}
-    // </header>
+    <header className={classes.header}>
+      <h1>Header</h1>
+      {isLoggedIn && (
+        <button className={classes.button} onClick={logoutHandler}>
+          Logout
+        </button>
+      )}
+    </header>
   );
 };
 
