@@ -1,20 +1,18 @@
 import { IconButton, Box, Menu, MenuItem } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import MenuIcon from "@mui/icons-material/Menu";
 import FaceIcon from "@mui/icons-material/Face";
 import * as React from "react";
 import { useContext } from "react";
 import AuthContext from "../../store/auth-context";
 import { useHistory } from "react-router-dom";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-export default function MenuToggle() {
+export const AvatarMenuToggle = () => {
   const authCtx = useContext(AuthContext);
   // const isLoggedIn = authCtx.isLoggedIn;
 
   const history = useHistory();
 
   const logoutHandler = () => {
-    handleClose();
     authCtx.logout();
     history.replace("/");
   };
@@ -37,19 +35,13 @@ export default function MenuToggle() {
       sx={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "flex-end",
       }}
     >
       <FaceIcon fontSize="large" sx={{ color: "white", marginRight: "5px" }} />
       <IconButton sx={{ margin: "auto 10px" }} onClick={handleClick}>
-        {open ? (
-          <CloseIcon fontSize="large" sx={{ color: "white" }} />
-        ) : (
-          <MenuIcon fontSize="large" sx={{ color: "white" }} />
-        )}
+        <MoreVertIcon fontSize="large" sx={{ color: "white" }} />
       </IconButton>
       <Menu
-        id="demo-positioned-menu"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -67,4 +59,4 @@ export default function MenuToggle() {
       </Menu>
     </Box>
   );
-}
+};

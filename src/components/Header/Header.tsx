@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 //import classes from "./Header.module.css";
 import NavBarContainer from "./NavBarContainer";
 import NameLogo from "./NameLogo";
-import AvatarMenuToggle from "./AvatarMenuToggle";
+import { AvatarMenuToggle } from "./AvatarMenuToggle";
 
 const Header = () => {
   return (
