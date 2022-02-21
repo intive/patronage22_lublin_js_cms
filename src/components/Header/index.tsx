@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 //import classes from "./Header.module.css";
-import NavBarContainer from "./NavBarContainer";
-import NameLogo from "./NameLogo";
-import { AvatarMenuToggle } from "./AvatarMenuToggle";
+import NavBarContainer from "../NavBarContainer";
+import LogoType from "../LogoType";
+import HeaderMenu from "../HeaderMenu";
 
 const Header = () => {
   return (
     <NavBarContainer>
-      <NameLogo />
-      <AvatarMenuToggle></AvatarMenuToggle>
+      <LogoType />
+      <HeaderMenu />
     </NavBarContainer>
 
     // Below, code from main

@@ -6,9 +6,8 @@ import AuthContext from "../../store/auth-context";
 import { useHistory } from "react-router-dom";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-export const AvatarMenuToggle = () => {
+const HeaderMenu = () => {
   const authCtx = useContext(AuthContext);
-  // const isLoggedIn = authCtx.isLoggedIn;
 
   const history = useHistory();
 
@@ -20,11 +19,7 @@ export const AvatarMenuToggle = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    if (anchorEl) {
-      setAnchorEl(null);
-    } else {
-      setAnchorEl(event.currentTarget);
-    }
+    anchorEl ? setAnchorEl(null) : setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -60,3 +55,5 @@ export const AvatarMenuToggle = () => {
     </Box>
   );
 };
+
+export default HeaderMenu;
