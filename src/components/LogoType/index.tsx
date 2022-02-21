@@ -1,10 +1,12 @@
 import Box from "@mui/material/Box";
 import React from "react";
+import classes from "./index.module.css";
 
-export default function Logo() {
+const LogoType = () => {
   return (
-    <Box sx={{ margin: "auto 10px" }}>
+    <Box className={classes.logo}>
       <h1>Intive CMS</h1>
     </Box>
   );
-}
+};
+export default LogoType;

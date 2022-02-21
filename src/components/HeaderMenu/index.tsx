@@ -16,6 +16,10 @@ const HeaderMenu = () => {
     history.replace("/");
   };
 
+  const profilePageHandler = () => {
+    history.replace("/profile-page");
+  };
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -49,7 +53,7 @@ const HeaderMenu = () => {
           horizontal: "right",
         }}
       >
-        <MenuItem onClick={handleClose}>Profil</MenuItem>
+        <MenuItem onClick={profilePageHandler}>Profil</MenuItem>
         <MenuItem onClick={logoutHandler}>Wyloguj</MenuItem>
       </Menu>
     </Box>
