@@ -1,16 +1,17 @@
 import React from "react";
 import {Switch, Route} from "react-router-dom";
-import Dashboard from "../../pages/Dashboard";
-import Menu from "../Menu";
-import Header from "../Header/Header";
+// import Dashboard from "./Dashboard";
+import Menu from "../components/Menu";
+import Header from "../components/Header/Header";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
+import ErrorInfo from "../components/Errors/ErrorPageInfo";
 
-const Layout = () => {
+const ErrorPage = () => {
   let initialWidth: number;
   initialWidth = 220;
   return (
@@ -46,10 +47,10 @@ const Layout = () => {
       >
         <Toolbar/>
         <Switch>
-          <Route exact path="/dashboard" render={() => <Dashboard/>}/>
+          <Route render={() => <ErrorInfo/>}/>
         </Switch>
       </Box>
       </Box>
   );
 };
-export default Layout;
+export default ErrorPage;
