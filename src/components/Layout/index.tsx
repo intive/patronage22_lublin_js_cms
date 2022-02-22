@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Dashboard from "../../pages/Dashboard";
+import ProductDetails from "../../pages/ProductDetails";
 import Menu from "../Menu/Menu";
 import Header from "../Header/Header";
 import Box from "@mui/material/Box";
@@ -48,6 +49,7 @@ const Layout = () => {
         <Toolbar />
         <Switch>
           <Route exact path="/dashboard" render={() => <Dashboard />} />
+          <Route exact path="/product" render={() => <ProductDetails />} />       
         </Switch>
       </Box>
     </Box>

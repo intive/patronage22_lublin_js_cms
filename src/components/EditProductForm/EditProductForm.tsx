@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { Container, Grid, Typography } from "@mui/material";
 import TextfieldWrapper from "../Textfield/TextfieldWrapper";
 import SelectWrapper from "../Select/SelectWrapper";
-import categories from "./FormsUI/categories.json";
+import categories from "./categories.json";
 import ButtonWrapper from "../Button/ButtonWrapper";
 import SwitchWrapper from "../Switch/SwitchWrapper";
 import classes from "../EditProductForm/EditProductForm.module.css";
