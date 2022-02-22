@@ -1,11 +1,11 @@
 import React from "react";
+import Navigation from "../Navigation";
 
 const Menu = () => {
   return (
-    <section>
-      <h1>Menu</h1>
-    </section>
+      <section>
+        <Navigation/>
+      </section>
   );
 };
-
 export default Menu;
