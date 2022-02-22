@@ -1,62 +1,72 @@
-import React from 'react';
-import CustomTable from '../components/Table';
-import { HeadCell } from '../types/table';
+import React, { useState, useEffect, useContext } from "react";
+import AuthContext from "../store/auth-context";
+import axios from "axios";
+import CustomTable from "../components/Table";
+import { HeadCell } from "../types/table";
+import AddProduct from "../components/Product/AddProduct";
+import getProducts from "../components/lib/products";
+import { CONSTANTS } from "../types/constants";
 
-const Dashboard: React.FC = () => {
-  const initialState = [
-    {
-      id: 1,
-      title: 'First Product',
-      price: 10000,
-      description: 'First Product description...',
-      published: true,
-    },
-    {
-      id: 2,
-      title: 'Second Product',
-      price: 2000,
-      description: 'Second Product description...',
-      published: false,
-    },
-    {
-      id: 3,
-      title: 'Third Product',
-      price: 3000,
-      description: 'Third Product description...',
-      published: true,
-    },
-  ];
+const Dashboard = () => {
+  const [products, setProducts] = useState([]);
+
+  const authCtx = useContext(AuthContext);
+  const token = authCtx.token;
+
+  useEffect(() => {
+    getProducts(token)
+      .then((response) => {
+        console.log(response);
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [token]);
+
+  const addProductRequest = async (product: any) => {
+    const response = axios(`${CONSTANTS.URL}/api/products/addProduct`, {
+      method: "POST",
+      data: JSON.stringify(product),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log((await response).data);
+  };
 
   const headCells: HeadCell[] = [
     {
-      id: 'id',
+      id: "id",
       numeric: true,
-      label: 'ID',
+      label: "ID",
     },
     {
-      id: 'title',
+      id: "title",
       numeric: false,
-      label: 'TITLE',
+      label: "TITLE",
     },
     {
-      id: 'price',
+      id: "price",
       numeric: true,
-      label: 'PRICE',
+      label: "PRICE",
     },
     {
-      id: 'description',
+      id: "description",
       numeric: false,
-      label: 'DESCRIPTION',
+      label: "DESCRIPTION",
     },
     {
-      id: 'published',
+      id: "published",
       numeric: false,
-      label: 'PUBLISHED',
+      label: "PUBLISHED",
     },
   ];
   return (
     <section>
-      <CustomTable headCells={headCells} data={initialState} />
+      <CustomTable headCells={headCells} data={products} />
+      <AddProduct onAddProduct={addProductRequest} />
     </section>
   );
 };
