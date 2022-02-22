@@ -13,7 +13,7 @@ function ErrorInfo() {
         padding: '1em 1em 2em 1em',
         backgroundColor: 'error.main',
       }}>
-        <Typography variant='h3'>404</Typography>
+        <Typography variant='h3'>Error 404</Typography>
         <Typography paragraph={true} fontSize='2em'>You just broke the Internet</Typography>
         <Link component={RouterLink} to='/dashboard' underline='hover' color='goldenrod' fontSize='2em'>FIX IT</Link>
       </Box>

@@ -9,6 +9,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
+import ErrorPageInfo from "../Errors/ErrorPageInfo";
 
 const Layout = () => {
   let initialWidth: number;
@@ -47,6 +48,7 @@ const Layout = () => {
         <Toolbar/>
         <Switch>
           <Route exact path="/dashboard" render={() => <Dashboard/>}/>
+          <Route render={() => <ErrorPageInfo/>}/>
         </Switch>
       </Box>
       </Box>
