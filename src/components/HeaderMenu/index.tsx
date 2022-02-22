@@ -24,7 +24,7 @@ const HeaderMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    anchorEl ? setAnchorEl(null) : setAnchorEl(event.currentTarget);
+    setAnchorEl(anchorEl ? null : event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
