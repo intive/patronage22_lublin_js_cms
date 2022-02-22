@@ -1,6 +1,7 @@
 import React from 'react';
 import CustomTable from '../components/Table';
 import { HeadCell } from '../types/table';
+import AddCategoryForm from '../../src/components/Modals/AddCategoryForm';
 
 const Dashboard: React.FC = () => {
   const initialState = [
@@ -57,6 +58,7 @@ const Dashboard: React.FC = () => {
   return (
     <section>
       <CustomTable headCells={headCells} data={initialState} />
+      <AddCategoryForm />
     </section>
   );
 };
