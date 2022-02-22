@@ -2,27 +2,21 @@ import React from "react";
 import { useRef } from "react"; 
 import { Formik, Form } from "formik";
 import { Checkbox, FormControlLabel, Button, TextField } from "@material-ui/core";
+import * as Yup from "yup";
 
 const EditCatForm = (props: String) => {
-    const titleRef useRef();
+    // const titleRef useRef();
     
-    const submitHandler = (event: { preventDefault: () => void; }) => {
-        const editedTitle = titleRef.current.value;
-    }
+    // const submitHandler = (event: { preventDefault: () => void; }) => {
+    //     const editedTitle = titleRef.current.value;
+    // }
 
-    const validate = (values: {title: String}) => {
-        const errors = {};
-
-        if (!values.title) {
-            errors.title = 'Required';
-        } else if (values.title.length < 2) {
-            errors.title = 'Title must have at least 2 characters.';
-        } else if (values.title.length > 20) {
-            errors.title = 'Title must have less than 20 characters.'
-        }
-
-    return errors;        
-    };
+    const EditCategoryValidation = Yup.object().shape({
+        title: Yup.string()
+        .min(2, "Title mush have at least 2 characters")
+        .max(20, "Title must have less than 20 characters")
+        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field")
+    });
 
     return (
         <Formik
@@ -33,6 +27,8 @@ const EditCatForm = (props: String) => {
                 alert(JSON.stringify(values, null, 2));
                 actions.setSubmitting(false);
             }}
+
+            validationSchema = {EditCategoryValidation}
         >
             <Form onSubmit={submitHandler}>
                 <TextField 
