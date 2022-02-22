@@ -1,7 +1,7 @@
 import { IconButton, Box, Menu, MenuItem } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
-import * as React from "react";
-import { useContext } from "react";
+import React from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../../store/auth-context";
 import { useHistory } from "react-router-dom";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -21,7 +21,7 @@ const HeaderMenu = () => {
     history.replace("/profile-page");
   };
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
