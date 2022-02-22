@@ -6,6 +6,7 @@ import SubscriptionsOutlinedIcon from '@mui/icons-material/SubscriptionsOutlined
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 
 export enum ROUTES {
+<<<<<<< HEAD
   AUTH = '/',
   DASHBOARD = '/dashboard',
   PAGES = '/pages',
@@ -24,3 +25,9 @@ const menuLinks = [
   {id: 6, to: ROUTES.CLIENTS, label: 'Klienci', icon: PeopleOutlinedIcon},
 ];
 export default menuLinks;
+=======
+    AUTH = '/',
+    DASHBOARD = '/dashboard',
+    PRODUCT = '/product'
+}
+>>>>>>> 6684186 (fix: create new path and page for EditProductForm)
