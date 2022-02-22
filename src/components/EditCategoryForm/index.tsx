@@ -3,14 +3,26 @@ import { useRef } from "react";
 import { Formik, Form } from "formik";
 import { Checkbox, FormControlLabel, Button, TextField } from "@material-ui/core";
 
-const EditCatForm = (props: any) => {
+const EditCatForm = (props: String) => {
     const titleRef useRef();
     
-    const submitHandler = (event: any) => {
-        event.preventDefault();
-
+    const submitHandler = (event: { preventDefault: () => void; }) => {
         const editedTitle = titleRef.current.value;
     }
+
+    const validate = (values: {title: String}) => {
+        const errors = {};
+
+        if (!values.title) {
+            errors.title = 'Required';
+        } else if (values.title.length < 2) {
+            errors.title = 'Title must have at least 2 characters.';
+        } else if (values.title.length > 20) {
+            errors.title = 'Title must have less than 20 characters.'
+        }
+
+    return errors;        
+    };
 
     return (
         <Formik
@@ -23,7 +35,14 @@ const EditCatForm = (props: any) => {
             }}
         >
             <Form onSubmit={submitHandler}>
-                <TextField id="outlined-basic" label="New Title" variant="outlined" name="title" required ref={titleRef}/>
+                <TextField 
+                    id="outlined-basic" 
+                    label="New Title" 
+                    variant="outlined" 
+                    name="title" 
+                    required 
+                    ref={titleRef}
+                />
                 
                 <FormControlLabel
                     value="bottom"
