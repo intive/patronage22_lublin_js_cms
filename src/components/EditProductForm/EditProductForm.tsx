@@ -2,11 +2,11 @@ import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Container, Grid, Typography } from "@mui/material";
-import TextfieldWrapper from "./FormsUI/Textfield/TextfieldWrapper";
-import SelectWrapper from "./FormsUI/Select/SelectWrapper";
+import TextfieldWrapper from "../Textfield/TextfieldWrapper";
+import SelectWrapper from "../Select/SelectWrapper";
 import categories from "./FormsUI/categories.json";
-import ButtonWrapper from "./FormsUI/Button/ButtonWrapper";
-import SwitchWrapper from "./FormsUI/Switch/SwitchWrapper";
+import ButtonWrapper from "../Button/ButtonWrapper";
+import SwitchWrapper from "../Switch/SwitchWrapper";
 import classes from "../EditProductForm/EditProductForm.module.css";
 
 const products = [
