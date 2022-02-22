@@ -7,6 +7,7 @@ import SelectWrapper from "./FormsUI/Select/SelectWrapper";
 import categories from "./FormsUI/categories.json";
 import ButtonWrapper from "./FormsUI/Button/ButtonWrapper";
 import SwitchWrapper from "./FormsUI/Switch/SwitchWrapper";
+import classes from "../EditProductForm/EditProductForm.module.css";
 
 const products = [
   {
@@ -54,9 +55,7 @@ const FORM_VALIDATION = Yup.object().shape({
 
 export const EditProductForm = () => {
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <Container maxWidth="md">
+        <Container className={classes.container}>
           <Formik
             initialValues={{
               ...INITIAL_FORM_STATE,
@@ -67,17 +66,13 @@ export const EditProductForm = () => {
             }}
           >
             {(props) => (
-              <Form>
+              <Form >
                 <Grid
-                  container
-                  spacing={2}
-                  boxShadow={3}
-                  p={2}
-                  borderRadius={1}
-                  justifyContent="space-between"
+                  container 
+                  className={classes.gridContainer}
                 >
-                  <Grid item xs={12}>
-                    <Typography variant="h4" p={2} sx={{ color: "#0f0f0f" }}>
+                  <Grid item >
+                    <Typography variant="h4" >
                       Edit product Form
                     </Typography>
                   </Grid>
@@ -136,14 +131,12 @@ export const EditProductForm = () => {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <ButtonWrapper>Submit Form</ButtonWrapper>
+                    <ButtonWrapper>Edit Product</ButtonWrapper>
                   </Grid>
                 </Grid>
               </Form>
             )}
           </Formik>
         </Container>
-      </Grid>
-    </Grid>
   );
 };
