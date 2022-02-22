@@ -11,8 +11,7 @@ const EditCatForm = (props: String) => {
         .max(20, "Title must have less than 20 characters")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field")
     });
-
-    const EditCategoryForm = () => {
+    
         const formik = useFormik({
             initialValues: { title: {props.title} },
             
@@ -24,7 +23,6 @@ const EditCatForm = (props: String) => {
 
             validationSchema: { EditCategoryValidation }
         })
-    }
 
     return (
         <Form onSubmit={handleSubmit}>
