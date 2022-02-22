@@ -11,7 +11,7 @@ const EditCatForm = (props: String) => {
         .max(20, "Title must have less than 20 characters")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field")
     });
-    
+
         const formik = useFormik({
             initialValues: { title: {props.title} },
             
@@ -25,13 +25,13 @@ const EditCatForm = (props: String) => {
         })
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={formik.handleSubmit}>
             <TextField 
                 id="outlined-basic" 
                 label="New Title" 
                 variant="outlined" 
                 name="title" 
-                onChange={handleChange}
+                onChange={formik.handleChange}
                 required
             />
 
@@ -40,43 +40,11 @@ const EditCatForm = (props: String) => {
                 control={<Checkbox />} 
                 label="Published"
                 labelPlacement="bottom"
-                onChange={handleChange}
+                onChange={formik.handleChange}
             />
 
-            <Button variant="contained" onChange={handleChange}>Add</Button>
+            <Button variant="contained" onChange={formik.handleChange}>Add</Button>
         </Form>
-
-        // <Formik
-        //     initialValues={{title: props.title}}
-
-        //     onSubmit={(values, actions) => {
-        //         console.log({ values, actions });
-        //         alert(JSON.stringify(values, null, 2));
-        //         actions.setSubmitting(false);
-        //     }}
-
-        //     validationSchema = {EditCategoryValidation}
-        // >
-        //     <Form onSubmit={submitHandler}>
-        //         <TextField 
-        //             id="outlined-basic" 
-        //             label="New Title" 
-        //             variant="outlined" 
-        //             name="title" 
-        //             required 
-        //             ref={titleRef}
-        //         />
-                
-        //         <FormControlLabel
-        //             value="bottom"
-        //             control={<Checkbox />} 
-        //             label="Published"
-        //             labelPlacement="bottom"
-        //         />
-
-        //         <Button variant="contained">Add</Button>
-        //     </Form>
-        // </Formik>
     )
 }
  
