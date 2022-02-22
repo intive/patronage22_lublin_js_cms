@@ -15,6 +15,19 @@ import * as yup from 'yup';
 import axios from "axios";
 
 
+// TODO review style
+const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -25,7 +38,6 @@ const validationSchema = yup.object({
         .required('Title is required'),
 });
 
-
 const AddCategoryForm = () => {
 
     const formik = useFormik({
@@ -35,6 +47,10 @@ const AddCategoryForm = () => {
         validationSchema: validationSchema,
         onSubmit: (values) => {
             alert(JSON.stringify(values, null, 2));
+            const url = '/test'; //TODO add URL
+            axios.post( url, {
+              title: formik.values.title,
+            });
         },
     });
 
@@ -54,7 +70,7 @@ const AddCategoryForm = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box className={classes.modal} >
+                <Box sx={style} >
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Add new category
                     </Typography>
