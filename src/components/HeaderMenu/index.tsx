@@ -5,6 +5,7 @@ import { useContext } from "react";
 import AuthContext from "../../store/auth-context";
 import { useHistory } from "react-router-dom";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import styles from "./index.module.css";
 
 const HeaderMenu = () => {
   const authCtx = useContext(AuthContext);
@@ -30,15 +31,10 @@ const HeaderMenu = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <FaceIcon fontSize="large" sx={{ color: "white", marginRight: "5px" }} />
-      <IconButton sx={{ margin: "auto 10px" }} onClick={handleClick}>
-        <MoreVertIcon fontSize="large" sx={{ color: "white" }} />
+    <Box className={styles.wrapper}>
+      <FaceIcon fontSize="large" className={styles.faceIcon} />
+      <IconButton className={styles.iconButton} onClick={handleClick}>
+        <MoreVertIcon fontSize="large" className={styles.moreVertIcon} />
       </IconButton>
       <Menu
         anchorEl={anchorEl}

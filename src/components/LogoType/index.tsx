@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
 import React from "react";
-import classes from "./index.module.css";
+import styles from "./index.module.css";
 
 const LogoType = () => {
   return (
-    <Box className={classes.logo}>
+    <Box className={styles.logo}>
       <h1>Intive CMS</h1>
     </Box>
   );
