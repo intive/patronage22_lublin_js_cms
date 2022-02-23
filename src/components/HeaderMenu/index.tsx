@@ -9,10 +9,8 @@ import styles from "./index.module.css";
 
 const HeaderMenu = () => {
   const authCtx = useContext(AuthContext);
-
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-
   const history = useHistory();
 
   const logoutHandler = () => {
