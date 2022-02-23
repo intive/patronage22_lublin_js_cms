@@ -1,6 +1,5 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 import { Container, Grid, Typography } from "@mui/material";
 import TextfieldWrapper from "../Textfield/TextfieldWrapper";
 import SelectWrapper from "../Select/SelectWrapper";
@@ -8,52 +7,18 @@ import categories from "./categories.json";
 import ButtonWrapper from "../Button/ButtonWrapper";
 import SwitchWrapper from "../Switch/SwitchWrapper";
 import classes from "../EditProductForm/EditProductForm.module.css";
+import { FORM_VALIDATION } from "./validate";
 
-const products = [
-  {
-    id: 1,
-    title: "First Product",
-    category: 3,
-    quantity: 10000,
-    description: "First Product description...",
-    status: false,
-    published: false,
-  },
-];
 
-const INITIAL_FORM_STATE = {
-  title: products[0].title,
-  category: products[0].category,
-  quantity: products[0].quantity,
-  description: products[0].description,
-  status: products[0].status,
-  published: products[0].published,
+type EditProductFormProps = {
+  product: any;
 };
 
-const FORM_VALIDATION = Yup.object().shape({
-  title: Yup.string()
-    .max(50, "Max number of characters is 50")
-    .required("Required"),
-  category: Yup.string()
-    .required("Required"),
-  quantity: Yup.number()
-    .integer()
-    .min(0, "Quantity can not be negative")
-    .max(10000, "Max 10000")
-    .typeError("Quantity must be an integer")
-    .required("Required"),
-  description: Yup.string()
-    .min(25, "Min number of characters is 25")
-    .required("Required"),
-  status: Yup.boolean()
-    .oneOf([true, false], "Invalid value")
-    .required("Required"),
-  published: Yup.boolean()
-    .oneOf([true, false], "Invalid value")
-    .required("Required"),
-});
 
-export const EditProductForm = () => {
+export const EditProductForm: React.FC<EditProductFormProps> = ({ product }) => {
+
+  const INITIAL_FORM_STATE = {...product};
+
   return (
         <Container className={classes.container}>
           <Formik

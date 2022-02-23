@@ -2,11 +2,11 @@ import React from "react";
 import { Button } from "@mui/material";
 import { useFormikContext } from "formik";
 
-type props = {
+type ButtonProps = {
   children: string;
 };
 
-const ButtonWrapper: React.FC<props> = ({ children }) => {
+const ButtonWrapper: React.FC<ButtonProps> = ({ children }) => {
   const { submitForm } = useFormikContext();
 
   const handleSubmit = () => {

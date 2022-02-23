@@ -2,14 +2,14 @@ import React from "react";
 import { TextField } from "@mui/material";
 import { useField } from "formik";
 
-type props = {
+type TextFieldProps = {
   name: string;
   label: string;
   multiline?: boolean;
   rows?: number;
 };
 
-export const TextfieldWrapper: React.FC<props> = ({ name, ...otherProps }) => {
+export const TextfieldWrapper: React.FC<TextFieldProps> = ({ name, ...otherProps }) => {
   const [field, mata] = useField(name);
 
   const configTextfield = {

@@ -8,13 +8,13 @@ import {
 } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 
-type props = {
+type SwitchWrapperProps  = {
   name: string;
   label: string;
   legend: string;
 };
 
-const SwitchWrapper: React.FC<props> = ({ name, label, legend }) => {
+const SwitchWrapper: React.FC<SwitchWrapperProps> = ({ name, label, legend }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
 
