@@ -1,12 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Dashboard from "../../pages/Dashboard";
-<<<<<<< HEAD
 import Menu from "../Menu";
-=======
 import ProductDetails from "../../pages/ProductDetails";
-import Menu from "../Menu/Menu";
->>>>>>> 6684186 (fix: create new path and page for EditProductForm)
 import Header from "../Header/Header";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
