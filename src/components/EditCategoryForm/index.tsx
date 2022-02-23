@@ -3,8 +3,12 @@ import { Form, useFormik, Formik }  from "formik";
 import { Checkbox, FormControlLabel, Button, TextField } from "@material-ui/core";
 import EditCategoryValidation from "./validation"
 
-const EditCatForm = (props: String) => {
-        const initialFormValues = {title: {props.title}};
+type FormProps = {
+    title: String
+}
+
+const EditCategoryForm = ({title}: FormProps) => {
+        const initialFormValues = {title};
 
         const formik = useFormik({
             initialValues: {initialFormValues},
@@ -44,4 +48,4 @@ const EditCatForm = (props: String) => {
     )
 }
  
-export default EditCatForm;
+export default EditCategoryForm;
