@@ -18,19 +18,16 @@ const EditCatForm = (props: String) => {
             validationSchema: { EditCategoryValidation }
         })
 
-        const formikHandlers = {
-            submitHandler: formik.handleSubmit,
-            changeHandler: formik.handleChange
-        }
+        const { handleSubmit, handleChange } = formik;
 
     return (
-        <Form onSubmit={formik.handleSubmit}>
+        <Form onSubmit={handleSubmit}>
             <TextField 
                 id="outlined-basic" 
                 label="New Title" 
                 variant="outlined" 
                 name="title" 
-                onChange={formik.handleChange}
+                onChange={handleChange}
                 required
             />
 
@@ -39,10 +36,10 @@ const EditCatForm = (props: String) => {
                 control={<Checkbox />} 
                 label="Published"
                 labelPlacement="bottom"
-                onChange={formik.handleChange}
+                onChange={handleChange}
             />
 
-            <Button variant="contained" onChange={formik.handleChange}>Add</Button>
+            <Button variant="contained" onChange={handleChange}>Add</Button>
         </Form>
     )
 }
