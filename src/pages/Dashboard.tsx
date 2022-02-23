@@ -1,57 +1,57 @@
-import React from "react";
-import CustomTable from "../components/Table";
-import { HeadCell } from "../types/table";
+import React from 'react';
+import CustomTable from '../components/Table';
+import { HeadCell } from '../types/table';
 
 const Dashboard: React.FC = () => {
   const initialState = [
     {
       id: 1,
-      title: "First Product",
+      title: 'First Product',
       price: 10000,
-      description: "First Product description...",
+      description: 'First Product description...',
       published: true,
     },
     {
       id: 2,
-      title: "Second Product",
+      title: 'Second Product',
       price: 2000,
-      description: "Second Product description...",
+      description: 'Second Product description...',
       published: false,
     },
     {
       id: 3,
-      title: "Third Product",
+      title: 'Third Product',
       price: 3000,
-      description: "Third Product description...",
+      description: 'Third Product description...',
       published: true,
     },
   ];
 
   const headCells: HeadCell[] = [
     {
-      id: "id",
+      id: 'id',
       numeric: true,
-      label: "ID",
+      label: 'ID',
     },
     {
-      id: "title",
+      id: 'title',
       numeric: false,
-      label: "TITLE",
+      label: 'TITLE',
     },
     {
-      id: "price",
+      id: 'price',
       numeric: true,
-      label: "PRICE",
+      label: 'PRICE',
     },
     {
-      id: "description",
+      id: 'description',
       numeric: false,
-      label: "DESCRIPTION",
+      label: 'DESCRIPTION',
     },
     {
-      id: "published",
+      id: 'published',
       numeric: false,
-      label: "PUBLISHED",
+      label: 'PUBLISHED',
     },
   ];
   return (
