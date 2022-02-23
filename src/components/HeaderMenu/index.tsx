@@ -10,6 +10,9 @@ import styles from "./index.module.css";
 const HeaderMenu = () => {
   const authCtx = useContext(AuthContext);
 
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
   const history = useHistory();
 
   const logoutHandler = () => {
@@ -21,8 +24,6 @@ const HeaderMenu = () => {
     history.replace("/profile-page");
   };
 
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
