@@ -1,19 +1,13 @@
 import React from "react";
-import { Form, useFormik , Formik } from "formik";
+import { Form, useFormik, Formik }  from "formik";
 import { Checkbox, FormControlLabel, Button, TextField } from "@material-ui/core";
-import * as Yup from "yup";
+import EditCategoryValidation from "./validation"
 
 const EditCatForm = (props: String) => {
-
-    const EditCategoryValidation = Yup.object().shape({
-        title: Yup.string()
-        .min(2, "Title mush have at least 2 characters")
-        .max(20, "Title must have less than 20 characters")
-        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field")
-    });
+        const initialFormValues = {title: {props.title}};
 
         const formik = useFormik({
-            initialValues: { title: {props.title} },
+            initialValues: {initialFormValues},
             
             onSubmit: (values, actions) => {
                 console.log({ values, actions });
@@ -23,6 +17,11 @@ const EditCatForm = (props: String) => {
 
             validationSchema: { EditCategoryValidation }
         })
+
+        const formikHandlers = {
+            submitHandler: formik.handleSubmit,
+            changeHandler: formik.handleChange
+        }
 
     return (
         <Form onSubmit={formik.handleSubmit}>
