@@ -48,7 +48,7 @@ const Layout = () => {
         <Toolbar/>
         <Switch>
           <Route exact path="/dashboard" render={() => <Dashboard/>}/>
-          <Route render={() => <ErrorPageInfo/>}/>
+          <Route path='*'><ErrorPageInfo/></Route>
         </Switch>
       </Box>
       </Box>
