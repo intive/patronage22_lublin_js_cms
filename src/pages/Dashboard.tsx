@@ -1,41 +1,46 @@
-import React from 'react';
-import CustomTable from '../components/Table';
-import { HeadCell } from '../types/table';
+import React, { useState, useEffect, useContext } from "react";
+import AuthContext from "../store/auth-context";
+import CustomTable from "../components/Table";
+import { HeadCell } from "../types/table";
+import getProducts from "../lib/products";
 
-const Dashboard: React.FC = () => {
-  const initialState = [
+const Dashboard = () => {
+  const [products, setProducts] = useState([]);
 
-    { "id": 1, "title": "Pierwszy produkt", "price": 15000, "description": "Opis proiduktu", "published": true, "createdAt": "2022-02-06T14:20:02.000Z", "updatedAt": "2022-02-06T14:20:02.000Z" }
-    ,
+  const authCtx = useContext(AuthContext);
+  const token = authCtx.token;
 
-    { "id": 2, "title": "Drugi produkt", "price": 15555, "description": "First Prod", "published": false, "createdAt": "2022-02-13T19:48:48.000Z", "updatedAt": "2022-02-13T19:48:48.000Z" }
-    ,
-
-    { "id": 3, "title": "Trzeci produkt", "price": 15551412, "description": "Sec Prod", "published": false, "createdAt": "2022-02-13T19:49:04.000Z", "updatedAt": "2022-02-13T19:49:04.000Z" }
-  ,  
-
-  ]
+  useEffect(() => {
+    getProducts(token)
+      .then((response) => {
+        console.log(response);
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [token]);
 
   const headCells: HeadCell[] = [
     {
-      id: 'id',
+      id: "id",
       numeric: true,
-      label: 'ID',
+      label: "ID",
     },
     {
-      id: 'title',
+      id: "title",
       numeric: false,
-      label: 'TITLE',
+      label: "TITLE",
     },
     {
-      id: 'price',
+      id: "price",
       numeric: true,
-      label: 'PRICE',
+      label: "PRICE",
     },
     {
-      id: 'published',
+      id: "published",
       numeric: false,
-      label: 'PUBLISHED',
+      label: "PUBLISHED",
     },
     {
       id: 'createdAt',
@@ -50,7 +55,7 @@ const Dashboard: React.FC = () => {
   ];
   return (
     <section>
-      <CustomTable headCells={headCells} data={initialState} />
+      <CustomTable headCells={headCells} data={products} />
     </section>
   );
 };

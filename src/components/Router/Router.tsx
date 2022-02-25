@@ -7,7 +7,6 @@ import AuthGuard from "../HOC/AuthGuard";
 
 const Router = () => {
   return (
-
       <Switch>
         <Route exact path={ROUTES.AUTH} component={AuthLayout}/>
         <Route exact path={ROUTES.DASHBOARD} component={AuthGuard(Layout)}/>
