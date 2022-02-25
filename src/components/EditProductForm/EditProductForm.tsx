@@ -3,22 +3,19 @@ import { Formik, Form } from "formik";
 import { Container, Grid, Typography } from "@mui/material";
 import TextfieldWrapper from "../Textfield/TextfieldWrapper";
 import SelectWrapper from "../Select/SelectWrapper";
-import categories from "./categories.json";
 import ButtonWrapper from "../Button/ButtonWrapper";
 import SwitchWrapper from "../Switch/SwitchWrapper";
 import classes from "../EditProductForm/EditProductForm.module.css";
 import { FORM_VALIDATION } from "./validate";
 
-
 type EditProductFormProps = {
   product: any;
+  categories: any;
 };
 
-
-export const EditProductForm: React.FC<EditProductFormProps> = ({ product }) => {
+export const EditProductForm: React.FC<EditProductFormProps> = ({ product, categories }) => {
 
   const INITIAL_FORM_STATE = {...product};
-
   return (
         <Container className={classes.container}>
           <Formik

@@ -8,7 +8,11 @@ type SelectWrapperProps = {
   label: string;
 };
 
-const SelectWrapper: React.FC<SelectWrapperProps> = ({ name, options, ...otherProps }) => {
+const SelectWrapper: React.FC<SelectWrapperProps> = ({
+  name,
+  options,
+  ...otherProps
+}) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
 
@@ -33,10 +37,10 @@ const SelectWrapper: React.FC<SelectWrapperProps> = ({ name, options, ...otherPr
   }
   return (
     <TextField {...configSelect}>
-      {Object.keys(options).map((item, pos) => {
+      {options.map((option: any) => {
         return (
-          <MenuItem key={pos} value={item}>
-            {options[item]}
+          <MenuItem key={option.id} value={option.title}>
+            {option.title}
           </MenuItem>
         );
       })}
