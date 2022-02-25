@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 import axios from "axios";
-import getCategories from "../../lib/categories";
+import getCategories from "../lib/categories";
 import { CONSTANTS } from "../../types/constants";
 import statuses from "../../types/statuses";
 
