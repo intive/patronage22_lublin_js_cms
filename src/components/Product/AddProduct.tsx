@@ -34,19 +34,19 @@ interface ProductProps {
 }
 
 const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
-  const [categories, setCategories] = useState<any[]>([]);
-  const [category, setCategory] = useState("");
-  const [image, setImage] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState<any>(null);
-  const [quantity, setQuantity] = useState(0);
-  const [status, setStatus] = useState("");
-  const [published, setPublished] = useState(false);
-
-  const handleChange = () => {
-    setPublished(!published);
+  const initialState = {
+    category: "",
+    image: "",
+    title: "",
+    description: "",
+    price: 0,
+    quantity: 0,
+    status: "",
+    published: false,
   };
+
+  const [categories, setCategories] = useState<any[]>([]);
+  const [formData, setFormData] = useState(initialState);
 
   useEffect(() => {
     getCategories()
@@ -77,7 +77,10 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
         formData,
         config
       );
-      setImage(data);
+      setFormData((prevState) => ({
+        ...prevState,
+        image: data,
+      }));
     } catch (error) {
       console.error(error);
     }
@@ -87,25 +90,17 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
     event.preventDefault();
 
     const product = {
-      title,
-      category,
-      description,
-      photo: image,
-      price: price.toFixed(2),
-      quantity,
-      status,
-      published,
+      title: formData.title,
+      category: formData.category,
+      description: formData.description,
+      photo: formData.image,
+      price: formData.price.toFixed(2),
+      quantity: formData.quantity,
+      status: formData.status,
+      published: formData.published,
     };
     onAddProduct(product);
     console.log("Submitted", product);
-    setCategory("");
-    setTitle("");
-    setDescription("");
-    setImage("");
-    setPrice(null);
-    setQuantity(0);
-    setStatus("");
-    setPublished(false);
   };
 
   const initialValues: MyFormValues = {
@@ -137,8 +132,13 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
             type="text"
             name="title"
             placeholder="Enter title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={formData.title}
+            onChange={(e) =>
+              setFormData((prevState) => ({
+                ...prevState,
+                title: e.target.value,
+              }))
+            }
             required
           />
         </FormControl>
@@ -148,9 +148,14 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={category}
+              value={formData.category}
               label="Category"
-              onChange={(e) => setCategory(e.target.value)}
+              onChange={(e) =>
+                setFormData((prevState) => ({
+                  ...prevState,
+                  category: e.target.value,
+                }))
+              }
             >
               {categories.map((item) => (
                 <MenuItem key={item.id} value={item.title}>
@@ -167,9 +172,14 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
             multiline
             name="description"
             placeholder="Enter description"
-            value={description}
+            value={formData.description}
             rows={4}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) =>
+              setFormData((prevState) => ({
+                ...prevState,
+                description: e.target.value,
+              }))
+            }
             required
           />
         </FormControl>
@@ -198,8 +208,13 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
             type="number"
             name="price"
             placeholder="Enter price"
-            value={price}
-            onChange={(e) => setPrice(+e.target.value)}
+            value={formData.price}
+            onChange={(e) =>
+              setFormData((prevState) => ({
+                ...prevState,
+                price: +e.target.value,
+              }))
+            }
             InputProps={{
               inputProps: {
                 max: 100000.0,
@@ -216,8 +231,13 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
             type="number"
             name="quantity"
             placeholder="Enter quantity"
-            value={quantity}
-            onChange={(e) => setQuantity(+e.target.value)}
+            value={formData.quantity}
+            onChange={(e) =>
+              setFormData((prevState) => ({
+                ...prevState,
+                quantity: +e.target.value,
+              }))
+            }
             InputProps={{
               inputProps: {
                 max: 100,
@@ -235,9 +255,14 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
             <Select
               labelId="demo-simple-select-label-status"
               id="demo-simple-select-status"
-              value={status}
+              value={formData.status}
               label="Status"
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={(e) =>
+                setFormData((prevState) => ({
+                  ...prevState,
+                  status: e.target.value,
+                }))
+              }
             >
               {statuses.map((item) => (
                 <MenuItem key={item.id} value={item.status}>
@@ -249,7 +274,16 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
         </Box>
         <FormControl>
           <FormControlLabel
-            control={<Checkbox onChange={handleChange} />}
+            control={
+              <Checkbox
+                onChange={() =>
+                  setFormData((prevState) => ({
+                    ...prevState,
+                    published: !formData.published,
+                  }))
+                }
+              />
+            }
             label="Published"
           />
         </FormControl>
@@ -262,3 +296,15 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
 };
 
 export default AddProduct;
+
+/**
+ * const [categories, setCategories] = useState<any[]>([]);
+  const [category, setCategory] = useState("");
+  const [image, setImage] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState<any>(null);
+  const [quantity, setQuantity] = useState(0);
+  const [status, setStatus] = useState("");
+  const [published, setPublished] = useState(false);
+ */
