@@ -39,7 +39,7 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
     image: "",
     title: "",
     description: "",
-    price: 0,
+    price: "",
     quantity: 0,
     status: "",
     published: false,
@@ -94,13 +94,14 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
       category: formData.category,
       description: formData.description,
       photo: formData.image,
-      price: formData.price.toFixed(2),
+      price: +formData.price,
       quantity: formData.quantity,
       status: formData.status,
       published: formData.published,
     };
     onAddProduct(product);
     console.log("Submitted", product);
+    setFormData(initialState);
   };
 
   const initialValues: MyFormValues = {
@@ -205,20 +206,19 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
           <FormLabel htmlFor="price">Price</FormLabel>
           <TextField
             id="price"
-            type="number"
+            type="text"
             name="price"
             placeholder="Enter price"
             value={formData.price}
             onChange={(e) =>
               setFormData((prevState) => ({
                 ...prevState,
-                price: +e.target.value,
+                price: e.target.value,
               }))
             }
             InputProps={{
               inputProps: {
-                max: 100000.0,
-                min: 10.0,
+                maxLength: 9,
               },
             }}
             required
@@ -296,15 +296,3 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
 };
 
 export default AddProduct;
-
-/**
- * const [categories, setCategories] = useState<any[]>([]);
-  const [category, setCategory] = useState("");
-  const [image, setImage] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState<any>(null);
-  const [quantity, setQuantity] = useState(0);
-  const [status, setStatus] = useState("");
-  const [published, setPublished] = useState(false);
- */
