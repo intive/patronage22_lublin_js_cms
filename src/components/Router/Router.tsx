@@ -10,6 +10,7 @@ const Router = () => {
     <Switch>
       <Route exact path={ROUTES.AUTH} component={AuthLayout} />
       <Route exact path={ROUTES.DASHBOARD} component={AuthGuard(Layout)} />
+      <Route exact path={ROUTES.PRODUCTS} component={AuthGuard(Layout)} />
     </Switch>
   );
 };
