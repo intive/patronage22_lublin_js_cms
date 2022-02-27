@@ -4,28 +4,17 @@ import { HeadCell } from '../types/table';
 
 const Dashboard: React.FC = () => {
   const initialState = [
-    {
-      id: 1,
-      title: 'First Product',
-      price: 10000,
-      description: 'First Product description...',
-      published: true,
-    },
-    {
-      id: 2,
-      title: 'Second Product',
-      price: 2000,
-      description: 'Second Product description...',
-      published: false,
-    },
-    {
-      id: 3,
-      title: 'Third Product',
-      price: 3000,
-      description: 'Third Product description...',
-      published: true,
-    },
-  ];
+
+    { "id": 1, "title": "Pierwszy produkt", "price": 15000, "description": "Opis proiduktu", "published": true, "createdAt": "2022-02-06T14:20:02.000Z", "updatedAt": "2022-02-06T14:20:02.000Z" }
+    ,
+
+    { "id": 2, "title": "Drugi produkt", "price": 15555, "description": "First Prod", "published": false, "createdAt": "2022-02-13T19:48:48.000Z", "updatedAt": "2022-02-13T19:48:48.000Z" }
+    ,
+
+    { "id": 3, "title": "Trzeci produkt", "price": 15551412, "description": "Sec Prod", "published": false, "createdAt": "2022-02-13T19:49:04.000Z", "updatedAt": "2022-02-13T19:49:04.000Z" }
+  ,  
+
+  ]
 
   const headCells: HeadCell[] = [
     {
@@ -52,6 +41,16 @@ const Dashboard: React.FC = () => {
       id: 'published',
       numeric: false,
       label: 'PUBLISHED',
+    },
+    {
+      id: 'createdAt',
+      numeric: true,
+      label: 'CREATED',
+    },
+    {
+      id: 'updatedAt',
+      numeric: false,
+      label: '',
     },
   ];
   return (

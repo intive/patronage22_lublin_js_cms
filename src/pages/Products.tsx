@@ -1,8 +1,11 @@
 import React from 'react';
-import ProductsTable from '../components/ProductsTable';
-import { HeadCell } from '../types/productsTable';
+// import ProductsTable from '../components/ProductsTable';
+import CustomTable from '../components/Table';
+import { HeadCell } from '../types/table';
 
-const Products: React.FC = () => {
+
+
+const Products: React.FC = ( )=> {
 
   const initialState = [
 
@@ -56,7 +59,7 @@ const Products: React.FC = () => {
   ];
   return (
     <section>
-      <ProductsTable headCells={headCells} data={initialState}/>
+      <CustomTable headCells={headCells} data={initialState}/>
     </section>
   );
 };

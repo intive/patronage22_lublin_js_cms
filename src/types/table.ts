@@ -4,6 +4,8 @@ export interface Product {
   price: number;
   description: string;
   published: boolean;
+  createdAt:string;
+  updatedAt:string;
 }
 
 export interface CustomRowProps {
@@ -43,3 +45,4 @@ export interface CustomTableProps {
 }
 
 export type Order = 'asc' | 'desc';
+
