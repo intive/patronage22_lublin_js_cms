@@ -13,6 +13,7 @@ export enum ROUTES {
   PRODUCTS = '/products',
   ORDERS = '/orders',
   CLIENTS = '/clients',
+  PRODUCT = '/product'
 }
 
 const menuLinks = [

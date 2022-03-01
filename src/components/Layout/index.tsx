@@ -9,6 +9,8 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
+import ProductDetails from "../../pages/ProductDetails";
+
 
 
 const Layout = () => {
@@ -46,6 +48,7 @@ const Layout = () => {
         <Toolbar />
         <Switch>
           <Route exact path='/dashboard' render={() => <Dashboard />} />
+          <Route exact path="/product" render={() => <ProductDetails />} />       
         </Switch>
       </Box>
     </Box>
