@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../store/auth-context";
 import CustomTable from "../components/Table";
 import { HeadCell } from "../types/table";
-import getProducts from "../lib/products";
+import getProducts from "../components/lib/products";
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);

@@ -1,28 +1,24 @@
 import React, { useContext } from "react";
 import AuthContext from "../store/auth-context";
-import axios from "axios";
 import AddProduct from "../components/Product/AddProduct";
-import { CONSTANTS } from "../types/constants";
+import addProductRequest from "../components/lib/addProduct";
 
 const ProductsPage = () => {
   const authCtx = useContext(AuthContext);
   const token = authCtx.token;
 
-  const addProductRequest = async (product: any) => {
-    const response = axios(`${CONSTANTS.URL}/api/products/addProduct`, {
-      method: "POST",
-      data: JSON.stringify(product),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    console.log((await response).data);
+  const addProductHandler = (product: any) => {
+    addProductRequest(product, token)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-
   return (
     <section>
-      <AddProduct onAddProduct={addProductRequest} />
+      <AddProduct onAddProduct={addProductHandler} />
     </section>
   );
 };

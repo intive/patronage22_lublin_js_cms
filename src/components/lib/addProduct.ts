@@ -1,7 +1,7 @@
 import axios from "axios";
-import { CONSTANTS } from "../types/constants";
+import { CONSTANTS } from "../../types/constants";
 
-const addProduct = async (product: any, token: string | null) => {
+const addProductRequest = async (product: any, token: any | null) => {
   return axios(`${CONSTANTS.URL}/api/products/addProduct`, {
     method: "POST",
     data: JSON.stringify(product),
@@ -12,4 +12,4 @@ const addProduct = async (product: any, token: string | null) => {
   });
 };
 
-export default addProduct;
+export default addProductRequest;
