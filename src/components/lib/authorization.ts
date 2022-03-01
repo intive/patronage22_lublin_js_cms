@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CONSTANTS } from "../types/constants";
+import { CONSTANTS } from "../../types/constants";
 
 const loginUserRequest = async (email: string, password: string) => {
   return axios(`${CONSTANTS.URL}/api/auth/login`, {

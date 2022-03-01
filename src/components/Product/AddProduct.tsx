@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Formik, Form } from "formik";
+import { useFormik } from "formik";
 import {
   FormControl,
   FormLabel,
@@ -13,9 +13,8 @@ import {
   Stack,
 } from "@mui/material";
 import classes from "../Layout/AuthLayout/AuthLayout.module.css";
-import axios from "axios";
-import getCategories from "../../lib/categories";
-import { CONSTANTS } from "../../types/constants";
+import getCategories from "../lib/categories";
+import uploadRequest from "../lib/uploadImage";
 import statuses from "../../types/statuses";
 
 interface MyFormValues {
@@ -66,45 +65,24 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
     const formData = new FormData();
     formData.append("image", file);
     formData.append("product_id", "1");
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
-      const { data } = await axios.post(
-        `${CONSTANTS.URL}/api/photos`,
-        formData,
-        config
-      );
-      setFormData((prevState) => ({
-        ...prevState,
-        image: data,
-      }));
-    } catch (error) {
-      console.error(error);
-    }
+    uploadRequest(formData)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          setFormData((prevState) => ({
+            ...prevState,
+            image: response.data,
+          }));
+        } else {
+          throw new Error("Authenfication Fail!");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  const submitHandler = (event: React.FormEvent) => {
-    event.preventDefault();
-
-    const product = {
-      title: formData.title,
-      category: formData.category,
-      description: formData.description,
-      photo: formData.image,
-      price: +formData.price,
-      quantity: formData.quantity,
-      status: formData.status,
-      published: formData.published,
-    };
-    onAddProduct(product);
-    console.log("Submitted", product);
-    setFormData(initialState);
-  };
-
-  const initialValues: MyFormValues = {
+  const initialValuesData: MyFormValues = {
     title: "",
     category: "",
     description: "",
@@ -115,183 +93,197 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
     published: false,
   };
 
-  return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={(values, actions) => {
-        console.log({ values, actions });
-        alert(JSON.stringify(values, null, 2));
-        actions.setSubmitting(false);
-      }}
-    >
-      <Form onSubmit={submitHandler} className={classes.form}>
-        <h1>Add Product</h1>
-        <FormControl>
-          <FormLabel htmlFor="title">Title</FormLabel>
-          <TextField
-            id="title"
-            type="text"
-            name="title"
-            placeholder="Enter title"
-            value={formData.title}
-            onChange={(e) =>
-              setFormData((prevState) => ({
-                ...prevState,
-                title: e.target.value,
-              }))
-            }
-            required
-          />
-        </FormControl>
-        <Box sx={{ minWidth: 420 }}>
-          <FormControl fullWidth>
-            <FormLabel htmlFor="demo-simple-select">Select Category</FormLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={formData.category}
-              label="Category"
-              onChange={(e) =>
-                setFormData((prevState) => ({
-                  ...prevState,
-                  category: e.target.value,
-                }))
-              }
-            >
-              {categories.map((item) => (
-                <MenuItem key={item.id} value={item.title}>
-                  {item.title}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Box>
-        <FormControl>
-          <FormLabel htmlFor="description">Description</FormLabel>
-          <TextField
-            id="description"
-            multiline
-            name="description"
-            placeholder="Enter description"
-            value={formData.description}
-            rows={4}
-            onChange={(e) =>
-              setFormData((prevState) => ({
-                ...prevState,
-                description: e.target.value,
-              }))
-            }
-            required
-          />
-        </FormControl>
-        <FormControl>
-          <Stack
-            direction="column"
-            alignItems="left"
-            spacing={1}
-            className={classes.stack}
-          >
-            <FormLabel htmlFor="contained-button-file">Select Image</FormLabel>
+  const formik = useFormik({
+    initialValues: { initialValuesData },
 
-            <input
-              id="contained-button-file"
-              onChange={uploadFileHandler}
-              accept="image/*"
-              type="file"
-              name="file"
-            />
-          </Stack>
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="price">Price</FormLabel>
-          <TextField
-            id="price"
-            type="text"
-            name="price"
-            placeholder="Enter price"
-            value={formData.price}
+    onSubmit(values) {
+      // This will run when the form is submitted
+      console.log(values);
+
+      const product = {
+        title: formData.title,
+        category: formData.category,
+        description: formData.description,
+        photo: formData.image,
+        price: +formData.price,
+        quantity: formData.quantity,
+        status: formData.status,
+        published: formData.published,
+      };
+      onAddProduct(product);
+      console.log("Submitted", product);
+      setFormData(initialState);
+    },
+  });
+
+  return (
+    <form onSubmit={formik.handleSubmit} className={classes.form}>
+      <h1>Add Product</h1>
+      <FormControl>
+        <FormLabel htmlFor="title">Title</FormLabel>
+        <TextField
+          id="title"
+          type="text"
+          name="title"
+          placeholder="Enter title"
+          value={formData.title}
+          onChange={(e) =>
+            setFormData((prevState) => ({
+              ...prevState,
+              title: e.target.value,
+            }))
+          }
+          required
+        />
+      </FormControl>
+      <Box sx={{ minWidth: 420 }}>
+        <FormControl fullWidth>
+          <FormLabel htmlFor="demo-simple-select">Select Category</FormLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={formData.category}
+            label="Category"
             onChange={(e) =>
               setFormData((prevState) => ({
                 ...prevState,
-                price: e.target.value,
+                category: e.target.value,
               }))
             }
-            InputProps={{
-              inputProps: {
-                maxLength: 9,
-              },
-            }}
-            required
-          />
+          >
+            {categories.map((item) => (
+              <MenuItem key={item.id} value={item.title}>
+                {item.title}
+              </MenuItem>
+            ))}
+          </Select>
         </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="quantity">Quantity</FormLabel>
-          <TextField
-            id="quantity"
-            type="number"
-            name="quantity"
-            placeholder="Enter quantity"
-            value={formData.quantity}
+      </Box>
+      <FormControl>
+        <FormLabel htmlFor="description">Description</FormLabel>
+        <TextField
+          id="description"
+          multiline
+          name="description"
+          placeholder="Enter description"
+          value={formData.description}
+          rows={4}
+          onChange={(e) =>
+            setFormData((prevState) => ({
+              ...prevState,
+              description: e.target.value,
+            }))
+          }
+          required
+        />
+      </FormControl>
+      <FormControl>
+        <Stack
+          direction="column"
+          alignItems="left"
+          spacing={1}
+          className={classes.stack}
+        >
+          <FormLabel htmlFor="contained-button-file">Select Image</FormLabel>
+
+          <input
+            id="contained-button-file"
+            onChange={uploadFileHandler}
+            accept="image/*"
+            type="file"
+            name="file"
+          />
+        </Stack>
+      </FormControl>
+      <FormControl>
+        <FormLabel htmlFor="price">Price</FormLabel>
+        <TextField
+          id="price"
+          type="text"
+          name="price"
+          placeholder="Enter price"
+          value={formData.price}
+          onChange={(e) =>
+            setFormData((prevState) => ({
+              ...prevState,
+              price: e.target.value,
+            }))
+          }
+          InputProps={{
+            inputProps: {
+              maxLength: 9,
+            },
+          }}
+          required
+        />
+      </FormControl>
+      <FormControl>
+        <FormLabel htmlFor="quantity">Quantity</FormLabel>
+        <TextField
+          id="quantity"
+          type="number"
+          name="quantity"
+          placeholder="Enter quantity"
+          value={formData.quantity}
+          onChange={(e) =>
+            setFormData((prevState) => ({
+              ...prevState,
+              quantity: +e.target.value,
+            }))
+          }
+          InputProps={{
+            inputProps: {
+              max: 100,
+              min: 1,
+            },
+          }}
+          required
+        />
+      </FormControl>
+      <Box sx={{ minWidth: 420 }}>
+        <FormControl fullWidth>
+          <FormLabel htmlFor="demo-simple-select-status">
+            Select Status
+          </FormLabel>
+          <Select
+            labelId="demo-simple-select-label-status"
+            id="demo-simple-select-status"
+            value={formData.status}
+            label="Status"
             onChange={(e) =>
               setFormData((prevState) => ({
                 ...prevState,
-                quantity: +e.target.value,
+                status: e.target.value,
               }))
             }
-            InputProps={{
-              inputProps: {
-                max: 100,
-                min: 1,
-              },
-            }}
-            required
-          />
+          >
+            {statuses.map((item) => (
+              <MenuItem key={item.id} value={item.status}>
+                {item.status}
+              </MenuItem>
+            ))}
+          </Select>
         </FormControl>
-        <Box sx={{ minWidth: 420 }}>
-          <FormControl fullWidth>
-            <FormLabel htmlFor="demo-simple-select-status">
-              Select Status
-            </FormLabel>
-            <Select
-              labelId="demo-simple-select-label-status"
-              id="demo-simple-select-status"
-              value={formData.status}
-              label="Status"
-              onChange={(e) =>
+      </Box>
+      <FormControl>
+        <FormControlLabel
+          control={
+            <Checkbox
+              onChange={() =>
                 setFormData((prevState) => ({
                   ...prevState,
-                  status: e.target.value,
+                  published: !formData.published,
                 }))
               }
-            >
-              {statuses.map((item) => (
-                <MenuItem key={item.id} value={item.status}>
-                  {item.status}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Box>
-        <FormControl>
-          <FormControlLabel
-            control={
-              <Checkbox
-                onChange={() =>
-                  setFormData((prevState) => ({
-                    ...prevState,
-                    published: !formData.published,
-                  }))
-                }
-              />
-            }
-            label="Published"
-          />
-        </FormControl>
-        <Button type="submit" variant="contained">
-          Add Product
-        </Button>
-      </Form>
-    </Formik>
+            />
+          }
+          label="Published"
+        />
+      </FormControl>
+      <Button type="submit" variant="contained">
+        Add Product
+      </Button>
+    </form>
   );
 };
 
