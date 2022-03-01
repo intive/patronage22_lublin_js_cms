@@ -1,5 +1,4 @@
 import React from 'react';
-// import ProductsTable from '../components/ProductsTable';
 import CustomTable from '../components/Table';
 import { HeadCell } from '../types/table';
 
@@ -35,11 +34,6 @@ const Products: React.FC = ( )=> {
       id: 'price',
       numeric: true,
       label: 'PRICE',
-    },
-    {
-      id: 'description',
-      numeric: false,
-      label: 'DESCRIPTION',
     },
     {
       id: 'published',

@@ -7,7 +7,7 @@ import { parseISO, format} from 'date-fns';
 
 
 const ProductsRow: React.FC<CustomRowProps> = ({ product }) => {
-  const { id, title, price, description, published, createdAt } = product;
+  const { id, title, price, published, createdAt } = product;
   return (
     <StyledTableRow>
       <StyledTableCell component="th" scope="row" align="center">
@@ -21,7 +21,6 @@ const ProductsRow: React.FC<CustomRowProps> = ({ product }) => {
           variant="filled"
         />
       </StyledTableCell>
-      <StyledTableCell align="center">{description}</StyledTableCell>
       <StyledTableCell align="center">
         {published ? (
           <Chip clickable label="Yes" color="success" variant="filled" />

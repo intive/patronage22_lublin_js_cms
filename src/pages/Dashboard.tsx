@@ -33,11 +33,6 @@ const Dashboard: React.FC = () => {
       label: 'PRICE',
     },
     {
-      id: 'description',
-      numeric: false,
-      label: 'DESCRIPTION',
-    },
-    {
       id: 'published',
       numeric: false,
       label: 'PUBLISHED',
