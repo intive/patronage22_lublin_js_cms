@@ -10,6 +10,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import ErrorPageInfo from "../Errors/ErrorPageInfo";
+import ProductDetails from "../../pages/ProductDetails";        
 
 const Layout = () => {
   let initialWidth: number;
@@ -26,7 +27,6 @@ const Layout = () => {
         <Header/>
       </AppBar>
       <Drawer
-
           sx={{
             width: initialWidth,
             flexShrink: 0,
@@ -49,6 +49,7 @@ const Layout = () => {
         <Toolbar/>
         <Switch>
           <Route exact path="/dashboard" render={() => <Dashboard/>}/>
+          <Route exact path="/product" render={() => <ProductDetails />} /> 
           <Route path='*' component={ErrorPageInfo}/>
         </Switch>
       </Box>
