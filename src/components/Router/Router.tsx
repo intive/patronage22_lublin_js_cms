@@ -4,6 +4,7 @@ import AuthLayout from "../Layout/AuthLayout";
 import Layout from "../Layout";
 import {ROUTES} from "../../types/routes";
 import AuthGuard from "../HOC/AuthGuard";
+import EditCategoryForm from "../EditCategoryForm";
 
 const Router = () => {
   return (
@@ -14,6 +15,7 @@ const Router = () => {
         <Route exact path={ROUTES.PRODUCT} component={AuthGuard(Layout)} />
         <Route exact path={ROUTES.PRODUCTS} component={AuthGuard(Layout)} />
         <Route exact path={ROUTES.PRODUCT_DETAILS} component={AuthGuard(Layout)} />
+        <Route exact path={ROUTES.CATEGORY_EDIT} component={EditCategoryForm}/>
         <Route component={AuthGuard(Layout)}/>
       </Switch>
   );

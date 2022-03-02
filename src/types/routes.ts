@@ -16,6 +16,7 @@ export enum ROUTES {
   CLIENTS = '/clients',
   PRODUCT = '/product',
   PRODUCT_DETAILS ='/product/edit/:id',
+  CATEGORY_EDIT ='/category/edit/:id',
 }
 
 const menuLinks = [
@@ -26,4 +27,6 @@ const menuLinks = [
   {id: 5, to: ROUTES.ORDERS, label: 'Zamówienia', icon: SubscriptionsOutlinedIcon},
   {id: 6, to: ROUTES.CLIENTS, label: 'Klienci', icon: PeopleOutlinedIcon},
 ];
+ 
 export default menuLinks;
+
