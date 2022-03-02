@@ -6,9 +6,9 @@ import EditCategoryValidation from "./validation"
 type FormProps = {
     title: String
 }
-
-const EditCategoryForm = ({title}: FormProps) => {
-        const initialFormValues = {title};
+ 
+const EditCategoryForm = ({title = ""}: FormProps) => {
+        const initialFormValues = {title: String};
 
         const formik = useFormik({
             initialValues: {initialFormValues},
