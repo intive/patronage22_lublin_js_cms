@@ -1,13 +1,13 @@
 import React from "react";
-import { Form, useFormik, Formik }  from "formik";
+import { Form, useFormik }  from "formik";
 import { Checkbox, FormControlLabel, Button, TextField } from "@material-ui/core";
 import EditCategoryValidation from "./validation"
 
 type FormProps = {
-    title: String
+    id: Number
 }
  
-const EditCategoryForm = ({title = ""}: FormProps) => {
+const EditCategoryForm = ({id}: FormProps) => {
         const initialFormValues = {title: String};
 
         const formik = useFormik({
@@ -30,8 +30,8 @@ const EditCategoryForm = ({title = ""}: FormProps) => {
                 id="outlined-basic" 
                 label="New Title" 
                 variant="outlined" 
-                name="title" 
-                onChange={handleChange}
+                {...formik.getFieldProps('outlined-basic')}
+                name="title"
                 required
             />
 
@@ -43,7 +43,7 @@ const EditCategoryForm = ({title = ""}: FormProps) => {
                 onChange={handleChange}
             />
 
-            <Button variant="contained" onChange={handleChange}>Add</Button>
+            <Button variant="contained" onChange={handleChange}>Edit</Button>
         </Form>
     )
 }
