@@ -49,7 +49,7 @@ const Layout = () => {
         <Toolbar />
         <Switch>
           <Route exact path="/dashboard" render={() => <Dashboard />} />
-          <Route exact path="/products" /> <Products /><Route/>
+          <Route exact path="/products" component={Products} /><Route/>
           </Switch>
       </Box>
     </Box>

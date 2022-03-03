@@ -4,10 +4,17 @@ import { CustomRowProps } from '../../types/table';
 import { StyledTableCell, StyledTableRow } from './styles';
 import EditButton from './EditButton';
 import { parseISO, format} from 'date-fns';
+import { useParams, useHistory } from 'react-router-dom';
 
 
 const ProductsRow: React.FC<CustomRowProps> = ({ product }) => {
   const { id, title, price, published, createdAt } = product;
+
+  const history = useHistory();
+  
+let {productId} = useParams<{productId?:any}>();
+productId=product.id;
+
   return (
     <StyledTableRow>
       <StyledTableCell component="th" scope="row" align="center">
@@ -30,7 +37,8 @@ const ProductsRow: React.FC<CustomRowProps> = ({ product }) => {
       </StyledTableCell>
       <StyledTableCell align="center">{`${format(parseISO(createdAt), 'MM/dd/yyyy')}`}</StyledTableCell>
       <StyledTableCell align="center">
-        <EditButton onClick={() => console.log('Button clicked')}>Edit</EditButton>
+        <EditButton id={id} onClick={() => history.push(`/product/edit/:${productId}`)}
+        >Edit</EditButton>
       </StyledTableCell>
     </StyledTableRow>
   );
