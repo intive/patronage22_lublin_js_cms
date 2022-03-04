@@ -12,7 +12,7 @@ const Router = () => {
         <Route exact path={ROUTES.AUTH} component={AuthLayout}/>
         <Route exact path={ROUTES.DASHBOARD} component={AuthGuard(Layout)}/>
         <Route exact path={ROUTES.PRODUCT} component={AuthGuard(Layout)} />
-        <Route exact path={"${ROUTES.CATEGORY}/edit/:id"} component={EditCategory}/>
+        <Route exact path={ROUTES.EDITCATEGORY} component={EditCategory}/>
         <Route component={AuthGuard(Layout)}/>
       </Switch>
   );
