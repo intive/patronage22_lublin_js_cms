@@ -23,7 +23,7 @@ interface MyFormValues {
   title: string;
   category: string;
   description: string;
-  photo: any;
+  photos: any[];
   price: number | null;
   quantity: number;
   status: string;
@@ -35,19 +35,20 @@ interface ProductProps {
 }
 
 const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
-  const initialState = {
-    category: "",
-    images: [],
+   
+  const initialValuesForm: MyFormValues = {
     title: "",
+    category: "",
     description: "",
-    price: "",
+    photos: [],
+    price: null,
     quantity: 0,
     status: "",
     published: false,
   };
 
   const [categories, setCategories] = useState<any[]>([]);
-  const [formData, setFormData] = useState(initialState);
+  const [formData, setFormData] = useState<any>();
 
   useEffect(() => {
     getCategories()
@@ -66,10 +67,10 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
       .then((response) => {
         console.log(response);
         const data = response.data;
-        setFormData((prevState) => ({
-          ...prevState,
-          images: data,
-        }));
+        // setFormData((prevState) => ({
+        //   ...prevState,
+        //   images: data,
+        // }));
       })
       .catch((error) => {
         console.log(error);
@@ -77,78 +78,70 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
   }, []);
 
   const uploadFileHandler = async (event: React.ChangeEvent) => {
-    const target = event.target as HTMLInputElement;
-    const file: File = (target.files as FileList)[0];
-    const formData = new FormData();
-    formData.append("image", file);
-    formData.append("product_id", "1");
-    uploadRequest(formData)
-      .then((response) => {
-        if (response.status === 200) {
-          console.log(response.data);
-        } else {
-          throw new Error("Authenfication Fail!");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    getPhotos();
+
+
+    // Here add all list of photos to this state setFormData
+
+    // const target = event.target as HTMLInputElement;
+    // const file: File = (target.files as FileList)[0];
+    // const formData = new FormData();
+    // formData.append("image", file);
+    // formData.append("product_id", "1");
+    // uploadRequest(formData)
+    //   .then((response) => {
+    //     if (response.status === 200) {
+    //       console.log(response.data);
+    //     } else {
+    //       throw new Error("Authenfication Fail!");
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // getPhotos();
   };
 
-  const initialValuesData: MyFormValues = {
-    title: "",
-    category: "",
-    description: "",
-    photo: [],
-    price: null,
-    quantity: 0,
-    status: "",
-    published: false,
-  };
+  
 
   const formik = useFormik({
-    initialValues: { initialValuesData },
+    initialValues: initialValuesForm,
 
     onSubmit(values) {
       // This will run when the form is submitted
-      console.log(values);
 
-      const product = {
-        title: formData.title,
-        category: formData.category,
-        description: formData.description,
-        photo: formData.images,
-        price: +formData.price,
-        quantity: formData.quantity,
-        status: formData.status,
-        published: formData.published,
-      };
-      onAddProduct(product);
-      console.log("Submitted", product);
-      setFormData(initialState);
-      getPhotos();
+      // Here add formData.photos to the values -> const payload = {...values, photos: formData.photos}
+
+      console.log(values, 'payload values');
+
+      // const product = {
+      //   title: formData.title,
+      //   category: formData.category,
+      //   description: formData.description,
+      //   photo: formData.images,
+      //   price: +formData.price,
+      //   quantity: formData.quantity,
+      //   status: formData.status,
+      //   published: formData.published,
+      // };
+      // onAddProduct(product);
+      // console.log("Submitted", product);
+      // setFormData(initialState);
+      // getPhotos();
     },
   });
 
+  const {handleSubmit, getFieldProps} = formik;
+
   return (
-    <form onSubmit={formik.handleSubmit} className={classes.form}>
+    <form onSubmit={handleSubmit} className={classes.form}>
       <h1>Add Product</h1>
       <FormControl>
         <FormLabel htmlFor="title">Title</FormLabel>
         <TextField
           id="title"
           type="text"
-          name="title"
           placeholder="Enter title"
-          value={formData.title}
-          onChange={(e) =>
-            setFormData((prevState) => ({
-              ...prevState,
-              title: e.target.value,
-            }))
-          }
-          required
+          {...getFieldProps('title')}
         />
       </FormControl>
       <Box sx={{ minWidth: 420 }}>
@@ -157,14 +150,8 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={formData.category}
             label="Category"
-            onChange={(e) =>
-              setFormData((prevState) => ({
-                ...prevState,
-                category: e.target.value,
-              }))
-            }
+            {...getFieldProps('category')}
           >
             {categories.map((item) => (
               <MenuItem key={item.id} value={item.title}>
@@ -179,17 +166,9 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
         <TextField
           id="description"
           multiline
-          name="description"
           placeholder="Enter description"
-          value={formData.description}
           rows={4}
-          onChange={(e) =>
-            setFormData((prevState) => ({
-              ...prevState,
-              description: e.target.value,
-            }))
-          }
-          required
+          {...getFieldProps('description')}
         />
       </FormControl>
       <FormControl>
@@ -199,16 +178,6 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
           spacing={1}
           className={classes.stack}
         >
-          <FormLabel htmlFor="contained-button-file">Select Image</FormLabel>
-          <div>
-            <input
-              id="contained-button-file"
-              onChange={uploadFileHandler}
-              accept="image/*"
-              type="file"
-              name="file"
-            />
-          </div>
           <FormLabel
             htmlFor="contained-button-file"
             style={{ marginTop: "1rem" }}
@@ -223,21 +192,13 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
         <TextField
           id="price"
           type="text"
-          name="price"
           placeholder="Enter price"
-          value={formData.price}
-          onChange={(e) =>
-            setFormData((prevState) => ({
-              ...prevState,
-              price: e.target.value,
-            }))
-          }
+          {...getFieldProps('price')}
           InputProps={{
             inputProps: {
               maxLength: 9,
             },
           }}
-          required
         />
       </FormControl>
       <FormControl>
@@ -245,40 +206,25 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
         <TextField
           id="quantity"
           type="number"
-          name="quantity"
           placeholder="Enter quantity"
-          value={formData.quantity}
-          onChange={(e) =>
-            setFormData((prevState) => ({
-              ...prevState,
-              quantity: +e.target.value,
-            }))
-          }
+          {...getFieldProps('quantity')}
           InputProps={{
             inputProps: {
               max: 100,
               min: 1,
             },
           }}
-          required
         />
       </FormControl>
       <Box sx={{ minWidth: 420 }}>
         <FormControl fullWidth>
-          <FormLabel htmlFor="demo-simple-select-status">
+          <FormLabel htmlFor="select-status">
             Select Status
           </FormLabel>
           <Select
-            labelId="demo-simple-select-label-status"
-            id="demo-simple-select-status"
-            value={formData.status}
-            label="Status"
-            onChange={(e) =>
-              setFormData((prevState) => ({
-                ...prevState,
-                status: e.target.value,
-              }))
-            }
+            labelId="select-label-status"
+            id="select-status"
+            {...getFieldProps('status')}
           >
             {statuses.map((item) => (
               <MenuItem key={item.id} value={item.status}>
@@ -292,12 +238,7 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
         <FormControlLabel
           control={
             <Checkbox
-              onChange={() =>
-                setFormData((prevState) => ({
-                  ...prevState,
-                  published: !formData.published,
-                }))
-              }
+              {...getFieldProps('published')}
             />
           }
           label="Published"
