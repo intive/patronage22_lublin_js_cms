@@ -3,6 +3,8 @@ import AuthContext from "../store/auth-context";
 import CustomTable from "../components/Table";
 import { HeadCell } from "../types/table";
 import getProducts from "../components/lib/products";
+import { Button } from '@mui/material'
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
@@ -50,6 +52,10 @@ const Dashboard = () => {
   ];
   return (
     <section>
+      
+      <Button type="submit" variant="contained">
+        <Link style={{textDecoration: 'none', color: '#ffff'}} to='/add-product'>Add Product</Link>
+      </Button>
       <CustomTable headCells={headCells} data={products} />
     </section>
   );

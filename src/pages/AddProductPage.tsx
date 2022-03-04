@@ -3,7 +3,7 @@ import AuthContext from "../store/auth-context";
 import AddProduct from "../components/Product/AddProduct";
 import addProductRequest from "../components/lib/addProduct";
 
-const ProductsPage = () => {
+const AddProductPage = () => {
   const authCtx = useContext(AuthContext);
   const token = authCtx.token;
 
@@ -23,4 +23,4 @@ const ProductsPage = () => {
   );
 };
 
-export default ProductsPage;
+export default AddProductPage;
