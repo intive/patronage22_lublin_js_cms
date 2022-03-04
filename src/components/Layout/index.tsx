@@ -12,6 +12,7 @@ import Divider from "@mui/material/Divider";
 import Products from "../../pages/Products";
 import ErrorPageInfo from "../Errors/ErrorPageInfo";
 import ProductDetails from "../../pages/ProductDetails";        
+import AddProductPage from "../../pages/AddProductPage";
 
 const Layout = () => {
   let initialWidth: number;
@@ -52,6 +53,7 @@ const Layout = () => {
           <Route exact path="/dashboard" render={() => <Dashboard/>}/>
           <Route exact path="/product/edit/:id" render={() => <ProductDetails />} /> 
           <Route exact path="/products" component={Products} /><Route/>
+          <Route exact path="/add-product" render={() => <AddProductPage />} />
           <Route path='*' component={ErrorPageInfo}/>
         </Switch>
       </Box>

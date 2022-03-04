@@ -14,8 +14,10 @@ import {
 } from "@mui/material";
 import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 import getCategories from "../lib/categories";
-import uploadRequest from "../lib/uploadImage";
 import statuses from "../../types/statuses";
+import getPhotos from "../lib/photos";
+import uploadRequest from "../lib/uploadImage";
+import AcceptMaxFiles from "../Dropzone/AcceptMaxFiles";
 
 interface MyFormValues {
   title: string;
@@ -35,7 +37,7 @@ interface ProductProps {
 const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
   const initialState = {
     category: "",
-    image: "",
+    images: [],
     title: "",
     description: "",
     price: "",
@@ -59,6 +61,21 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
       });
   }, []);
 
+  useEffect(() => {
+    getPhotos()
+      .then((response) => {
+        console.log(response);
+        const data = response.data;
+        setFormData((prevState) => ({
+          ...prevState,
+          images: data,
+        }));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const uploadFileHandler = async (event: React.ChangeEvent) => {
     const target = event.target as HTMLInputElement;
     const file: File = (target.files as FileList)[0];
@@ -69,10 +86,6 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
       .then((response) => {
         if (response.status === 200) {
           console.log(response.data);
-          setFormData((prevState) => ({
-            ...prevState,
-            image: response.data,
-          }));
         } else {
           throw new Error("Authenfication Fail!");
         }
@@ -80,13 +93,14 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
       .catch((error) => {
         console.log(error);
       });
+    getPhotos();
   };
 
   const initialValuesData: MyFormValues = {
     title: "",
     category: "",
     description: "",
-    photo: "",
+    photo: [],
     price: null,
     quantity: 0,
     status: "",
@@ -104,7 +118,7 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
         title: formData.title,
         category: formData.category,
         description: formData.description,
-        photo: formData.image,
+        photo: formData.images,
         price: +formData.price,
         quantity: formData.quantity,
         status: formData.status,
@@ -113,6 +127,7 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
       onAddProduct(product);
       console.log("Submitted", product);
       setFormData(initialState);
+      getPhotos();
     },
   });
 
@@ -185,14 +200,22 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
           className={classes.stack}
         >
           <FormLabel htmlFor="contained-button-file">Select Image</FormLabel>
-
-          <input
-            id="contained-button-file"
-            onChange={uploadFileHandler}
-            accept="image/*"
-            type="file"
-            name="file"
-          />
+          <div>
+            <input
+              id="contained-button-file"
+              onChange={uploadFileHandler}
+              accept="image/*"
+              type="file"
+              name="file"
+            />
+          </div>
+          <FormLabel
+            htmlFor="contained-button-file"
+            style={{ marginTop: "1rem" }}
+          >
+            Select Multiple images
+          </FormLabel>
+          <AcceptMaxFiles />
         </Stack>
       </FormControl>
       <FormControl>
