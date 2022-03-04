@@ -1,8 +1,10 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import EditCategoryForm from '../components/EditCategoryForm';
 
 const EditCategory: React.FC = () => {
-    return <EditCategoryForm {}/>
+    let { ...id } = useParams();
+    return <EditCategoryForm { ...id }/>
 }
 
 export default EditCategory;
