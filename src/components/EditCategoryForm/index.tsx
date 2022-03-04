@@ -4,10 +4,10 @@ import { Checkbox, FormControlLabel, Button, TextField } from "@material-ui/core
 import EditCategoryValidation from "./validation"
 
 type FormProps = {
-    id: Number
+    category: any
 }
  
-const EditCategoryForm = ({id}: FormProps) => {
+const EditCategoryForm = ({...category}: FormProps) => {
         const initialFormValues = {title: String};
 
         const formik = useFormik({
