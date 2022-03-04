@@ -16,7 +16,6 @@ import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 import getCategories from "../lib/categories";
 import statuses from "../../types/statuses";
 import getPhotos from "../lib/photos";
-import uploadRequest from "../lib/uploadImage";
 import AcceptMaxFiles from "../Dropzone/AcceptMaxFiles";
 
 interface MyFormValues {
@@ -65,68 +64,39 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
   useEffect(() => {
     getPhotos()
       .then((response) => {
-        console.log(response);
         const data = response.data;
-        // setFormData((prevState) => ({
-        //   ...prevState,
-        //   images: data,
-        // }));
+        console.log(data)
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [])
 
-  const uploadFileHandler = async (event: React.ChangeEvent) => {
-
+  const uploadImageHandler = async () => {
 
     // Here add all list of photos to this state setFormData
-
-    // const target = event.target as HTMLInputElement;
-    // const file: File = (target.files as FileList)[0];
-    // const formData = new FormData();
-    // formData.append("image", file);
-    // formData.append("product_id", "1");
-    // uploadRequest(formData)
-    //   .then((response) => {
-    //     if (response.status === 200) {
-    //       console.log(response.data);
-    //     } else {
-    //       throw new Error("Authenfication Fail!");
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    // getPhotos();
+    getPhotos()
+      .then((response) => {
+        const data = response.data;
+        console.log(data)
+         setFormData((prevState: any) => ({
+           ...prevState,
+           photos: data,
+        }));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-
-  
-
+ 
   const formik = useFormik({
     initialValues: initialValuesForm,
 
     onSubmit(values) {
-      // This will run when the form is submitted
-
-      // Here add formData.photos to the values -> const payload = {...values, photos: formData.photos}
+      const payload = {...values, photos: formData.photos}
+      onAddProduct(payload);
 
       console.log(values, 'payload values');
-
-      // const product = {
-      //   title: formData.title,
-      //   category: formData.category,
-      //   description: formData.description,
-      //   photo: formData.images,
-      //   price: +formData.price,
-      //   quantity: formData.quantity,
-      //   status: formData.status,
-      //   published: formData.published,
-      // };
-      // onAddProduct(product);
-      // console.log("Submitted", product);
-      // setFormData(initialState);
-      // getPhotos();
     },
   });
 
