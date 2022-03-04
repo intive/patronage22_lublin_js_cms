@@ -25,6 +25,7 @@ const AuthForm = () => {
 
     const enteredEmail = emailInputRef.current!.value;
     const enteredPassword = passwordInputRef.current!.value;
+    setIsLoading(true);
 
     loginUserRequest(enteredEmail, enteredPassword)
       .then((response) => {
