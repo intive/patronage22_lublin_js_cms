@@ -15,15 +15,14 @@ import {
 import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 import getCategories from "../lib/categories";
 import statuses from "../../types/statuses";
-import getPhotos from "../lib/photos";
-import AcceptMaxFiles from "../Dropzone/AcceptMaxFiles";
+import Dropzone from "../Dropzone";
 
 interface MyFormValues {
   title: string;
   category: string;
   description: string;
   photos: any[];
-  price: number | null;
+  price: string;
   quantity: number;
   status: string;
   published: boolean;
@@ -40,14 +39,14 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
     category: "",
     description: "",
     photos: [],
-    price: null,
+    price: "",
     quantity: 0,
     status: "",
     published: false,
   };
 
   const [categories, setCategories] = useState<any[]>([]);
-  const [formData, setFormData] = useState<any>();
+  const [photosData, setPhotosData] = useState<any[]>([]);
 
   useEffect(() => {
     getCategories()
@@ -61,40 +60,13 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
       });
   }, []);
 
-  useEffect(() => {
-    getPhotos()
-      .then((response) => {
-        const data = response.data;
-        console.log(data)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [])
-
-  const uploadImageHandler = async () => {
-
-    // Here add all list of photos to this state setFormData
-    getPhotos()
-      .then((response) => {
-        const data = response.data;
-        console.log(data)
-         setFormData((prevState: any) => ({
-           ...prevState,
-           photos: data,
-        }));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
- 
   const formik = useFormik({
     initialValues: initialValuesForm,
 
     onSubmit(values) {
-      const payload = {...values, photos: formData.photos}
-      onAddProduct(payload);
+      const payload = {...values, photos: photosData }
+      //onAddProduct(payload);
+      console.log(payload)
 
       console.log(values, 'payload values');
     },
@@ -154,14 +126,14 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
           >
             Select Multiple images
           </FormLabel>
-          <AcceptMaxFiles />
+          <Dropzone setFilesList={setPhotosData} />
         </Stack>
       </FormControl>
       <FormControl>
         <FormLabel htmlFor="price">Price</FormLabel>
         <TextField
           id="price"
-          type="text"
+          type="number"
           placeholder="Enter price"
           {...getFieldProps('price')}
           InputProps={{
