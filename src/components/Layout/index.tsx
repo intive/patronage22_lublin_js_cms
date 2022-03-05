@@ -1,8 +1,8 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 import Dashboard from "../../pages/Dashboard";
 import Menu from "../Menu";
-import Header from "../Header/Header";
+import Header from "../Header";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import AppBar from "@mui/material/AppBar";
@@ -10,50 +10,52 @@ import Toolbar from "@mui/material/Toolbar";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import Products from "../../pages/Products";
+import ErrorPageInfo from "../Errors/ErrorPageInfo";
+import ProductDetails from "../../pages/ProductDetails";        
 
 const Layout = () => {
   let initialWidth: number;
   initialWidth = 220;
-
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
+      <Box sx={{display: "flex"}}>
+      <CssBaseline/>
       <AppBar
-        position="fixed"
-        sx={{
-          width: `calc(100% - ${initialWidth}px)`,
-        }}
+          position="fixed"
+          sx={{
+            width: `calc(100% - ${initialWidth}px)`,
+          }}
       >
-        <Header />
+        <Header/>
       </AppBar>
       <Drawer
-        sx={{
-          width: initialWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
+          sx={{
             width: initialWidth,
-            boxSizing: "border-box",
-          },
-        }}
-        variant="permanent"
-        anchor="left"
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: initialWidth,
+              boxSizing: "border-box",
+            },
+          }}
+          variant="permanent"
+          anchor="left"
       >
-        <Toolbar />
-        <Divider />
-        <Menu />
+        <Toolbar/>
+        <Divider/>
+        <Menu/>
       </Drawer>
       <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: "background.default", p: 2 }}
+          component="main"
+          sx={{flexGrow: 1, bgcolor: "background.default", p: 2}}
       >
-        <Toolbar />
+        <Toolbar/>
         <Switch>
-          <Route exact path="/dashboard" render={() => <Dashboard />} />
+          <Route exact path="/dashboard" render={() => <Dashboard/>}/>
+          <Route exact path="/product" render={() => <ProductDetails />} /> 
           <Route exact path="/products" component={Products} /><Route/>
-          </Switch>
+          <Route path='*' component={ErrorPageInfo}/>
+        </Switch>
       </Box>
-    </Box>
+      </Box>
   );
 };
-
 export default Layout;
