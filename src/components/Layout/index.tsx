@@ -50,7 +50,7 @@ const Layout = () => {
         <Toolbar/>
         <Switch>
           <Route exact path="/dashboard" render={() => <Dashboard/>}/>
-          <Route exact path="/product" render={() => <ProductDetails />} /> 
+          <Route exact path="/product/edit/:id" render={() => <ProductDetails />} /> 
           <Route exact path="/products" component={Products} /><Route/>
           <Route path='*' component={ErrorPageInfo}/>
         </Switch>
