@@ -7,8 +7,10 @@
   flex-direction: column;
 }
 
-.stack {
-  margin: 1rem 0;
+.errors {
+  font-size: 0.8rem;
+  color: red;
+  margin-top: 0.2rem;
 }
 
 .container {

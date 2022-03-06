@@ -16,6 +16,7 @@ import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 import getCategories from "../lib/categories";
 import statuses from "../../types/statuses";
 import Dropzone from "../Dropzone";
+import { FORM_VALIDATION } from "../EditProductForm/validate";
 
 interface MyFormValues {
   title: string;
@@ -29,11 +30,18 @@ interface MyFormValues {
 }
 
 interface ProductProps {
-  onAddProduct: (product: any) => void;
+  onAddProduct: (product: MyFormValues) => void;
+}
+
+interface MyCategories {
+  id: number;
+  title: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
-   
   const initialValuesForm: MyFormValues = {
     title: "",
     category: "",
@@ -45,8 +53,8 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
     published: false,
   };
 
-  const [categories, setCategories] = useState<any[]>([]);
-  const [photosData, setPhotosData] = useState<any[]>([]);
+  const [categories, setCategories] = useState<MyCategories[]>([]);
+  const [photosData, setPhotosData] = useState<File>();
 
   useEffect(() => {
     getCategories()
@@ -62,17 +70,18 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
 
   const formik = useFormik({
     initialValues: initialValuesForm,
+    validationSchema: FORM_VALIDATION,
 
     onSubmit(values) {
-      const payload = {...values, photos: photosData }
+      const payload = { ...values, photos: photosData };
       //onAddProduct(payload);
-      console.log(payload)
+      console.log(payload);
 
-      console.log(values, 'payload values');
+      console.log(values, "payload values");
     },
   });
 
-  const {handleSubmit, getFieldProps} = formik;
+  const { handleSubmit, getFieldProps, errors } = formik;
 
   return (
     <form onSubmit={handleSubmit} className={classes.form}>
@@ -83,8 +92,10 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
           id="title"
           type="text"
           placeholder="Enter title"
-          {...getFieldProps('title')}
+          {...getFieldProps("title")}
+          required
         />
+        {errors.title && <p className={classes.errors}>{errors.title}</p>}
       </FormControl>
       <Box sx={{ minWidth: 420 }}>
         <FormControl fullWidth>
@@ -93,7 +104,8 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="Category"
-            {...getFieldProps('category')}
+            {...getFieldProps("category")}
+            required
           >
             {categories.map((item) => (
               <MenuItem key={item.id} value={item.title}>
@@ -101,6 +113,9 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
               </MenuItem>
             ))}
           </Select>
+          {errors.category && (
+            <p className={classes.errors}>{errors.category}</p>
+          )}
         </FormControl>
       </Box>
       <FormControl>
@@ -110,21 +125,19 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
           multiline
           placeholder="Enter description"
           rows={4}
-          {...getFieldProps('description')}
+          {...getFieldProps("description")}
         />
+        {errors.description && (
+          <p className={classes.errors}>{errors.description}</p>
+        )}
       </FormControl>
       <FormControl>
-        <Stack
-          direction="column"
-          alignItems="left"
-          spacing={1}
-          className={classes.stack}
-        >
+        <Stack direction="column" alignItems="left" spacing={1}>
           <FormLabel
             htmlFor="contained-button-file"
             style={{ marginTop: "1rem" }}
           >
-            Select Multiple images
+            Select Image/-s
           </FormLabel>
           <Dropzone setFilesList={setPhotosData} />
         </Stack>
@@ -135,12 +148,13 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
           id="price"
           type="number"
           placeholder="Enter price"
-          {...getFieldProps('price')}
+          {...getFieldProps("price")}
           InputProps={{
             inputProps: {
               maxLength: 9,
             },
           }}
+          required
         />
       </FormControl>
       <FormControl>
@@ -149,24 +163,24 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
           id="quantity"
           type="number"
           placeholder="Enter quantity"
-          {...getFieldProps('quantity')}
+          {...getFieldProps("quantity")}
           InputProps={{
             inputProps: {
               max: 100,
               min: 1,
             },
           }}
+          required
         />
+        {errors.quantity && <p className={classes.errors}>{errors.quantity}</p>}
       </FormControl>
       <Box sx={{ minWidth: 420 }}>
         <FormControl fullWidth>
-          <FormLabel htmlFor="select-status">
-            Select Status
-          </FormLabel>
+          <FormLabel htmlFor="select-status">Select Status</FormLabel>
           <Select
             labelId="select-label-status"
             id="select-status"
-            {...getFieldProps('status')}
+            {...getFieldProps("status")}
           >
             {statuses.map((item) => (
               <MenuItem key={item.id} value={item.status}>
@@ -178,11 +192,7 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
       </Box>
       <FormControl>
         <FormControlLabel
-          control={
-            <Checkbox
-              {...getFieldProps('published')}
-            />
-          }
+          control={<Checkbox {...getFieldProps("published")} />}
           label="Published"
         />
       </FormControl>
