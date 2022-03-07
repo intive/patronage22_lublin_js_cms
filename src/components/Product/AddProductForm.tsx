@@ -16,7 +16,7 @@ import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 import getCategories from "../lib/categories";
 import statuses from "../../types/statuses";
 import Dropzone from "../Dropzone";
-import { FORM_VALIDATION } from "../EditProductForm/validate";
+import * as Yup from "yup";
 
 interface MyFormValues {
   title: string;
@@ -41,7 +41,7 @@ interface MyCategories {
   updatedAt: string;
 }
 
-const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
+const AddProductForm: React.FC<ProductProps> = ({ onAddProduct }) => {
   const initialValuesForm: MyFormValues = {
     title: "",
     category: "",
@@ -68,17 +68,31 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
       });
   }, []);
 
+  const validationSchema = Yup.object().shape({
+    title: Yup.string()
+      .max(50, "Max number of characters is 50")
+      .required("Required"),
+    category: Yup.string().required("Required"),
+    quantity: Yup.number()
+      .integer()
+      .min(0, "Quantity can not be negative")
+      .max(10000, "Max 10000")
+      .typeError("Quantity must be an integer")
+      .required("Required"),
+    description: Yup.string()
+      .min(25, "Min number of characters is 25")
+      .required("Required"),
+  });
+
   const formik = useFormik({
     initialValues: initialValuesForm,
-    validationSchema: FORM_VALIDATION,
-
     onSubmit(values) {
       const payload = { ...values, photos: photosData };
       //onAddProduct(payload);
       console.log(payload);
-
       console.log(values, "payload values");
     },
+    validationSchema,
   });
 
   const { handleSubmit, getFieldProps, errors } = formik;
@@ -93,7 +107,6 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
           type="text"
           placeholder="Enter title"
           {...getFieldProps("title")}
-          required
         />
         {errors.title && <p className={classes.errors}>{errors.title}</p>}
       </FormControl>
@@ -105,7 +118,6 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
             id="demo-simple-select"
             label="Category"
             {...getFieldProps("category")}
-            required
           >
             {categories.map((item) => (
               <MenuItem key={item.id} value={item.title}>
@@ -154,7 +166,6 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
               maxLength: 9,
             },
           }}
-          required
         />
       </FormControl>
       <FormControl>
@@ -170,7 +181,6 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
               min: 1,
             },
           }}
-          required
         />
         {errors.quantity && <p className={classes.errors}>{errors.quantity}</p>}
       </FormControl>
@@ -203,4 +213,4 @@ const AddProduct: React.FC<ProductProps> = ({ onAddProduct }) => {
   );
 };
 
-export default AddProduct;
+export default AddProductForm;

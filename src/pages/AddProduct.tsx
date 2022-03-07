@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import AuthContext from "../store/auth-context";
-import AddProduct from "../components/Product/AddProduct";
+import AddProductForm from "../components/Product/AddProductForm";
 import addProductRequest from "../components/lib/addProduct";
 
-const AddProductPage = () => {
+const AddProduct = () => {
   const authCtx = useContext(AuthContext);
   const token = authCtx.token;
 
@@ -18,9 +18,9 @@ const AddProductPage = () => {
   };
   return (
     <section>
-      <AddProduct onAddProduct={addProductHandler} />
+      <AddProductForm onAddProduct={addProductHandler} />
     </section>
   );
 };
 
-export default AddProductPage;
+export default AddProduct;
