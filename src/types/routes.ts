@@ -11,9 +11,12 @@ export enum ROUTES {
   PAGES = '/pages',
   CATEGORY = '/category',
   PRODUCTS = '/products',
+  ADD_PRODUCT = '/add-product',
   ORDERS = '/orders',
   CLIENTS = '/clients',
-  ADDCATEGORY ='/addcategory'
+  ADDCATEGORY ='/addcategory',
+  PRODUCT = '/product',
+  PRODUCT_DETAILS ='/product/edit/:id',
 }
 
 const menuLinks = [

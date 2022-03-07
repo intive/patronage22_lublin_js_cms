@@ -1,31 +1,26 @@
-import React from 'react';
-import CustomTable from '../components/Table';
-import { HeadCell } from '../types/table';
+import React, { useState, useEffect } from "react";
+import CustomTable from "../components/Table";
+import { HeadCell } from "../types/table";
+import {getProducts} from "../components/lib/products";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import AddIcon from "@mui/icons-material/Add";
+import { ROUTES } from "../types/routes";
+import classes from '../components/Layout/Layout.module.css'
 
-const Dashboard: React.FC = () => {
-  const initialState = [
-    {
-      id: 1,
-      title: 'First Product',
-      price: 10000,
-      description: 'First Product description...',
-      published: true,
-    },
-    {
-      id: 2,
-      title: 'Second Product',
-      price: 2000,
-      description: 'Second Product description...',
-      published: false,
-    },
-    {
-      id: 3,
-      title: 'Third Product',
-      price: 3000,
-      description: 'Third Product description...',
-      published: true,
-    },
-  ];
+const Dashboard = () => {
+  const [products, setProducts] = useState([]);
+  
+  useEffect(() => {
+    getProducts()
+      .then((response) => {
+        console.log(response);
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const headCells: HeadCell[] = [
     {
@@ -44,19 +39,29 @@ const Dashboard: React.FC = () => {
       label: 'PRICE',
     },
     {
-      id: 'description',
-      numeric: false,
-      label: 'DESCRIPTION',
-    },
-    {
       id: 'published',
       numeric: false,
       label: 'PUBLISHED',
     },
+    {
+      id: 'createdAt',
+      numeric: true,
+      label: 'CREATED',
+    },
+    {
+      id: 'updatedAt',
+      numeric: false,
+      label: '',
+    },
   ];
   return (
     <section>
-      <CustomTable headCells={headCells} data={initialState} />
+      <Button type="submit" variant="contained">
+        <Link to={ROUTES.ADD_PRODUCT} className={classes.link}>
+           <AddIcon /> Add Product
+        </Link>
+      </Button>
+      <CustomTable headCells={headCells} data={products} />
     </section>
   );
 };

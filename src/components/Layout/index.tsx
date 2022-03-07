@@ -3,18 +3,21 @@ import { Switch, Route } from "react-router-dom";
 import Dashboard from "../../pages/Dashboard";
 import AddCategoryForm from "../../pages/AddCategoryForm";
 import Menu from "../Menu";
-import Header from "../Header/Header";
+import Header from "../Header";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
+import Products from "../../pages/Products";
+import ErrorPageInfo from "../Errors/ErrorPageInfo";
+import ProductDetails from "../../pages/ProductDetails";        
+import AddProduct from "../../pages/AddProduct";
 
 const Layout = () => {
   let initialWidth: number;
   initialWidth = 220;
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -48,12 +51,15 @@ const Layout = () => {
       >
         <Toolbar />
         <Switch>
-          <Route exact path="/dashboard" render={() => <Dashboard />} />
+          <Route exact path="/dashboard" render={() => <Dashboard/>}/>
           <Route exact path="/addcategory" render={() => <AddCategoryForm />} />
+          <Route exact path="/add-product" render={() => <AddProduct/>} /> 
+          <Route exact path="/product/edit/:id" render={() => <ProductDetails />} />
+          <Route exact path="/products" component={Products} /><Route/>
+          <Route path='*' component={ErrorPageInfo}/>
         </Switch>
       </Box>
     </Box>
   );
 };
-
 export default Layout;

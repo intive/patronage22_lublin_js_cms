@@ -59,7 +59,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
   return (
     <TableContainer component={Paper} sx={{ margin: '32px 0' }}>
       <Typography variant="h4" p={2} sx={{ color: '#0f0f0f' }}>
-        Latest products...
+        Products
       </Typography>
       <Button variant="contained" style={{float:'right'}} onClick={()=> handleOnClick()}>Add Category</Button>
       <Table aria-label="simple table">
