@@ -3,10 +3,8 @@ import CustomTable from "../components/Table";
 import { HeadCell } from "../types/table";
 import getProducts from "../components/lib/products";
 import { Button } from "@mui/material";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
-import { ROUTES } from "../types/routes";
-import classes from "../components/Layout/Layout.module.css";
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
