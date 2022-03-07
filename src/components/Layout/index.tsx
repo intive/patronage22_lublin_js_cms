@@ -53,7 +53,7 @@ const Layout = () => {
           <Route exact path="/dashboard" render={() => <Dashboard/>}/>
           <Route exact path="/product/edit/:id" render={() => <ProductDetails />} /> 
           <Route exact path="/products" component={Products} /><Route/>
-          <Route exact path="/add-product" render={() => <AddProduct />} />
+          <Route exact path="/add-product" render={() => <AddProduct/>} />
           <Route path='*' component={ErrorPageInfo}/>
         </Switch>
       </Box>
