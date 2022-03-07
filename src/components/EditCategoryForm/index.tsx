@@ -25,7 +25,7 @@ const EditCategoryForm = ({ id }: FormProps) => {
         const { handleSubmit, handleChange } = formik;
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <TextField 
                 {...formik.getFieldProps('title')}
                 label="New Title" 
@@ -40,7 +40,7 @@ const EditCategoryForm = ({ id }: FormProps) => {
             />
 
             <Button variant="contained" onChange={handleChange}>Edit</Button>
-        </Form>
+        </form>
     )
 }
  
