@@ -17,6 +17,7 @@ import getCategories from "../lib/categories";
 import statuses from "../../types/statuses";
 import Dropzone from "../Dropzone";
 import * as Yup from "yup";
+import uploadRequest from '../lib/uploadImage'
 
 interface MyFormValues {
   title: string;
@@ -54,7 +55,7 @@ const AddProductForm: React.FC<ProductProps> = ({ onAddProduct }) => {
   };
 
   const [categories, setCategories] = useState<MyCategories[]>([]);
-  const [photosData, setPhotosData] = useState<File>();
+  const [photosData, setPhotosData] = useState<any>();
 
   useEffect(() => {
     getCategories()
@@ -88,9 +89,26 @@ const AddProductForm: React.FC<ProductProps> = ({ onAddProduct }) => {
     initialValues: initialValuesForm,
     onSubmit(values) {
       const payload = { ...values, photos: photosData };
-      //onAddProduct(payload);
+      onAddProduct(payload);
       console.log(payload);
-      console.log(values, "payload values");
+      //console.log(values, "payload values");
+      //console.log(photosData)
+      for(let i = 0; i < photosData.length; i++) {
+        const formData = new FormData()
+        formData.append("image", photosData[i]);
+        formData.append("product_id", "1");
+        uploadRequest(formData)
+        .then((response) => {
+          if (response.status === 200) {
+            console.log(response.data);
+          } else {
+            throw new Error("Something went wrong..");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
     },
     validationSchema,
   });
