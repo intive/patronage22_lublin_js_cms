@@ -1,7 +1,9 @@
 import axios from "axios";
 import { CONSTANTS } from "../../types/constants";
 
-const addProductRequest = async (product: any, token: any | null) => {
+const addProductRequest = async (product: any) => {
+  const token = window.localStorage.getItem("token");
+
   return axios(`${CONSTANTS.URL}/api/products/addProduct`, {
     method: "POST",
     data: JSON.stringify(product),
