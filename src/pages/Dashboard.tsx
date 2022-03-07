@@ -52,16 +52,6 @@ const Dashboard = () => {
       numeric: false,
       label: '',
     },
-    {
-      id: 'createdAt',
-      numeric: true,
-      label: 'CREATED',
-    },
-    {
-      id: 'updatedAt',
-      numeric: false,
-      label: '',
-    },
   ];
   return (
     <section>
