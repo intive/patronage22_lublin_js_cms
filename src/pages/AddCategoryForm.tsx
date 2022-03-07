@@ -1,5 +1,5 @@
 import React from 'react';
-import CategoryForm from '../../src/components/CategoryForm/index';
+import CategoryForm from '../components/CategoryForm/index';
 
 const AddCategoryForm: React.FC = () => {
  
