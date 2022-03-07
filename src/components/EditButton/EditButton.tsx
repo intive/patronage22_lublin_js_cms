@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 interface Props {
     children: React.ReactNode;
-    id: any;
+    id: number;
   }
 
 const EditButton: React.FC<Props> = ({ children, id }) => {
