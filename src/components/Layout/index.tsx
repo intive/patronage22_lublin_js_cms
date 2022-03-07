@@ -9,6 +9,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
+import Products from "../../pages/Products";
 import ErrorPageInfo from "../Errors/ErrorPageInfo";
 import ProductDetails from "../../pages/ProductDetails";        
 
@@ -49,7 +50,8 @@ const Layout = () => {
         <Toolbar/>
         <Switch>
           <Route exact path="/dashboard" render={() => <Dashboard/>}/>
-          <Route exact path="/product" render={() => <ProductDetails />} /> 
+          <Route exact path="/product/edit/:id" render={() => <ProductDetails />} /> 
+          <Route exact path="/products" component={Products} /><Route/>
           <Route path='*' component={ErrorPageInfo}/>
         </Switch>
       </Box>
