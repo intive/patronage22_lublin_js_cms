@@ -28,19 +28,16 @@ const EditCategoryForm = ({ id }: FormProps) => {
     return (
         <Form onSubmit={handleSubmit}>
             <TextField 
-                id="outlined-basic" 
+                {...formik.getFieldProps('title')}
                 label="New Title" 
                 variant="outlined" 
-                {...formik.getFieldProps('outlined-basic')}
-                name="title"
             />
 
             <FormControlLabel
-                value="bottom"
+                {...formik.getFieldProps('button')}
                 control={<Checkbox />} 
                 label="Published"
                 labelPlacement="bottom"
-                onChange={handleChange}
             />
 
             <Button variant="contained" onChange={handleChange}>Edit</Button>
