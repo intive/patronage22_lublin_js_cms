@@ -3,13 +3,14 @@ import CustomTable from "../components/Table";
 import { HeadCell } from "../types/table";
 import getProducts from "../components/lib/products";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { ROUTES } from "../types/routes";
 import classes from "../components/Layout/Layout.module.css";
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
+  const history = useHistory()
 
   useEffect(() => {
     getProducts()
@@ -24,24 +25,34 @@ const Dashboard = () => {
 
   const headCells: HeadCell[] = [
     {
-      id: "id",
+      id: 'id',
       numeric: true,
-      label: "ID",
+      label: 'ID',
     },
     {
-      id: "title",
+      id: 'title',
       numeric: false,
-      label: "TITLE",
+      label: 'TITLE',
     },
     {
-      id: "price",
+      id: 'price',
       numeric: true,
-      label: "PRICE",
+      label: 'PRICE',
     },
     {
-      id: "published",
+      id: 'published',
       numeric: false,
-      label: "PUBLISHED",
+      label: 'PUBLISHED',
+    },
+    {
+      id: 'createdAt',
+      numeric: true,
+      label: 'CREATED',
+    },
+    {
+      id: 'updatedAt',
+      numeric: false,
+      label: '',
     },
     {
       id: 'createdAt',
@@ -56,10 +67,8 @@ const Dashboard = () => {
   ];
   return (
     <section>
-      <Button type="submit" variant="contained">
-        <Link className={classes.link} to={ROUTES.ADD_PRODUCT}>
+      <Button type="submit" variant="contained" onClick={() => history.push('/add-product')}>
           <AddIcon /> Add Product
-        </Link>
       </Button>
       <CustomTable headCells={headCells} data={products} />
     </section>
