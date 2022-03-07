@@ -5,7 +5,7 @@ import { Checkbox, FormControlLabel, Button, TextField } from "@material-ui/core
 import EditCategoryValidation from "./validation";
 
 type FormProps = {
-    id: Number
+    id: String
 }
  
 const EditCategoryForm = ({ id }: FormProps) => {
