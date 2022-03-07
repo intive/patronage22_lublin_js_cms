@@ -1,20 +1,26 @@
-import React from 'react';
-import CustomTable from '../components/Table';
-import { HeadCell } from '../types/table';
+import React, { useState, useEffect } from "react";
+import CustomTable from "../components/Table";
+import { HeadCell } from "../types/table";
+import {getProducts} from "../components/lib/products";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import AddIcon from "@mui/icons-material/Add";
+import { ROUTES } from "../types/routes";
+import classes from '../components/Layout/Layout.module.css'
 
-const Dashboard: React.FC = () => {
-  const initialState = [
-
-    { "id": 1, "title": "Pierwszy produkt", "price": 15000, "description": "Opis proiduktu", "published": true, "createdAt": "2022-02-06T14:20:02.000Z", "updatedAt": "2022-02-06T14:20:02.000Z" }
-    ,
-
-    { "id": 2, "title": "Drugi produkt", "price": 15555, "description": "First Prod", "published": false, "createdAt": "2022-02-13T19:48:48.000Z", "updatedAt": "2022-02-13T19:48:48.000Z" }
-    ,
-
-    { "id": 3, "title": "Trzeci produkt", "price": 15551412, "description": "Sec Prod", "published": false, "createdAt": "2022-02-13T19:49:04.000Z", "updatedAt": "2022-02-13T19:49:04.000Z" }
-  ,  
-
-  ]
+const Dashboard = () => {
+  const [products, setProducts] = useState([]);
+  
+  useEffect(() => {
+    getProducts()
+      .then((response) => {
+        console.log(response);
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const headCells: HeadCell[] = [
     {
@@ -50,7 +56,12 @@ const Dashboard: React.FC = () => {
   ];
   return (
     <section>
-      <CustomTable headCells={headCells} data={initialState} />
+      <Button type="submit" variant="contained">
+        <Link to={ROUTES.ADD_PRODUCT} className={classes.link}>
+           <AddIcon /> Add Product
+        </Link>
+      </Button>
+      <CustomTable headCells={headCells} data={products} />
     </section>
   );
 };

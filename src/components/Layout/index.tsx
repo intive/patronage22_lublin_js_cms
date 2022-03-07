@@ -1,5 +1,5 @@
 import React from "react";
-import {Switch, Route} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Dashboard from "../../pages/Dashboard";
 import Menu from "../Menu";
 import Header from "../Header";
@@ -12,50 +12,52 @@ import Divider from "@mui/material/Divider";
 import Products from "../../pages/Products";
 import ErrorPageInfo from "../Errors/ErrorPageInfo";
 import ProductDetails from "../../pages/ProductDetails";        
+import AddProduct from "../../pages/AddProduct";
 
 const Layout = () => {
   let initialWidth: number;
   initialWidth = 220;
   return (
-      <Box sx={{display: "flex"}}>
-      <CssBaseline/>
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
       <AppBar
-          position="fixed"
-          sx={{
-            width: `calc(100% - ${initialWidth}px)`,
-          }}
+        position="fixed"
+        sx={{
+          width: `calc(100% - ${initialWidth}px)`,
+        }}
       >
-        <Header/>
+        <Header />
       </AppBar>
       <Drawer
-          sx={{
+        sx={{
+          width: initialWidth,
+          flexShrink: 0,
+          "& .MuiDrawer-paper": {
             width: initialWidth,
-            flexShrink: 0,
-            "& .MuiDrawer-paper": {
-              width: initialWidth,
-              boxSizing: "border-box",
-            },
-          }}
-          variant="permanent"
-          anchor="left"
+            boxSizing: "border-box",
+          },
+        }}
+        variant="permanent"
+        anchor="left"
       >
-        <Toolbar/>
-        <Divider/>
-        <Menu/>
+        <Toolbar />
+        <Divider />
+        <Menu />
       </Drawer>
       <Box
-          component="main"
-          sx={{flexGrow: 1, bgcolor: "background.default", p: 2}}
+        component="main"
+        sx={{ flexGrow: 1, bgcolor: "background.default", p: 2 }}
       >
-        <Toolbar/>
+        <Toolbar />
         <Switch>
           <Route exact path="/dashboard" render={() => <Dashboard/>}/>
-          <Route exact path="/product/edit/:id" render={() => <ProductDetails />} /> 
+          <Route exact path="/add-product" render={() => <AddProduct/>} /> 
+          <Route exact path="/product/edit/:id" render={() => <ProductDetails />} />
           <Route exact path="/products" component={Products} /><Route/>
           <Route path='*' component={ErrorPageInfo}/>
         </Switch>
       </Box>
-      </Box>
+    </Box>
   );
 };
 export default Layout;

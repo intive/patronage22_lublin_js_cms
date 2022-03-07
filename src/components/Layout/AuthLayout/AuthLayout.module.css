@@ -1,10 +1,19 @@
 .form {
-  background-color: #eeee;
-  padding: 3rem;
-  box-shadow: 0 4px 5px rgba(49, 43, 43, 0.2);
-  border-radius: 15px;
+  background-color: #fff;
+  color: #000;
+  padding: 40px;
+  box-shadow: 0 4px 10px rgba(49, 43, 43, 0.2);
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
+  margin: 5vh;
+}
+
+.errors {
+  font-size: 0.8rem;
+  color: red;
+  margin-top: 0.2rem;
+  font-style: italic;
 }
 
 .container {

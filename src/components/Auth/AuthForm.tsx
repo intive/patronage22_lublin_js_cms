@@ -14,6 +14,7 @@ interface MyFormValues {
 const AuthForm = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const authCtx = useContext(AuthContext);
