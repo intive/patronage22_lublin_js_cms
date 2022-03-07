@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import CustomTable from "../components/Table";
 import { HeadCell } from "../types/table";
-import getProducts from "../components/lib/products";
+import {getProducts} from "../components/lib/products";
 import { Button } from "@mui/material";
-import { useHistory} from "react-router-dom";
+import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
+import { ROUTES } from "../types/routes";
+import classes from '../components/Layout/Layout.module.css'
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
-  const history = useHistory()
-
+  
   useEffect(() => {
     getProducts()
       .then((response) => {
@@ -55,8 +56,10 @@ const Dashboard = () => {
   ];
   return (
     <section>
-      <Button type="submit" variant="contained" onClick={() => history.push('/add-product')}>
-          <AddIcon /> Add Product
+      <Button type="submit" variant="contained">
+        <Link to={ROUTES.ADD_PRODUCT} className={classes.link}>
+           <AddIcon /> Add Product
+        </Link>
       </Button>
       <CustomTable headCells={headCells} data={products} />
     </section>

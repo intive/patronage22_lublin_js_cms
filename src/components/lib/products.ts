@@ -1,9 +1,9 @@
 import axios from "axios";
 import { CONSTANTS } from "../../types/constants";
 
-const getProducts = async () => {
-  const token = window.localStorage.getItem("token");
+const token = window.localStorage.getItem("token");
 
+const getProducts = async () => {
   return axios(`${CONSTANTS.URL}/api/products/getAllProducts`, {
     method: "GET",
     headers: {
@@ -13,4 +13,18 @@ const getProducts = async () => {
   });
 };
 
-export default getProducts;
+const addProductRequest = async (product: {}) => {
+  return axios(`${CONSTANTS.URL}/api/products/addProduct`, {
+    method: "POST",
+    data: JSON.stringify(product),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+
+export {getProducts, addProductRequest}
+
+

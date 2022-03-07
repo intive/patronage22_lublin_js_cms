@@ -22,7 +22,7 @@ interface MyFormValues {
   title: string;
   category: string;
   description: string;
-  photos: any[];
+  photos: File[];
   price: string;
   quantity: number;
   status: string;
