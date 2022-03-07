@@ -14,7 +14,8 @@ export enum ROUTES {
   ADD_PRODUCT = '/add-product',
   ORDERS = '/orders',
   CLIENTS = '/clients',
-  PRODUCT = '/product'
+  PRODUCT = '/product',
+  PRODUCT_DETAILS ='/product/edit/:id',
 }
 
 const menuLinks = [
