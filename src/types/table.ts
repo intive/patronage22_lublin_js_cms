@@ -2,8 +2,10 @@ export interface Product {
   id: number;
   title: string;
   price: number;
-  description: string;
+  // description: string;
   published: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface CustomRowProps {
@@ -43,3 +45,4 @@ export interface CustomTableProps {
 }
 
 export type Order = 'asc' | 'desc';
+

@@ -2,7 +2,10 @@ import React from 'react';
 import CustomTable from '../components/Table';
 import { HeadCell } from '../types/table';
 
-const Dashboard: React.FC = () => {
+
+
+const Products: React.FC = ( )=> {
+
   const initialState = [
 
     { "id": 1, "title": "Pierwszy produkt", "price": 15000, "description": "Opis proiduktu", "published": true, "createdAt": "2022-02-06T14:20:02.000Z", "updatedAt": "2022-02-06T14:20:02.000Z" }
@@ -50,9 +53,9 @@ const Dashboard: React.FC = () => {
   ];
   return (
     <section>
-      <CustomTable headCells={headCells} data={initialState} />
+      <CustomTable headCells={headCells} data={initialState}/>
     </section>
   );
 };
 
-export default Dashboard;
+export default Products;

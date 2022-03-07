@@ -12,7 +12,12 @@ const Router = () => {
         <Route exact path={ROUTES.AUTH} component={AuthLayout}/>
         <Route exact path={ROUTES.DASHBOARD} component={AuthGuard(Layout)}/>
         <Route exact path={ROUTES.PRODUCT} component={AuthGuard(Layout)} />
+<<<<<<< HEAD
         <Route exact path={ROUTES.EDITCATEGORY} component={EditCategory}/>
+=======
+        <Route exact path={ROUTES.PRODUCTS} component={AuthGuard(Layout)} />
+        <Route exact path={ROUTES.PRODUCT_DETAILS} component={AuthGuard(Layout)} />
+>>>>>>> main
         <Route component={AuthGuard(Layout)}/>
       </Switch>
   );
