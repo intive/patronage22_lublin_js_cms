@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CONSTANTS } from "../../types/constants";
 
-const uploadRequest = async (formData: any) => {
+const uploadRequest = async (formData: FormData) => {
   return axios(`${CONSTANTS.URL}/api/photos`, {
     method: "POST",
     data: formData,

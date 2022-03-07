@@ -1,14 +1,10 @@
-import React, { useContext } from "react";
-import AuthContext from "../store/auth-context";
-import AddProductForm from "../components/Product/AddProductForm";
+import React from "react";
+import AddProductForm from "../components/AddProductForm";
 import addProductRequest from "../components/lib/addProduct";
 
 const AddProduct = () => {
-  const authCtx = useContext(AuthContext);
-  const token = authCtx.token;
-
   const addProductHandler = (product: any) => {
-    addProductRequest(product, token)
+    addProductRequest(product)
       .then((response) => {
         console.log(response.data);
       })
