@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import CustomTable from '../components/Table';
-import { HeadCell } from '../types/table';
+import { HeadCell, Product } from '../types/table';
 import {getProducts} from '../components/lib/products';
 
 
 const Products: React.FC = ( )=> {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   
   useEffect(() => {
     getProducts()
       .then((response) => {
-        console.log(response);
         setProducts(response.data);
       })
       .catch((error) => {
