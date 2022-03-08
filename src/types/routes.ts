@@ -14,7 +14,7 @@ export enum ROUTES {
   ORDERS = '/orders',
   CLIENTS = '/clients',
   PRODUCT = '/product',
-  EDITCATEGORY = '/category/edit/:id',
+  EDIT_CATEGORY = '/category/edit/:id',
   PRODUCT_DETAILS ='/product/edit/:id'
 }
 
