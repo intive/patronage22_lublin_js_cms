@@ -1,6 +1,6 @@
 import React from "react";
 import EditCategoryValidation from "./validation";
-import TextfieldWrapper from "../Textfield/TextfieldWrapper";
+import { TextField } from "@mui/material";
 import { useFormik }  from "formik";
 import { Checkbox, FormControlLabel, Button } from "@material-ui/core";
 
@@ -29,20 +29,22 @@ const EditCategoryForm = ({ id/*, title, description*/ }: FormProps) => {
         validationSchema: { EditCategoryValidation }
     })
 
-    const { handleSubmit } = formik;
+    const { handleSubmit, handleChange } = formik;
 
     return (
         <form onSubmit={handleSubmit}>
-            <TextfieldWrapper
+            <TextField
                 {...formik.getFieldProps('title')}
                 label="New Title"
+                variant="outlined"
+                onChange={handleChange}
             />
 
-            <TextfieldWrapper
+            <TextField
                 {...formik.getFieldProps('description')}
                 label="Description"
-                multiline={true}
-                rows={2}
+                variant="outlined"
+                onChange={handleChange}
             />
                 
             <FormControlLabel
