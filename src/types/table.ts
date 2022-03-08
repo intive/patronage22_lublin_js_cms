@@ -8,8 +8,21 @@ export interface Product {
   updatedAt: string;
 }
 
+export interface Category {
+  id: number;
+  title: string;
+  // description: string;
+  published: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface CustomRowProps {
   product: Product;
+  key: number;
+}
+export interface CategoryRowProps {
+  product: Category;
   key: number;
 }
 
@@ -17,10 +30,7 @@ export interface TablePaginationActionsProps {
   count: number;
   page: number;
   rowsPerPage: number;
-  onPageChange: (
-    event: React.MouseEvent<HTMLButtonElement>,
-    newPage: number
-  ) => void;
+  onPageChange: (event: React.MouseEvent<HTMLButtonElement>, newPage: number) => void;
 }
 export interface HeadCell {
   id: keyof Product;
@@ -28,10 +38,7 @@ export interface HeadCell {
   label: string;
 }
 export interface CustomTableHeadProps {
-  onRequestSort: (
-    event: React.MouseEvent<unknown>,
-    property: keyof Product
-  ) => void;
+  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Product) => void;
   order: Order;
   orderBy: string;
   rowCount: number;
@@ -42,7 +49,7 @@ export interface CustomTableProps {
   data: Product[];
   headCells: HeadCell[];
   disablePagination?: boolean;
+  customRow?: JSX.Element;
 }
 
-export type Order = 'asc' | 'desc';
-
+export type Order = "asc" | "desc";

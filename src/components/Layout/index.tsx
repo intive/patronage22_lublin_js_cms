@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 import Dashboard from "../../pages/Dashboard";
 import Menu from "../Menu";
 import Header from "../Header";
@@ -11,17 +11,18 @@ import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import Products from "../../pages/Products";
 import ErrorPageInfo from "../Errors/ErrorPageInfo";
-import ProductDetails from "../../pages/ProductDetails";        
+import ProductDetails from "../../pages/ProductDetails";
 import AddProduct from "../../pages/AddProduct";
+import Categories from "../../pages/Categories";
 
 const Layout = () => {
   let initialWidth: number;
   initialWidth = 220;
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{display: "flex"}}>
       <CssBaseline />
       <AppBar
-        position="fixed"
+        position='fixed'
         sx={{
           width: `calc(100% - ${initialWidth}px)`,
         }}
@@ -37,24 +38,23 @@ const Layout = () => {
             boxSizing: "border-box",
           },
         }}
-        variant="permanent"
-        anchor="left"
+        variant='permanent'
+        anchor='left'
       >
         <Toolbar />
         <Divider />
         <Menu />
       </Drawer>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: "background.default", p: 2 }}
-      >
+      <Box component='main' sx={{flexGrow: 1, bgcolor: "background.default", p: 2}}>
         <Toolbar />
         <Switch>
-          <Route exact path="/dashboard" render={() => <Dashboard/>}/>
-          <Route exact path="/add-product" render={() => <AddProduct/>} /> 
-          <Route exact path="/product/edit/:id" render={() => <ProductDetails />} />
-          <Route exact path="/products" component={Products} /><Route/>
-          <Route path='*' component={ErrorPageInfo}/>
+          <Route exact path='/dashboard' render={() => <Dashboard />} />
+          <Route exact path='/add-product' render={() => <AddProduct />} />
+          <Route exact path='/category' render={() => <Categories />} />
+          <Route exact path='/product/edit/:id' render={() => <ProductDetails />} />
+          <Route exact path='/products' component={Products} />
+          <Route />
+          <Route path='*' component={ErrorPageInfo} />
         </Switch>
       </Box>
     </Box>
