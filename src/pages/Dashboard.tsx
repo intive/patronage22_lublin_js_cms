@@ -15,7 +15,7 @@ const Dashboard = () => {
     getProducts()
       .then((response) => {
         console.log(response);
-        setProducts(response.data);
+        setProducts(response.data.slice(-10));
       })
       .catch((error) => {
         console.log(error);
@@ -61,7 +61,7 @@ const Dashboard = () => {
            <AddIcon /> Add Product
         </Link>
       </Button>
-      <CustomTable headCells={headCells} data={products} />
+      <CustomTable headCells={headCells} data={products} disablePagination={true} />
     </section>
   );
 };
