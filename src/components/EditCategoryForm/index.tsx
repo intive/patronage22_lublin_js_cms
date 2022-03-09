@@ -2,7 +2,7 @@ import React from "react";
 import EditCategoryValidation from "./validation";
 import { TextField } from "@mui/material";
 import { useFormik }  from "formik";
-import { Checkbox, FormControlLabel, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 type FormProps = {
     id: String;
