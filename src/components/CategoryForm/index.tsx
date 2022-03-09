@@ -27,8 +27,8 @@ const validationSchema = yup.object({
         .string()
         .min(2, 'Title should be of minimum 2 characters length')
         .required('Title is required'),
-    published: yup
-        .boolean()
+    description: yup
+        .string()
 });
 
 const CategoryForm = () => {
@@ -36,7 +36,7 @@ const CategoryForm = () => {
     const formik = useFormik({
         initialValues: {
             title: '',
-            published: true
+            description: ''
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -55,8 +55,7 @@ const CategoryForm = () => {
                     mode: 'raw',
                     raw: {
                        title: formik.values.title,
-                       description: '',
-                       published: formik.values.published
+                       description: ''
                     },
                     options: {
                         raw: {
