@@ -10,7 +10,7 @@ type FormProps = {
     //description: String;
 }
  
-const EditCategoryForm = ({ id/*, title, description*/ }: FormProps) => {
+const EditCategoryForm = ({...category} /*id, title, description }: FormProps*/) => {
     const initialFormValues = {
         id: '',
         title: '',
