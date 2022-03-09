@@ -17,7 +17,9 @@ import getCategories from "../lib/categories";
 import statuses from "../../types/statuses";
 import Dropzone from "../Dropzone";
 import * as Yup from "yup";
-import uploadRequest from '../lib/uploadImage'
+import uploadRequest from '../lib/uploadImage';
+import {addProductRequest} from '../lib/products';
+
 
 interface MyFormValues {
   title: string;
@@ -30,19 +32,17 @@ interface MyFormValues {
   published: boolean;
 }
 
-interface ProductProps {
-  onAddProduct: (product: MyFormValues) => void;
-}
+
 
 interface MyCategories {
-  id: number;
+  id: number,
   title: string;
   description: string;
   createdAt: string;
   updatedAt: string;
 }
 
-const AddProductForm: React.FC<ProductProps> = ({ onAddProduct }) => {
+const AddProductForm = () => {
   const initialValuesForm: MyFormValues = {
     title: "",
     category: "",
@@ -89,26 +89,35 @@ const AddProductForm: React.FC<ProductProps> = ({ onAddProduct }) => {
     initialValues: initialValuesForm,
     onSubmit(values) {
       const payload = { ...values, photos: photosData };
-      onAddProduct(payload);
+      //onAddProduct(payload);
       console.log(payload);
+      addProductRequest(payload)
+      .then((response) => {
+        console.log(response.data);
+        if(response.status === 200) {
+          for(let i = 0; i < photosData.length; i++) {
+            const formData = new FormData()
+            formData.append("image", photosData[i]);
+            formData.append("product_id", `${response.data.id}`);
+            uploadRequest(formData)
+            .then((response) => {
+              if (response.status === 200) {
+                console.log(response.data);
+              } else {
+                throw new Error("Something went wrong..");
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+          }
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
       //console.log(values, "payload values");
       //console.log(photosData)
-      for(let i = 0; i < photosData.length; i++) {
-        const formData = new FormData()
-        formData.append("image", photosData[i]);
-        formData.append("product_id", "1");
-        uploadRequest(formData)
-        .then((response) => {
-          if (response.status === 200) {
-            console.log(response.data);
-          } else {
-            throw new Error("Something went wrong..");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      }
     },
     validationSchema,
   });
