@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CustomTable from "../components/Table";
-import { HeadCell } from "../types/table";
+import { HeadCell, Product } from "../types/table";
 import {getProducts} from "../components/lib/products";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -9,13 +9,12 @@ import { ROUTES } from "../types/routes";
 import classes from '../components/Layout/Layout.module.css'
 
 const Dashboard = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   
   useEffect(() => {
     getProducts()
       .then((response) => {
-        console.log(response);
-        setProducts(response.data);
+        setProducts(response.data.slice(-10));
       })
       .catch((error) => {
         console.log(error);
@@ -61,7 +60,7 @@ const Dashboard = () => {
            <AddIcon /> Add Product
         </Link>
       </Button>
-      <CustomTable headCells={headCells} data={products} />
+      <CustomTable headCells={headCells} data={products} disablePagination={true} />
     </section>
   );
 };
