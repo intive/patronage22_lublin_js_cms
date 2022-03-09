@@ -47,13 +47,6 @@ const EditCategoryForm = ({ id/*, title, description*/ }: FormProps) => {
                 onChange={handleChange}
             />
                 
-            <FormControlLabel
-                {...formik.getFieldProps('button')}
-                control={<Checkbox />} 
-                label="Published"
-                labelPlacement="bottom"
-            />
-                
             <Button variant="contained" type="submit">Edit</Button>
         </form> 
     )
