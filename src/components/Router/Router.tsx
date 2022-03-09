@@ -16,6 +16,9 @@ const Router = () => {
         <Route exact path={ROUTES.EDIT_CATEGORY} component={EditCategory}/>
         <Route exact path={ROUTES.PRODUCTS} component={AuthGuard(Layout)} />
         <Route exact path={ROUTES.PRODUCT_DETAILS} component={AuthGuard(Layout)} />
+        <Route exact path={ROUTES.CATEGORY_EDIT} component={EditCategory}/>
+        <Route exact path={ROUTES.PRODUCTS} component={AuthGuard(Layout)} />
+        <Route exact path={ROUTES.PRODUCT_DETAILS} component={AuthGuard(Layout)} />
         <Route component={AuthGuard(Layout)}/>
       </Switch>
   );
