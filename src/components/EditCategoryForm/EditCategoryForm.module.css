@@ -1,3 +1,11 @@
 .editForm {
-    padding: 5px;;
+  padding: 40px;
+  justify-content: space-between;
+  box-shadow: 0 4px 10px rgba(49, 43, 43, 0.2);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.gridItem {
+  margin-bottom: 20px;
 }

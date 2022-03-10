@@ -17,7 +17,7 @@ const EditCategory: React.FC = () => {
 
     const { id } = useParams<UrlParams>();
 
-    return <EditCategoryForm  category={payload}/>
+    return <EditCategoryForm  id={id} title={payload.title} description={payload.description}/>
 }
 
 export default EditCategory; 

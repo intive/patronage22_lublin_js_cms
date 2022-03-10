@@ -3,22 +3,24 @@ import EditCategoryValidation from "./validation";
 import { TextField } from "@mui/material";
 import { useFormik }  from "formik";
 import { Button } from "@material-ui/core";
+import classes from "../EditCategoryForm/EditCategoryForm.module.css";
+import { Container, Grid, Typography } from "@mui/material";
 
 type FormProps = {
     id: String;
-    //title: String;
-    //description: String;
+    title: String;
+    description: String;
 }
  
-const EditCategoryForm = ({...category} /*id, title, description }: FormProps*/) => {
+const EditCategoryForm = ({id, title, description }: FormProps) => {
     const initialFormValues = {
-        id: '',
-        title: '',
-        description: ''
+        id: id,
+        title: title,
+        description: description
     };
 
     const formik = useFormik({
-        initialValues: {initialFormValues},
+        initialValues: initialFormValues,
              
         onSubmit: (values, actions) => {
             console.log({ values, actions });
@@ -32,23 +34,37 @@ const EditCategoryForm = ({...category} /*id, title, description }: FormProps*/)
     const { handleSubmit, handleChange } = formik;
 
     return (
-        <form onSubmit={handleSubmit}>
-            <TextField
-                {...formik.getFieldProps('title')}
-                label="New Title"
-                variant="outlined"
-                onChange={handleChange}
-            />
+        <Container className={classes.editForm}>
+            <form onSubmit={handleSubmit} >
+                <Grid container>
+                    <Grid item className={classes.gridItem}>
+                        <Typography variant="h4">Edit Category</Typography>
+                    </Grid>
 
-            <TextField
-                {...formik.getFieldProps('description')}
-                label="Description"
-                variant="outlined"
-                onChange={handleChange}
-            />
-                
-            <Button variant="contained" type="submit">Edit</Button>
-        </form> 
+                    <Grid item xs={10} className={classes.gridItem}>
+                        <TextField
+                            {...formik.getFieldProps('title')}
+                            label="New Title"
+                            variant="outlined"
+                            onChange={handleChange}
+                        />
+                    </Grid>
+
+                    <Grid item xs={10} className={classes.gridItem}>
+                        <TextField
+                            {...formik.getFieldProps('description')}
+                            label="Description"
+                            variant="outlined"
+                            onChange={handleChange}
+                        />
+                    </Grid>
+
+                    <Grid item xs={10}>
+                        <Button variant="contained" type="submit">Edit</Button>
+                    </Grid>
+                </Grid>
+            </form>
+        </Container>
     )
 }
  
