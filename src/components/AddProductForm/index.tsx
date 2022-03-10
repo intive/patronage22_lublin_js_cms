@@ -101,7 +101,7 @@ const AddProductForm = () => {
               formData.append("product_id", `${response.data.id}`);
               uploadRequest(formData)
                 .then((response) => {
-                  if (response.status === 200) {
+                  if (response.status === CONSTANTS.RESPONSE_SUCCESS) {
                     console.log(response.data);
                   } else {
                     throw new Error("Something went wrong..");
