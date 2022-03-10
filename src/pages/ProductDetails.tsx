@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { EditProductForm } from "../components/EditProductForm/EditProductForm";
 import getCategories from "../components/lib/categories";
+import { useParams } from 'react-router-dom';
+
+
+type UrlParams = {
+  id: string
+};
 
 interface MyCategories {
   id: number;
@@ -34,6 +40,9 @@ const ProductDetails: React.FC = () => {
     status: false,
     published: false,
   };
+
+  const { id } = useParams<UrlParams>();
+  console.log(id);
 
   return <EditProductForm product={product} categories={categories} />;
 };
