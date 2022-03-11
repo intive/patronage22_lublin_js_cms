@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { ROUTES } from "../types/routes";
 import classes from '../components/Layout/Layout.module.css'
-import ProductsRow from "../components/Table/ProductsRow";
+import ProductRow from "../components/Table/ProductRow";
 
 const Dashboard = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -64,7 +64,7 @@ const Dashboard = () => {
         </Link>
       </Button>
       {/* <CustomTable headCells={headCells} data={products} disablePagination={true} /> */}
-      <CustomTable customRow={ProductsRow} headCells={headCells} data={products} disablePagination={true} />
+      <CustomTable customRow={(props: any) => <ProductRow {...props}/>} headCells={headCells} data={products} disablePagination={true} />
     </section>
   );
 };

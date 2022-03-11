@@ -1,8 +1,8 @@
 import { Chip } from '@mui/material';
 import React from 'react';
-import { CustomRowProps } from '../../types/table';
-import { StyledTableCell, StyledTableRow } from './styles';
-import EditButton from '../EditButton';
+import { CustomRowProps } from '../../../types/table';
+import { StyledTableCell, StyledTableRow } from '../styles';
+import EditButton from '../../EditButton';
 import { parseISO, format} from 'date-fns';
 
 

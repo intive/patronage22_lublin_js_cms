@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import type { MouseEvent, ChangeEvent } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
-// import ProductsRow from './ProductsRow';
-import CustomRow from './CustomRow';
 import TablePaginationActions from './Pagination';
 import { TableFooter, TablePagination, Typography } from '@mui/material';
 import { StyledTableCell, StyledTableRow } from './styles';
@@ -24,6 +22,8 @@ const CustomTable: React.FC<CustomTableProps> = ({
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof Product>('id');
+
+  const CustomRow: any = useMemo(() => customRow, [customRow]);
 
   const handleRequestSort = (
     event: MouseEvent<unknown>,
@@ -69,11 +69,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
         <TableBody>
           {stableSort(data, getComparator(order, orderBy))
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((row) => (
-
-      customRow=<CustomRow product={row} key={row.id}/> 
-            
-            ))}
+            .map((row) => <CustomRow product={row} key={row.id}/>)}
           {emptyRows > 0 && (
             <StyledTableRow style={{ height: 53 * emptyRows }}>
               <StyledTableCell colSpan={6} />
