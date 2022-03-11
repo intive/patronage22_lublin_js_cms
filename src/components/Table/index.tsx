@@ -53,7 +53,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
   };
 
   const handleOnClick = () => {
-    history.replace("/addcategory");
+    history.replace("/add-category");
   }
 
   return (

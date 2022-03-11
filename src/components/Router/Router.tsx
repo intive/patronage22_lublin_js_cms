@@ -9,7 +9,7 @@ const Router = () => {
   return (
       <Switch>
         <Route exact path={ROUTES.AUTH} component={AuthLayout}/>
-        <Route exact path={ROUTES.ADD_CATEGORY} component={AuthGuard(Layout)} />
+        <Route exact path={ROUTES.CATEGORY_ADD} component={AuthGuard(Layout)} />
         <Route exact path={ROUTES.ADD_PRODUCT} component={AuthGuard(Layout)} />
         <Route exact path={ROUTES.DASHBOARD} component={AuthGuard(Layout)}/>
         <Route exact path={ROUTES.PRODUCT} component={AuthGuard(Layout)} />

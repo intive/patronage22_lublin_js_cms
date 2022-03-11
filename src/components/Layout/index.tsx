@@ -52,7 +52,7 @@ const Layout = () => {
         <Toolbar />
         <Switch>
           <Route exact path="/dashboard" render={() => <Dashboard/>}/>
-          <Route exact path="/addcategory" render={() => <AddCategoryForm />} />
+          <Route exact path="/add-category" render={() => <AddCategoryForm />} />
           <Route exact path="/add-product" render={() => <AddProduct/>} /> 
           <Route exact path="/product/edit/:id" render={() => <ProductDetails />} />
           <Route exact path="/products" component={Products} /><Route/>

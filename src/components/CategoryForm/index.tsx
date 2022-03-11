@@ -2,17 +2,14 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import Input from '@mui/material/Input';
 import SaveIcon from '@mui/icons-material/Save';
-import Stack from '@mui/material/Stack';
-import Switch from '@mui/material/Switch';
 import {Formik, useFormik} from 'formik';
 import * as yup from 'yup';
-import axios from "axios";
 import Button from '@mui/material/Button';
 import { useHistory } from "react-router-dom";
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import addCategory from '../lib/addCategory'
 
 
 const style = {
@@ -20,7 +17,6 @@ const style = {
     p: 4,
   };
 
-const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 const validationSchema = yup.object({
     title: yup
@@ -31,6 +27,7 @@ const validationSchema = yup.object({
         .string()
 });
 
+
 const CategoryForm = () => {
     const history = useHistory();
     const formik = useFormik({
@@ -39,7 +36,8 @@ const CategoryForm = () => {
             description: ''
         },
         validationSchema: validationSchema,
-        onSubmit: (values) => {
+        onSubmit: (formik) => {
+            console.log(formik, 'values')
         },
     });
 
@@ -47,15 +45,15 @@ const CategoryForm = () => {
         history.replace("/dashboard");
     }
 
+
     const handleSubmit = () => {
         formik.validateForm().then((err)=> {
             if (Object.keys(err).length === 0) { 
-                const url = '/api/categories/addCategory';
                 let payload = {
                     mode: 'raw',
                     raw: {
                        title: formik.values.title,
-                       description: ''
+                       description: formik.values.description
                     },
                     options: {
                         raw: {
@@ -63,11 +61,34 @@ const CategoryForm = () => {
                         }
                     }
                 };
-                axios.post( url, payload).catch((err) => console.log(err));
+                addCategory(payload).catch((err) => console.log(err));;
                 history.replace("/dashboard");
             };
         })
        
+    }
+
+    const configTextfieldTitle = {
+        label: "Title",
+        name: "title",
+        value: formik.values.title,
+        fullWidth: true,
+        onChange: formik.handleChange,
+        error: false
+    }
+
+    const configTextfieldDescription = {
+        name: "description",
+        value: formik.values.description,
+        fullWidth: true,
+        onChange: formik.handleChange,
+        label:"Description",
+        multiline: true,
+        rows: 4
+    }
+
+    if (formik.touched.title && Boolean(formik.errors.title)) {
+        configTextfieldTitle.error = true;
     }
 
     return (
@@ -81,24 +102,15 @@ const CategoryForm = () => {
                         <Typography variant="h6" component="h2">
                             Add new category
                         </Typography>
-                        <FormControl >
-                            <InputLabel htmlFor="title">TITLE</InputLabel>
-                            <Input 
-                            id="title"
-                            name="title"
-                            value={formik.values.title}
-                            onChange={formik.handleChange}
-                            error={formik.touched.title && Boolean(formik.errors.title)} />
-                        
+                        <Grid item xs={6}>
+                            <TextField {...configTextfieldTitle}></TextField>
                             {formik.errors.title ? <div>{formik.errors.title}</div> : null}
-                        </FormControl>
-                        <div>
-                            Published: <Switch id="published"
-                                        name="published" 
-                                        value={formik.values.published} 
-                                        onClick={formik.handleChange} {...label} defaultChecked />
-                        </div>
-                        <Stack mt={6} spacing={3} direction="row">
+                        </Grid>  
+                        <Grid item xs={6}>
+                            <TextField
+                            {...configTextfieldDescription}></TextField>  
+                        </Grid>
+                        <Grid pt={5}>
                             <Button 
                                 type="submit"
                                 onClick={()=>handleSubmit()}
@@ -107,7 +119,7 @@ const CategoryForm = () => {
                                 startIcon={<SaveIcon />}
                             >Save</Button>
                             <Button variant="contained" onClick={handleClose}>Cancel</Button>
-                        </Stack>
+                        </Grid>
                         
                     </Box>
                 </Formik>
