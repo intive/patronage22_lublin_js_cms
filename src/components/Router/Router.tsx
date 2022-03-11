@@ -4,7 +4,6 @@ import AuthLayout from "../Layout/AuthLayout";
 import Layout from "../Layout";
 import {ROUTES} from "../../types/routes";
 import AuthGuard from "../HOC/AuthGuard";
-import EditCategoryForm from "../EditCategoryForm";
 
 const Router = () => {
   return (

@@ -1,16 +1,15 @@
 import React from "react";
 import EditCategoryValidation from "./validation";
-import { TextField } from "@mui/material";
 import { useFormik }  from "formik";
 import { Button } from "@material-ui/core";
 import classes from "../EditCategoryForm/EditCategoryForm.module.css";
-import { Container, Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography, TextField } from "@mui/material";
 
 type FormProps = {
     id: String;
     title: String;
     description: String;
-}
+};
  
 const EditCategoryForm = ({id, title, description }: FormProps) => {
     const initialFormValues = {
@@ -28,15 +27,15 @@ const EditCategoryForm = ({id, title, description }: FormProps) => {
             actions.setSubmitting(false);
         },
 
-        validationSchema: { EditCategoryValidation }
-    })
+        validationSchema: EditCategoryValidation
+    });
 
     const { handleSubmit, handleChange } = formik;
 
     return (
-        <Container className={classes.editForm}>
+        <Container className={classes.editForm} >
             <form onSubmit={handleSubmit} >
-                <Grid container>
+                <Grid container rowSpacing={4}>
                     <Grid item className={classes.gridItem}>
                         <Typography variant="h4">Edit Category</Typography>
                     </Grid>
@@ -60,12 +59,12 @@ const EditCategoryForm = ({id, title, description }: FormProps) => {
                     </Grid>
 
                     <Grid item xs={10}>
-                        <Button variant="contained" type="submit">Edit</Button>
+                        <Button variant="contained" type="submit" className={classes.editButton}>Edit</Button>
                     </Grid>
                 </Grid>
             </form>
         </Container>
-    )
-}
+    );
+};
  
 export default EditCategoryForm;
