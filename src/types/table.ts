@@ -1,4 +1,15 @@
+import React, { ReactNode } from "react";
+
 export interface Product {
+  id: number;
+  title: string;
+  price: number;
+  // description: string;
+  published: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface Pages {
   id: number;
   title: string;
   price: number;
@@ -9,7 +20,7 @@ export interface Product {
 }
 
 export interface CustomRowProps {
-  product: Product;
+  product: Product | Pages;
   key: number;
 }
 
@@ -42,6 +53,7 @@ export interface CustomTableProps {
   data: Product[];
   headCells: HeadCell[];
   disablePagination?: boolean;
+  customRow:ReactNode;
 }
 
 export type Order = 'asc' | 'desc';

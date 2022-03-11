@@ -5,7 +5,8 @@ import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
-import CustomRow from './ProductsRow';
+// import ProductsRow from './ProductsRow';
+import CustomRow from './CustomRow';
 import TablePaginationActions from './Pagination';
 import { TableFooter, TablePagination, Typography } from '@mui/material';
 import { StyledTableCell, StyledTableRow } from './styles';
@@ -15,6 +16,7 @@ import { CustomTableProps, Order, Product } from '../../types/table';
 
 const CustomTable: React.FC<CustomTableProps> = ({
   headCells,
+  customRow,
   data,
   disablePagination,
 }) => {
@@ -68,7 +70,9 @@ const CustomTable: React.FC<CustomTableProps> = ({
           {stableSort(data, getComparator(order, orderBy))
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((row) => (
-              <CustomRow product={row} key={row.id} />
+
+      customRow=<CustomRow product={row} key={row.id}/> 
+            
             ))}
           {emptyRows > 0 && (
             <StyledTableRow style={{ height: 53 * emptyRows }}>

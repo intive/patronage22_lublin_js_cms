@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { ROUTES } from "../types/routes";
 import classes from '../components/Layout/Layout.module.css'
+import ProductsRow from "../components/Table/ProductsRow";
 
 const Dashboard = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -53,6 +54,8 @@ const Dashboard = () => {
       label: '',
     },
   ];
+
+
   return (
     <section>
       <Button type="submit" variant="contained">
@@ -60,7 +63,8 @@ const Dashboard = () => {
            <AddIcon /> Add Product
         </Link>
       </Button>
-      <CustomTable headCells={headCells} data={products} disablePagination={true} />
+      {/* <CustomTable headCells={headCells} data={products} disablePagination={true} /> */}
+      <CustomTable customRow={ProductsRow} headCells={headCells} data={products} disablePagination={true} />
     </section>
   );
 };
