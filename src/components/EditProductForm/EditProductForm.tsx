@@ -59,12 +59,13 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
                   label={props.values.status ? "Available" : "Unavailable"}
                 />
               </Grid>
-
+              
               <Grid item xs={3.5}>
                 <SwitchWrapper
                   name="published"
                   legend="Published"
                   label={props.values.published ? "Published" : "Unpublished"}
+                  ifChecked={props.values.published}
                 />
               </Grid>
 
