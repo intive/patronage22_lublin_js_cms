@@ -111,7 +111,7 @@ const AddProductForm = () => {
                   console.log(error);
                 });
             }
-            history.replace(ROUTES.PRODUCTS);
+            history.push(ROUTES.PRODUCTS);
           }
         })
         .catch((error) => {
