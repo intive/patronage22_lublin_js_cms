@@ -15,7 +15,7 @@ const Dashboard = () => {
   useEffect(() => {
     getProducts()
       .then((response) => {
-        setProducts(response.data.slice(-10));
+        setProducts(response.data.slice(-6));
       })
       .catch((error) => {
         console.log(error);
@@ -63,7 +63,6 @@ const Dashboard = () => {
            <AddIcon /> Add Product
         </Link>
       </Button>
-      {/* <CustomTable headCells={headCells} data={products} disablePagination={true} /> */}
       <CustomTable customRow={(props: any) => <ProductRow {...props}/>} headCells={headCells} data={products} disablePagination={true} />
     </section>
   );

@@ -4,23 +4,22 @@ export interface Product {
   id: number;
   title: string;
   price: number;
-  // description: string;
+  // description?: string;
   published: boolean;
   createdAt: string;
   updatedAt: string;
 }
-export interface Pages {
+export interface Page {
   id: number;
   title: string;
-  price: number;
-  // description: string;
-  published: boolean;
-  createdAt: string;
-  updatedAt: string;
+  description?: string;
+  slug?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface CustomRowProps {
-  product: Product | Pages;
+  row: Product ;
   key: number;
 }
 
@@ -34,7 +33,7 @@ export interface TablePaginationActionsProps {
   ) => void;
 }
 export interface HeadCell {
-  id: keyof Product;
+  id: keyof Product ;
   numeric: boolean;
   label: string;
 }

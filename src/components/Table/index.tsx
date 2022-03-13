@@ -69,7 +69,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
         <TableBody>
           {stableSort(data, getComparator(order, orderBy))
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((row) => <CustomRow product={row} key={row.id}/>)}
+            .map((row) => <CustomRow row={row} key={row.id}/>)}
           {emptyRows > 0 && (
             <StyledTableRow style={{ height: 53 * emptyRows }}>
               <StyledTableCell colSpan={6} />

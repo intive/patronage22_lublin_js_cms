@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import CustomTable from '../components/Table';
 import { HeadCell, Product } from '../types/table';
 import {getProducts} from '../components/lib/products';
-import CustomRow from '../components/Table'
+import ProductRow from "../components/Table/ProductRow";
+
 
 
 const Products: React.FC = ( )=> {
@@ -52,9 +53,7 @@ const Products: React.FC = ( )=> {
   ];
   return (
     <section>
-      <CustomTable 
-      customRow={CustomRow} 
-      headCells={headCells} data={products}/>
+      <CustomTable customRow={(props: any) => <ProductRow {...props}/>} headCells={headCells} data={products}/>
     </section>
   );
 };

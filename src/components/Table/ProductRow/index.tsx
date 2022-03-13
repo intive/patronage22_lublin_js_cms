@@ -6,8 +6,10 @@ import EditButton from '../../EditButton';
 import { parseISO, format} from 'date-fns';
 
 
-const ProductsRow: React.FC<CustomRowProps> = ({ product }) => {
-  const { id, title, price, published, createdAt } = product;
+const ProductsRow: React.FC<CustomRowProps> = ({ row }) => {
+  const { id, title, 
+    price, published,
+     createdAt } = row;
 
   return (
     <StyledTableRow>
