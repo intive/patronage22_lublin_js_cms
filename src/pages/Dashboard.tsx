@@ -8,6 +8,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { ROUTES } from "../types/routes";
 import classes from '../components/Layout/Layout.module.css'
 import ProductRow from "../components/Table/ProductRow";
+import { Typography } from '@mui/material';
 
 const Dashboard = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -58,12 +59,15 @@ const Dashboard = () => {
 
   return (
     <section>
+       <Typography variant="h4" p={2} sx={{ color: '#0f0f0f' }}>
+        Products
+      </Typography>
       <Button type="submit" variant="contained">
         <Link to={ROUTES.ADD_PRODUCT} className={classes.link}>
            <AddIcon /> Add Product
         </Link>
       </Button>
-      <CustomTable customRow={(props: any) => <ProductRow {...props}/>} headCells={headCells} data={products} disablePagination={true} />
+      <CustomTable customRow={(props: Product) => <ProductRow row={undefined} key={0} {...props}/>} headCells={headCells} data={products} disablePagination={true} />
     </section>
   );
 };

@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
 import TablePaginationActions from './Pagination';
-import { TableFooter, TablePagination, Typography } from '@mui/material';
+import { TableFooter, TablePagination } from '@mui/material';
 import { StyledTableCell, StyledTableRow } from './styles';
 import { CustomTableHead } from './CustomTableHead';
 import { getComparator, stableSort } from './sortUtils';
@@ -53,9 +53,9 @@ const CustomTable: React.FC<CustomTableProps> = ({
 
   return (
     <TableContainer component={Paper} sx={{ margin: '32px 0' }}>
-      <Typography variant="h4" p={2} sx={{ color: '#0f0f0f' }}>
+      {/* <Typography variant="h4" p={2} sx={{ color: '#0f0f0f' }}>
         Products
-      </Typography>
+      </Typography> */}
       <Table aria-label="simple table">
         <TableHead>
           <CustomTableHead
