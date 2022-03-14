@@ -10,7 +10,7 @@ import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 interface FilesListProps {
-  setFilesList: (file: File) => void;
+  setFilesList: (file: File[]) => void;
 }
 
 const Dropzone: React.FC<FilesListProps> = ({ setFilesList }) => {
