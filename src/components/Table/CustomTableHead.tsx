@@ -7,12 +7,12 @@ import {
   StyledTableRow,
   StyledTableSortLabel,
 } from './styles';
-import { CustomTableHeadProps, Product, Page } from '../../types/table';
+import { CustomTableHeadProps, Product} from '../../types/table';
 
 export const CustomTableHead = (props: CustomTableHeadProps) => {
   const { headCells, order, orderBy, onRequestSort } = props;
   const createSortHandler =
-    (property: keyof Product | keyof Page) => (event: MouseEvent<unknown>) => {
+    (property: keyof Product) => (event: MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
 

@@ -4,22 +4,14 @@ export interface Product {
   id: number;
   title: string;
   price: number;
-  description?: string;
+  // description ?: string;
   published: boolean;
   createdAt: string;
   updatedAt: string;
 }
-export interface Page {
-  id?: number;
-  title: string;
-  description?: string;
-  slug?: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
 
 export interface CustomRowProps {
-  row : Product | Page | any;
+  row : Product;
   key: number;
 }
 
@@ -33,14 +25,14 @@ export interface TablePaginationActionsProps {
   ) => void;
 }
 export interface HeadCell {
-  id : keyof Product | keyof Page | any;
+  id : keyof Product;
   numeric: boolean;
   label: string;
 }
 export interface CustomTableHeadProps {
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof Product | keyof Page | any
+    property: keyof Product
   ) => void;
   order: Order;
   orderBy: string;
@@ -49,7 +41,7 @@ export interface CustomTableHeadProps {
 }
 
 export interface CustomTableProps {
-  data : Product[] | Page[] | any;
+  data : Product[];
   headCells: HeadCell[];
   disablePagination?: boolean;
   customRow:ReactNode;
