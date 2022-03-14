@@ -17,6 +17,11 @@ import getCategories from "../lib/categories";
 import statuses from "../../types/statuses";
 import Dropzone from "../Dropzone";
 import * as Yup from "yup";
+import uploadRequest from "../lib/uploadImage";
+import { addProductRequest } from "../lib/products";
+import { useHistory } from "react-router-dom";
+import { ROUTES } from "../../types/routes";
+import { CONSTANTS } from "../../types/constants";
 
 interface MyFormValues {
   title: string;
@@ -29,10 +34,6 @@ interface MyFormValues {
   published: boolean;
 }
 
-interface ProductProps {
-  onAddProduct: (product: MyFormValues) => void;
-}
-
 interface MyCategories {
   id: number;
   title: string;
@@ -41,7 +42,7 @@ interface MyCategories {
   updatedAt: string;
 }
 
-const AddProductForm: React.FC<ProductProps> = ({ onAddProduct }) => {
+const AddProductForm = () => {
   const initialValuesForm: MyFormValues = {
     title: "",
     category: "",
@@ -54,7 +55,8 @@ const AddProductForm: React.FC<ProductProps> = ({ onAddProduct }) => {
   };
 
   const [categories, setCategories] = useState<MyCategories[]>([]);
-  const [photosData, setPhotosData] = useState<File>();
+  const [photosData, setPhotosData] = useState<File[]>([]);
+  const history = useHistory();
 
   useEffect(() => {
     getCategories()
@@ -88,9 +90,33 @@ const AddProductForm: React.FC<ProductProps> = ({ onAddProduct }) => {
     initialValues: initialValuesForm,
     onSubmit(values) {
       const payload = { ...values, photos: photosData };
-      //onAddProduct(payload);
       console.log(payload);
-      console.log(values, "payload values");
+      addProductRequest(payload)
+        .then((response) => {
+          console.log(response.data);
+          if (response.status === CONSTANTS.RESPONSE_SUCCESS) {
+            for (let i = 0; i < photosData.length; i++) {
+              const formData = new FormData();
+              formData.append("image", photosData[i]);
+              formData.append("product_id", `${response.data.id}`);
+              uploadRequest(formData)
+                .then((response) => {
+                  if (response.status === CONSTANTS.RESPONSE_SUCCESS) {
+                    console.log(response.data);
+                  } else {
+                    throw new Error("Something went wrong..");
+                  }
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            }
+            history.push(ROUTES.PRODUCTS);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     validationSchema,
   });
