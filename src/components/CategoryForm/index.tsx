@@ -19,11 +19,9 @@ interface FormValues {
     description: string;
 }
 
-interface CategoryProps {
-    addCategory: (categories: FormValues) => void;
-  }
 
-const CategoryForm: React.FC<CategoryProps>  = ({ addCategory }) => {
+
+const CategoryForm = () => {
     const InitialValuesForm: FormValues ={
         title: '',
         description: '',
@@ -48,7 +46,6 @@ const CategoryForm: React.FC<CategoryProps>  = ({ addCategory }) => {
                    title: values.title,
                    description: values.description
                 };
-            addCategory(payload)
             history.replace("/dashboard");
         },
     });
