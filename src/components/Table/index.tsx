@@ -12,8 +12,7 @@ import { StyledTableCell, StyledTableRow } from './styles';
 import { CustomTableHead } from './CustomTableHead';
 import { getComparator, stableSort } from './sortUtils';
 import { CustomTableProps, Order, Product } from '../../types/table';
-import Button from '@mui/material/Button';
-import { useHistory } from "react-router-dom";
+
 
 const CustomTable: React.FC<CustomTableProps> = ({
   headCells,
@@ -24,7 +23,6 @@ const CustomTable: React.FC<CustomTableProps> = ({
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof Product>('id');
-  const history = useHistory();
 
   const handleRequestSort = (
     event: MouseEvent<unknown>,
@@ -52,16 +50,12 @@ const CustomTable: React.FC<CustomTableProps> = ({
     setPage(0);
   };
 
-  const handleOnClick = () => {
-    history.replace("/add-category");
-  }
 
   return (
     <TableContainer component={Paper} sx={{ margin: '32px 0' }}>
       <Typography variant="h4" p={2} sx={{ color: '#0f0f0f' }}>
         Products
       </Typography>
-      <Button variant="contained" style={{float:'right'}} onClick={()=> handleOnClick()}>Add Category</Button>
       <Table aria-label="simple table">
         <TableHead>
           <CustomTableHead
