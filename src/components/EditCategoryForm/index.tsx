@@ -6,14 +6,12 @@ import classes from "../EditCategoryForm/EditCategoryForm.module.css";
 import { Container, Grid, Typography, TextField } from "@mui/material";
 
 type FormProps = {
-    id: String;
     title: String;
     description: String;
 };
  
-const EditCategoryForm = ({id, title, description }: FormProps) => {
+const EditCategoryForm = ({title, description }: FormProps) => {
     const initialFormValues = {
-        id: id,
         title: title,
         description: description
     };
@@ -30,7 +28,7 @@ const EditCategoryForm = ({id, title, description }: FormProps) => {
         validationSchema: EditCategoryValidation
     });
 
-    const { handleSubmit, handleChange } = formik;
+    const { handleSubmit, handleChange, getFieldProps} = formik;
 
     return (
         <Container className={classes.editForm} >
@@ -42,7 +40,8 @@ const EditCategoryForm = ({id, title, description }: FormProps) => {
 
                     <Grid item xs={10} className={classes.gridItem}>
                         <TextField
-                            {...formik.getFieldProps('title')}
+                            {...getFieldProps('title')}
+                            id="title"
                             label="New Title"
                             variant="outlined"
                             onChange={handleChange}
@@ -51,7 +50,8 @@ const EditCategoryForm = ({id, title, description }: FormProps) => {
 
                     <Grid item xs={10} className={classes.gridItem}>
                         <TextField
-                            {...formik.getFieldProps('description')}
+                            {...getFieldProps('description')}
+                            id="description"
                             label="Description"
                             variant="outlined"
                             onChange={handleChange}

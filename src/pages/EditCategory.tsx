@@ -1,6 +1,6 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import EditCategoryForm from '../components/EditCategoryForm';
+import editCategory from "../components/lib/editCategory";
 
 type UrlParams = {
     id: string
@@ -15,9 +15,19 @@ const EditCategory: React.FC = () => {
         updatedAt: "2022-03-01T17:55:45.000Z" 
    }
 
-    const { id } = useParams<UrlParams>();
+// const [categories, setCategories] = useState();
+  
+// useEffect(() => {
+//   editCategory()
+//     .then((response: { data: { slice: (arg0: number) => React.SetStateAction<undefined>; } }) => {
+//       setCategories(response.data.slice(-10));
+//     })
+//     .catch((error: any) => {
+//       console.log(error);
+//     });
+// }, []);
 
-    return <EditCategoryForm  id={id} title={payload.title} description={payload.description}/>
+    return <EditCategoryForm title={payload.title} description={payload.description}/>
 }
 
 export default EditCategory; 
