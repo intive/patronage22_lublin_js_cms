@@ -24,5 +24,6 @@ const editCategoryRequest = async (title: string, description: string) => {
   });
 }
   
-export default { editCategory, editCategoryRequest };
+export default editCategory;
+export { editCategoryRequest };
   

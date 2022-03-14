@@ -6,6 +6,12 @@ type UrlParams = {
     id: string
 };
 
+interface Categories {
+    id: number;
+    title: string;
+    description: string;
+  }
+
 const EditCategory: React.FC = () => {
     const payload = { 
         id: 3,
@@ -15,17 +21,19 @@ const EditCategory: React.FC = () => {
         updatedAt: "2022-03-01T17:55:45.000Z" 
    }
 
-// const [categories, setCategories] = useState();
-  
-// useEffect(() => {
-//   editCategory()
-//     .then((response: { data: { slice: (arg0: number) => React.SetStateAction<undefined>; } }) => {
-//       setCategories(response.data.slice(-10));
-//     })
-//     .catch((error: any) => {
-//       console.log(error);
-//     });
-// }, []);
+   const [categories, setCategories] = useState<Categories[]>([]);
+
+   useEffect(() => {
+    editCategory()
+      .then((response) => {
+        console.log(response);
+        const data = response.data;
+        setCategories(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
     return <EditCategoryForm title={payload.title} description={payload.description}/>
 }
