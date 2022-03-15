@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CustomTable from "../components/Table";
-import { HeadCell, Product } from "../types/table";
+import { CustomRowProps, HeadCell, Product } from "../types/table";
 import {getProducts} from "../components/lib/products";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -67,7 +67,7 @@ const Dashboard = () => {
            <AddIcon /> Add Product
         </Link>
       </Button>
-      <CustomTable customRow={(props: Product) => <ProductRow  {...props}/>} headCells={headCells} data={products} disablePagination={true} />
+      <CustomTable customRow={(props: CustomRowProps) => <ProductRow  {...props}/>} headCells={headCells} data={products} disablePagination={true} />
     </section>
   );
 };
