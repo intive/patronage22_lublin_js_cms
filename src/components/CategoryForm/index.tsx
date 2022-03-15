@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import { useHistory } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-import classes from '../CategoryForm/CategoryForm.module.css';
+import styles from '../CategoryForm/index.module.css';
 
 interface FormValues {
     title: string;
@@ -49,28 +49,22 @@ const CategoryForm = () => {
 
     return (
         <form onSubmit={handleSubmit} >
-            <Box className={classes.style} >
+            <Box className={styles.background} >
                 <Typography variant="h6" component="h2">
                     Add new category
                 </Typography>
-                <Grid 
-                pt={2}
-                item xs={6}>
+                <Grid  pt={2} item xs={6}>
                     <TextField 
                     fullWidth={true}
-                    id="title"
                     label="title"
                     {...getFieldProps('title')}/>
                     {errors.title ? <div>{errors.title}</div> : null}
                 </Grid>  
-                <Grid 
-                pt={2}
-                item xs={6}>
+                <Grid pt={2} item xs={6}>
                     <TextField
                     fullWidth={true}
                     multiline={true}
                     rows={4}
-                    id="description"
                     label="description"
                     {...getFieldProps('description')}/>  
                 </Grid>
