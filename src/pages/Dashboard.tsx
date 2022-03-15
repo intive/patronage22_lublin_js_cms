@@ -67,7 +67,7 @@ const Dashboard = () => {
            <AddIcon /> Add Product
         </Link>
       </Button>
-      <CustomTable customRow={(props: any) => <ProductRow {...props}/>} headCells={headCells} data={products} disablePagination={true} />
+      <CustomTable customRow={(props: Product) => <ProductRow  {...props}/>} headCells={headCells} data={products} disablePagination={true} />
     </section>
   );
 };
