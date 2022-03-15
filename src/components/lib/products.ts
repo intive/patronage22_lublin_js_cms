@@ -4,7 +4,7 @@ import { CONSTANTS } from "../../types/constants";
 const token = window.localStorage.getItem("token");
 
 const getProducts = async () => {
-  return axios(`${CONSTANTS.URL}/api/products/getAllProducts`, {
+  return await axios(`${CONSTANTS.URL}/api/products/getAllProducts`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -14,7 +14,7 @@ const getProducts = async () => {
 };
 
 const addProductRequest = async (product: {}) => {
-  return axios(`${CONSTANTS.URL}/api/products/addProduct`, {
+  return await axios(`${CONSTANTS.URL}/api/products/addProduct`, {
     method: "POST",
     data: JSON.stringify(product),
     headers: {
@@ -24,7 +24,4 @@ const addProductRequest = async (product: {}) => {
   });
 };
 
-
-export {getProducts, addProductRequest}
-
-
+export { getProducts, addProductRequest };
