@@ -80,7 +80,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
           <StyledTableRow>
             {!disablePagination && (
               <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: data.length }]}
                 colSpan={6}
                 count={data.length}
                 rowsPerPage={rowsPerPage}
