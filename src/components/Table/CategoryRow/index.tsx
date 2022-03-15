@@ -1,13 +1,12 @@
 import {Chip} from "@mui/material";
 import React from "react";
-import {CategoryRowProps} from "../../types/table";
-import {StyledTableCell, StyledTableRow} from "./styles";
-import EditButton from "../EditButton";
+import {CustomRowProps} from "../../../types/table";
+import {StyledTableCell, StyledTableRow} from "../styles";
+import EditButton from "../../EditButton";
 import {parseISO, format} from "date-fns";
 
-const CategoriesRow: React.FC<CategoryRowProps> = ({product}) => {
-  const {id, title, published, createdAt} = product;
-
+const CategoryRow: React.FC<CustomRowProps> = ({row}) => {
+  const {id, title, published, createdAt} = row;
   return (
     <StyledTableRow>
       <StyledTableCell component='th' scope='row' align='center'>
@@ -29,4 +28,4 @@ const CategoriesRow: React.FC<CategoryRowProps> = ({product}) => {
   );
 };
 
-export default CategoriesRow;
+export default CategoryRow;
