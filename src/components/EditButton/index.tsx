@@ -1,23 +1,26 @@
 import React from "react";
-import { Button } from "@mui/material";
-import { useHistory } from 'react-router-dom';
+import {Button} from "@mui/material";
+import {useHistory} from "react-router-dom";
 
 interface Props {
-    children: React.ReactNode;
-    id: number;
-  }
+  children: React.ReactNode;
+  id: number;
+  nameOfEditingItem: string;
+}
 
-const EditButton: React.FC<Props> = ({ children, id }) => {
-
+const EditButton: React.FC<Props> = ({children, id, nameOfEditingItem}) => {
   const history = useHistory();
 
   return (
-    <Button variant="text" color="primary" size="small" 
-    onClick={() => history.push(`/product/edit/${id}`)} 
+    <Button
+      variant='text'
+      color='primary'
+      size='small'
+      onClick={() => history.push(`/${nameOfEditingItem}/edit/${id}`)}
     >
-     {children}
+      {children}
     </Button>
   );
 };
 
-export default EditButton; 
+export default EditButton;
