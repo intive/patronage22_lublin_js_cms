@@ -1,28 +1,17 @@
+import React, { ReactNode } from "react";
+
 export interface Product {
   id: number;
   title: string;
   price: number;
-  // description: string;
-  published: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface Category {
-  id: number;
-  title: string;
-  // description: string;
+  // description ?: string;
   published: boolean;
   createdAt: string;
   updatedAt: string;
 }
 
 export interface CustomRowProps {
-  product: Product;
-  key: number;
-}
-export interface CategoryRowProps {
-  product: Category;
+  row : Product;
   key: number;
 }
 
@@ -30,15 +19,21 @@ export interface TablePaginationActionsProps {
   count: number;
   page: number;
   rowsPerPage: number;
-  onPageChange: (event: React.MouseEvent<HTMLButtonElement>, newPage: number) => void;
+  onPageChange: (
+    event: React.MouseEvent<HTMLButtonElement>,
+    newPage: number
+  ) => void;
 }
 export interface HeadCell {
-  id: keyof Product;
+  id : keyof Product;
   numeric: boolean;
   label: string;
 }
 export interface CustomTableHeadProps {
-  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Product) => void;
+  onRequestSort: (
+    event: React.MouseEvent<unknown>,
+    property: keyof Product
+  ) => void;
   order: Order;
   orderBy: string;
   rowCount: number;
@@ -46,10 +41,11 @@ export interface CustomTableHeadProps {
 }
 
 export interface CustomTableProps {
-  data: Product[];
+  data : Product[];
   headCells: HeadCell[];
   disablePagination?: boolean;
-  customRow?: JSX.Element;
+  customRow:ReactNode;
 }
 
-export type Order = "asc" | "desc";
+export type Order = 'asc' | 'desc';
+

@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CustomTable from '../components/Table';
-import { HeadCell } from '../types/table';
-
+import {CustomRowProps, HeadCell, Product } from '../types/table';
+import {getProducts} from '../components/lib/products';
+import ProductRow from "../components/Table/ProductRow";
+import { Typography } from '@mui/material';
 
 
 const Products: React.FC = ( )=> {
-
-  const initialState = [
-
-    { "id": 1, "title": "Pierwszy produkt", "price": 15000, "description": "Opis proiduktu", "published": true, "createdAt": "2022-02-06T14:20:02.000Z", "updatedAt": "2022-02-06T14:20:02.000Z" }
-    ,
-
-    { "id": 2, "title": "Drugi produkt", "price": 15555, "description": "First Prod", "published": false, "createdAt": "2022-02-13T19:48:48.000Z", "updatedAt": "2022-02-13T19:48:48.000Z" }
-    ,
-
-    { "id": 3, "title": "Trzeci produkt", "price": 15551412, "description": "Sec Prod", "published": false, "createdAt": "2022-02-13T19:49:04.000Z", "updatedAt": "2022-02-13T19:49:04.000Z" }
-  ,  
-
-  ]
+  const [products, setProducts] = useState<Product[]>([]);
+  
+  useEffect(() => {
+    getProducts()
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const headCells: HeadCell[] = [
     {
@@ -53,7 +53,10 @@ const Products: React.FC = ( )=> {
   ];
   return (
     <section>
-      <CustomTable headCells={headCells} data={initialState}/>
+      <Typography variant="h4" p={2} sx={{ color: '#0f0f0f' }}>
+        Products
+      </Typography>
+      <CustomTable customRow={(props: CustomRowProps) => <ProductRow  {...props}/>} headCells={headCells} data={products}/>
     </section>
   );
 };

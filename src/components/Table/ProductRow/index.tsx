@@ -1,14 +1,13 @@
 import { Chip } from '@mui/material';
 import React from 'react';
-import { CustomRowProps } from '../../types/table';
-import { StyledTableCell, StyledTableRow } from './styles';
-import EditButton from '../EditButton';
-import { parseISO, format} from 'date-fns';
+import { CustomRowProps } from '../../../types/table';
+import { StyledTableCell, StyledTableRow } from '../styles';
+import EditButton from '../../EditButton';
+import { parseISO, format } from 'date-fns';
 
 
-const ProductsRow: React.FC<CustomRowProps> = ({ product }) => {
-  const { id, title, price, published, createdAt } = product;
-
+const ProductsRow: React.FC<CustomRowProps> = ({ row }) => {
+  const { id, title, price, published, createdAt } = row;
   return (
     <StyledTableRow>
       <StyledTableCell component="th" scope="row" align="center">

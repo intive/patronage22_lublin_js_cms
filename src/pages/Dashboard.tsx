@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import CustomTable from "../components/Table";
-import { HeadCell } from "../types/table";
+import { CustomRowProps, HeadCell, Product } from "../types/table";
 import {getProducts} from "../components/lib/products";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { ROUTES } from "../types/routes";
 import classes from '../components/Layout/Layout.module.css'
+import ProductRow from "../components/Table/ProductRow";
+import { Typography } from '@mui/material';
 
 const Dashboard = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   
   useEffect(() => {
     getProducts()
       .then((response) => {
-        console.log(response);
-        setProducts(response.data);
+        setProducts(response.data.slice(-6));
       })
       .catch((error) => {
         console.log(error);
@@ -54,14 +55,19 @@ const Dashboard = () => {
       label: '',
     },
   ];
+
+
   return (
     <section>
+       <Typography variant="h4" p={2} sx={{ color: '#0f0f0f' }}>
+        Products
+      </Typography>
       <Button type="submit" variant="contained">
         <Link to={ROUTES.ADD_PRODUCT} className={classes.link}>
            <AddIcon /> Add Product
         </Link>
       </Button>
-      <CustomTable headCells={headCells} data={products} />
+      <CustomTable customRow={(props: CustomRowProps) => <ProductRow  {...props}/>} headCells={headCells} data={products} disablePagination={true} />
     </section>
   );
 };
