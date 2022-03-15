@@ -8,12 +8,8 @@ import Button from '@mui/material/Button';
 import { useHistory } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
+import classes from '../CategoryForm/CategoryForm.module.css';
 
-
-const style = {
-    bgcolor: 'background.paper',
-    p: 4,
-};
 interface FormValues {
     title: string;
     description: string;
@@ -24,6 +20,7 @@ interface CategoryProps {
   }
 
 const CategoryForm: React.FC<CategoryProps>  = ({ addCategory }) => {
+    const history = useHistory();
     const InitialValuesForm: FormValues ={
         title: '',
         description: '',
@@ -38,16 +35,12 @@ const CategoryForm: React.FC<CategoryProps>  = ({ addCategory }) => {
             .string()
     });
 
-    const history = useHistory();
     const formik = useFormik({
         initialValues: InitialValuesForm, 
         validationSchema: validationSchema,
         onSubmit: (values) => {
             console.log( 'values', values)
-                const payload = {
-                   title: values.title,
-                   description: values.description
-                };
+            const payload = {...values};
             addCategory(payload)
             history.replace("/dashboard");
         },
@@ -61,7 +54,7 @@ const CategoryForm: React.FC<CategoryProps>  = ({ addCategory }) => {
 
     return (
         <form onSubmit={handleSubmit} >
-            <Box sx={style} >
+            <Box className={classes.style} >
                 <Typography variant="h6" component="h2">
                     Add new category
                 </Typography>
@@ -72,7 +65,7 @@ const CategoryForm: React.FC<CategoryProps>  = ({ addCategory }) => {
                     fullWidth={true}
                     id="title"
                     label="title"
-                    {...getFieldProps('title')}></TextField>
+                    {...getFieldProps('title')}/>
                     {errors.title ? <div>{errors.title}</div> : null}
                 </Grid>  
                 <Grid 
@@ -84,7 +77,7 @@ const CategoryForm: React.FC<CategoryProps>  = ({ addCategory }) => {
                     rows={4}
                     id="description"
                     label="description"
-                    {...getFieldProps('description')}></TextField>  
+                    {...getFieldProps('description')}/> 
                 </Grid>
                 <Grid pt={5}>
                     <Button 
