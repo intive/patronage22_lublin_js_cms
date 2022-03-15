@@ -10,7 +10,7 @@ import { TableFooter, TablePagination } from '@mui/material';
 import { StyledTableCell, StyledTableRow } from './styles';
 import { CustomTableHead } from './CustomTableHead';
 import { getComparator, stableSort } from './sortUtils';
-import { CustomTableProps, Order, Product } from '../../types/table';
+import { CustomTableProps, Order, Page, Product } from '../../types/table';
 
 const CustomTable: React.FC<CustomTableProps> = ({
   headCells,
@@ -21,13 +21,13 @@ const CustomTable: React.FC<CustomTableProps> = ({
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const [order, setOrder] = useState<Order>('asc');
-  const [orderBy, setOrderBy] = useState<keyof Product>('id');
+  const [orderBy, setOrderBy] = useState<keyof Product |keyof Page>('id');
 
   const CustomRow: any = useMemo(() => customRow, [customRow]);
 
   const handleRequestSort = (
     event: MouseEvent<unknown>,
-    property: keyof Product
+    property: keyof Product | keyof Page
   ) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');

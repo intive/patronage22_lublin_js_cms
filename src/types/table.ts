@@ -9,9 +9,15 @@ export interface Product {
   createdAt: string;
   updatedAt: string;
 }
+export interface Page {
+  id?: number;
+  title: string;
+  description?: string;
+  slug?: string;
+}
 
 export interface CustomRowProps {
-  row : Product;
+  row: Product | Page | any;
   key: number;
 }
 
@@ -25,14 +31,14 @@ export interface TablePaginationActionsProps {
   ) => void;
 }
 export interface HeadCell {
-  id : keyof Product;
+  id: keyof Product | keyof Page;
   numeric: boolean;
   label: string;
 }
 export interface CustomTableHeadProps {
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof Product
+    property: keyof Product | keyof Page
   ) => void;
   order: Order;
   orderBy: string;
@@ -41,11 +47,10 @@ export interface CustomTableHeadProps {
 }
 
 export interface CustomTableProps {
-  data : Product[];
+  data : Product[] | Page [] | any;
   headCells: HeadCell[];
   disablePagination?: boolean;
-  customRow:ReactNode;
+  customRow: ReactNode;
 }
 
 export type Order = 'asc' | 'desc';
-
