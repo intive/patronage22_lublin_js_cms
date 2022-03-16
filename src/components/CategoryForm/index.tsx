@@ -41,6 +41,7 @@ const CategoryForm: React.FC<CategoryProps>  = ({ addCategory }) => {
         onSubmit: (values) => {
             console.log( 'values', values)
             const payload = {...values};
+            addCategory(payload)
             history.push('/category');
         },
     });
