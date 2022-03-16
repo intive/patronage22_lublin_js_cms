@@ -71,7 +71,6 @@ const CategoryForm = () => {
                 <Grid pt={5}>
                     <Button 
                         type="submit"
-                        onClick={()=>handleSubmit()}
                         variant="contained"
                         color="secondary"
                         startIcon={<SaveIcon />}
