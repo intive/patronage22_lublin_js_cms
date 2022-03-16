@@ -76,8 +76,7 @@ const CategoryForm = () => {
                         startIcon={<SaveIcon />}
                     >Save</Button>
                     <Button variant="contained" onClick={handleClose}>Cancel</Button>
-                </Grid>
-                
+                </Grid> 
             </Box>
         </form>   
     );
