@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Dashboard from "../../pages/Dashboard";
-import AddCategoryForm from "../../pages/AddCategoryForm";
+import AddCategory from "../../pages/AddCategory";
 import Menu from "../Menu";
 import Header from "../Header";
 import Box from "@mui/material/Box";
@@ -52,7 +52,7 @@ const Layout = () => {
         <Toolbar />
         <Switch>
           <Route exact path="/dashboard" render={() => <Dashboard/>}/>
-          <Route exact path="/add-category" render={() => <AddCategoryForm />} />
+          <Route exact path="/add-category" render={() => <AddCategory />} />
           <Route exact path="/add-product" render={() => <AddProduct/>} /> 
           <Route exact path="/product/edit/:id" render={() => <ProductDetails />} />
           <Route exact path="/products" component={Products} /><Route/>

@@ -37,12 +37,12 @@ const CategoryForm = () => {
         onSubmit: (values) => {
             console.log( 'values', values)
             const payload = {...values};
-            history.replace("/dashboard");
+            history.push('/category');
         },
     });
 
     const handleClose = () => {
-        history.replace("/dashboard");
+        history.push('/category');
     }
 
     const {handleSubmit, getFieldProps, errors} = formik;
@@ -56,7 +56,7 @@ const CategoryForm = () => {
                 <Grid  pt={2} item xs={6}>
                     <TextField 
                     fullWidth={true}
-                    label="title"
+                    label='Title'
                     {...getFieldProps('title')}/>
                     {errors.title ? <div>{errors.title}</div> : null}
                 </Grid>  
@@ -65,7 +65,7 @@ const CategoryForm = () => {
                     fullWidth={true}
                     multiline={true}
                     rows={4}
-                    label="description"
+                    label='Description'
                     {...getFieldProps('description')}/>  
                 </Grid>
                 <Grid pt={5}>
