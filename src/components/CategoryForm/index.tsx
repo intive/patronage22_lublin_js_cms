@@ -15,7 +15,11 @@ interface FormValues {
     description: string;
 }
 
-const CategoryForm = () => {
+interface CategoryProps {
+    addCategory: (categories: FormValues) => void;
+  }
+
+const CategoryForm: React.FC<CategoryProps>  = ({ addCategory }) => {
     const history = useHistory();
     const InitialValuesForm: FormValues ={
         title: '',
