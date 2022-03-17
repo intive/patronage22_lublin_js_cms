@@ -7,7 +7,9 @@ import ButtonWrapper from "../Button/ButtonWrapper";
 import SwitchWrapper from "../Switch/SwitchWrapper";
 import classes from "../EditProductForm/EditProductForm.module.css";
 import { FORM_VALIDATION } from "./validate";
-
+import { editProductRequest } from "../../components/lib/products";
+import { useHistory } from "react-router-dom";
+import { ROUTES } from "../../types/routes";
 
 type EditProductFormProps = {
   product: any;
@@ -18,6 +20,9 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
   product,
   categories,
 }) => {
+  
+  const history = useHistory();
+
   const INITIAL_FORM_STATE = { ...product };
   return (
     <Container className={classes.container}>
@@ -28,6 +33,15 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
         validationSchema={FORM_VALIDATION}
         onSubmit={(values) => {
           console.log(values);
+
+          editProductRequest(values, values.id)
+            .then((response) => {
+              console.log(response);
+              history.push(ROUTES.PRODUCTS);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         }}
       >
         {(props) => (

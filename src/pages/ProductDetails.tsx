@@ -23,11 +23,12 @@ interface ApiProducts {
   description: string;
   published: boolean;
   quantity: number;
+  photos: [];
 }
 
 const ProductDetails: React.FC = () => {
   const [apiCategories, setApiCategories] = useState<ApiCategories[]>([]);
-  const [productss, setProductss] = useState<ApiProducts[]>([]);
+  const [apiProducts, setApiProducts] = useState<ApiProducts[]>([]);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const ProductDetails: React.FC = () => {
     getProducts()
       .then((response) => {
         console.log(response.data);
-        setProductss(response.data);
+        setApiProducts(response.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -55,22 +56,22 @@ const ProductDetails: React.FC = () => {
   }, []);
 
   const { id } = useParams<UrlParams>();
-
-  const productt = productss.find((post) => post.id.toString() === id);
+  const apiProduct = apiProducts.find((post) => post.id.toString() === id);
+  console.log(apiProducts);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   const product = {
-    id: productt?.id,
-    title: productt?.title,
+    id: apiProduct?.id,
+    title: apiProduct?.title,
     category: "Books",
-    price: productt?.price,
+    price: apiProduct?.price,
     quantity: "",
-    description: productt?.description,
+    description: apiProduct?.description,
     status: false,
-    published: productt?.published,
+    published: apiProduct?.published,
   };
 
   return <EditProductForm product={product} categories={apiCategories} />;
