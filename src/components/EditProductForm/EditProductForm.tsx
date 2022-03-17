@@ -8,6 +8,7 @@ import SwitchWrapper from "../Switch/SwitchWrapper";
 import classes from "../EditProductForm/EditProductForm.module.css";
 import { FORM_VALIDATION } from "./validate";
 
+
 type EditProductFormProps = {
   product: any;
   categories: any;
@@ -48,19 +49,23 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
                 />
               </Grid>
 
-              <Grid item xs={3}>
+              <Grid item xs={12}>
+                <TextfieldWrapper name="price" label="Price" />
+              </Grid>
+
+              <Grid item xs={12}>
                 <TextfieldWrapper name="quantity" label="Quantity" />
               </Grid>
 
-              <Grid item xs={3.5}>
+              <Grid item xs={6}>
                 <SwitchWrapper
                   name="status"
                   legend="Status"
                   label={props.values.status ? "Available" : "Unavailable"}
                 />
               </Grid>
-              
-              <Grid item xs={3.5}>
+
+              <Grid item xs={6}>
                 <SwitchWrapper
                   name="published"
                   legend="Published"
