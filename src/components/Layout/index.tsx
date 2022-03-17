@@ -54,7 +54,7 @@ const Layout = () => {
           <Route exact path='/add-product' render={() => <AddProduct />} />
           <Route exact path='/product/edit/:id' render={() => <ProductDetails />} />
           <Route exact path='/add-category' render={() => <AddCategory />} />
-          <Route exact path='/category' render={() => <Categories />} />
+          <Route exact path='/categories' render={() => <Categories />} />
           <Route exact path='/products' component={Products} />
           <Route />
         </Switch>
