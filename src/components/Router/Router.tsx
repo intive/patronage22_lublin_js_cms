@@ -16,6 +16,7 @@ const Router = () => {
         <Route exact path={ROUTES.PRODUCTS} component={AuthGuard(Layout)} />
         <Route exact path={ROUTES.PRODUCT_DETAILS} component={AuthGuard(Layout)} />
         <Route exact path={ROUTES.CATEGORY_ADD} component={AuthGuard(Layout)} />
+        <Route exact path={ROUTES.PAGE_ADD} component={AuthGuard(Layout)} />
         <Route component={AuthGuard(Layout)}/>
       </Switch>
   );

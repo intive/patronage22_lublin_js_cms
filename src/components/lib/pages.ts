@@ -13,10 +13,10 @@ const getPages = async () => {
   });
 };
 
-const addPageRequest = async (page: {}) => {
+const addPageRequest = async (payload: any) => {
   return await axios(`${CONSTANTS.URL}/api/pages/addPage`, {
     method: "POST",
-    data: JSON.stringify(page),
+    data: JSON.stringify(payload),
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

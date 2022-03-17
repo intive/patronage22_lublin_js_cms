@@ -17,6 +17,7 @@ export enum ROUTES {
   PRODUCT = '/product',
   PRODUCT_DETAILS ='/product/edit/:id',
   CATEGORY_ADD ='/add-category',
+  PAGE_ADD='/add-page',
 }
 
 const menuLinks = [

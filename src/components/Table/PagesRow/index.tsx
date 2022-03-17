@@ -4,14 +4,14 @@ import { StyledTableCell, StyledTableRow } from '../styles';
 
 
 const PagesRow: React.FC<CustomRowProps> = ({ row }) => {
-  const { title, slug} = row;
+  const { title, description} = row;
 
   return (
     <StyledTableRow>
       <StyledTableCell component="th" scope="row" align="center">
         {title}
       </StyledTableCell>
-      <StyledTableCell align="center">{slug}</StyledTableCell>
+      <StyledTableCell align="center">{description}</StyledTableCell>
 
     </StyledTableRow>
   );

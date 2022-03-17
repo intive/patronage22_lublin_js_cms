@@ -13,7 +13,7 @@ export interface Page {
   id?: number;
   title: string;
   description?: string;
-  slug?: string;
+  slug: string;
 }
 
 export interface CustomRowProps {
