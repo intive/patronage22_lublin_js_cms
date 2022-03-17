@@ -9,13 +9,14 @@ import { useHistory } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import styles from '../CategoryForm/index.module.css';
+import addCategory from '../lib/addCategory';
 
 interface FormValues {
     title: string;
     description: string;
 }
 
-const CategoryForm = () => {
+const CategoryForm: React.FC = () => {
     const history = useHistory();
     const InitialValuesForm: FormValues ={
         title: '',
@@ -35,8 +36,8 @@ const CategoryForm = () => {
         initialValues: InitialValuesForm, 
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            console.log( 'values', values)
             const payload = {...values};
+            addCategory(payload)
             history.push('/category');
         },
     });
@@ -83,5 +84,3 @@ const CategoryForm = () => {
 }
 
 export default CategoryForm;
-
-
