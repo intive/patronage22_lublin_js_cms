@@ -7,7 +7,7 @@ import {
   StyledTableRow,
   StyledTableSortLabel,
 } from './styles';
-import { CustomTableHeadProps, Product } from '../../types/table';
+import { CustomTableHeadProps, Product} from '../../types/table';
 
 export const CustomTableHead = (props: CustomTableHeadProps) => {
   const { headCells, order, orderBy, onRequestSort } = props;

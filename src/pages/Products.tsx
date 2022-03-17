@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import CustomTable from '../components/Table';
-import { HeadCell, Product } from '../types/table';
+import {CustomRowProps, HeadCell, Product } from '../types/table';
 import {getProducts} from '../components/lib/products';
+import ProductRow from "../components/Table/ProductRow";
+import { Typography } from '@mui/material';
 
 
 const Products: React.FC = ( )=> {
@@ -51,7 +53,10 @@ const Products: React.FC = ( )=> {
   ];
   return (
     <section>
-      <CustomTable headCells={headCells} data={products}/>
+      <Typography variant="h4" p={2} sx={{ color: '#0f0f0f' }}>
+        Products
+      </Typography>
+      <CustomTable customRow={(props: CustomRowProps) => <ProductRow  {...props}/>} headCells={headCells} data={products}/>
     </section>
   );
 };
