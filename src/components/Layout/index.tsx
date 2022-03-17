@@ -14,6 +14,7 @@ import ErrorPageInfo from "../Errors/ErrorPageInfo";
 import ProductDetails from "../../pages/ProductDetails";        
 import AddProduct from "../../pages/AddProduct";
 import Pages from "../../pages/Pages";
+import AddCategory from "../../pages/AddCategory"
 
 const Layout = () => {
   let initialWidth: number;
@@ -55,6 +56,7 @@ const Layout = () => {
           <Route exact path="/pages" render={() => <Pages/>}/>
           <Route exact path="/add-product" render={() => <AddProduct/>} /> 
           <Route exact path="/product/edit/:id" render={() => <ProductDetails />} />
+          <Route exact path="/add-category" render={() => <AddCategory />} />
           <Route exact path="/products" component={Products} /><Route/>
           <Route path='*' component={ErrorPageInfo}/>
         </Switch>

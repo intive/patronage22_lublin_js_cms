@@ -67,6 +67,11 @@ const Dashboard = () => {
            <AddIcon /> Add Product
         </Link>
       </Button>
+      <Button type="submit" variant="contained">
+        <Link to={ROUTES.CATEGORY_ADD} className={classes.link}>
+           <AddIcon /> Add Category
+        </Link>
+      </Button>
       <CustomTable customRow={(props: CustomRowProps) => <ProductRow  {...props}/>} headCells={headCells} data={products} disablePagination={true} />
     </section>
   );
