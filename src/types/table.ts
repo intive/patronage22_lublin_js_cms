@@ -17,7 +17,7 @@ export interface Category {
 }
 
 export interface CustomRowProps {
-  row: any;
+  row: Product | Category | any;
   key: number;
 }
 
@@ -25,15 +25,21 @@ export interface TablePaginationActionsProps {
   count: number;
   page: number;
   rowsPerPage: number;
-  onPageChange: (event: React.MouseEvent<HTMLButtonElement>, newPage: number) => void;
+  onPageChange: (
+    event: React.MouseEvent<HTMLButtonElement>,
+    newPage: number
+  ) => void;
 }
 export interface HeadCell {
-  id: any;
+  id: keyof Product | keyof Category;
   numeric: boolean;
   label: string;
 }
 export interface CustomTableHeadProps {
-  onRequestSort: (event: React.MouseEvent<unknown>, property: any) => void;
+  onRequestSort: (
+    event: React.MouseEvent<unknown>,
+    property: keyof Product | keyof Category
+  ) => void;
   order: Order;
   orderBy: string;
   rowCount: number;
@@ -41,7 +47,7 @@ export interface CustomTableHeadProps {
 }
 
 export interface CustomTableProps {
-  data: any;
+  data: Product[] | Category[] | any;
   headCells: HeadCell[];
   disablePagination?: boolean;
   customRow: ReactNode;

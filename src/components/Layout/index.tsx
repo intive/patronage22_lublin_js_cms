@@ -46,16 +46,24 @@ const Layout = () => {
         <Divider />
         <Menu />
       </Drawer>
-      <Box component='main' sx={{flexGrow: 1, bgcolor: "background.default", p: 2}}>
+      <Box
+        component='main'
+        sx={{flexGrow: 1, bgcolor: "background.default", p: 2}}
+      >
         <Toolbar />
         <Switch>
-          <Route path='*' component={ErrorPageInfo} />
           <Route exact path='/dashboard' render={() => <Dashboard />} />
           <Route exact path='/add-product' render={() => <AddProduct />} />
-          <Route exact path='/product/edit/:id' render={() => <ProductDetails />} />
+          <Route
+            exact
+            path='/product/edit/:id'
+            render={() => <ProductDetails />}
+          />
           <Route exact path='/add-category' render={() => <AddCategory />} />
           <Route exact path='/categories' render={() => <Categories />} />
           <Route exact path='/products' component={Products} />
+          <Route path='*' component={ErrorPageInfo} />
+
           <Route />
         </Switch>
       </Box>
