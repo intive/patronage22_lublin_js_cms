@@ -25,7 +25,7 @@ const ProductsRow: React.FC<CustomRowProps> = ({row}) => {
       </StyledTableCell>
       <StyledTableCell align='center'>{`${format(parseISO(createdAt), "MM/dd/yyyy")}`}</StyledTableCell>
       <StyledTableCell align='center'>
-        <EditButton id={id} nameOfEditingItem={"product"}>
+        <EditButton id={id} linkURL={"product"}>
           Edit
         </EditButton>
       </StyledTableCell>

@@ -5,19 +5,14 @@ import {useHistory} from "react-router-dom";
 interface Props {
   children: React.ReactNode;
   id: number;
-  nameOfEditingItem: string;
+  linkURL: string;
 }
 
-const EditButton: React.FC<Props> = ({children, id, nameOfEditingItem}) => {
+const EditButton: React.FC<Props> = ({children, id, linkURL}) => {
   const history = useHistory();
 
   return (
-    <Button
-      variant='text'
-      color='primary'
-      size='small'
-      onClick={() => history.push(`/${nameOfEditingItem}/edit/${id}`)}
-    >
+    <Button variant='text' color='primary' size='small' onClick={() => history.push(`/${linkURL}/edit/${id}`)}>
       {children}
     </Button>
   );

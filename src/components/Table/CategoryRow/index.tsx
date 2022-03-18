@@ -22,7 +22,7 @@ const CategoryRow: React.FC<CustomRowProps> = ({row}) => {
       </StyledTableCell>
       <StyledTableCell align='center'>{`${format(parseISO(createdAt), "MM/dd/yyyy")}`}</StyledTableCell>
       <StyledTableCell align='center'>
-        <EditButton id={id} nameOfEditingItem={"category"}>
+        <EditButton id={id} linkURL={"category"}>
           Edit
         </EditButton>
       </StyledTableCell>
