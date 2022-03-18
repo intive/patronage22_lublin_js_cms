@@ -10,29 +10,43 @@ import {TableFooter, TablePagination} from "@mui/material";
 import {StyledTableCell, StyledTableRow} from "./styles";
 import {CustomTableHead} from "./CustomTableHead";
 import {getComparator, stableSort} from "./sortUtils";
-import {CustomTableProps, Order} from "../../types/table";
+import {Category, CustomTableProps, Order, Product} from "../../types/table";
 
-const CustomTable: React.FC<CustomTableProps> = ({headCells, customRow, data, disablePagination}) => {
+const CustomTable: React.FC<CustomTableProps> = ({
+  headCells,
+  customRow,
+  data,
+  disablePagination,
+}) => {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const [order, setOrder] = useState<Order>("asc");
-  const [orderBy, setOrderBy] = useState<any>("id");
+  const [orderBy, setOrderBy] = useState<keyof Product | keyof Category>("id");
 
   const CustomRow: any = useMemo(() => customRow, [customRow]);
 
-  const handleRequestSort = (event: MouseEvent<unknown>, property: any) => {
+  const handleRequestSort = (
+    event: MouseEvent<unknown>,
+    property: keyof Product | keyof Category
+  ) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
 
   // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
-  const handleChangePage = (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+  const handleChangePage = (
+    event: MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => {
     setPage(newPage);
   };
-  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChangeRowsPerPage = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -65,7 +79,12 @@ const CustomTable: React.FC<CustomTableProps> = ({headCells, customRow, data, di
           <StyledTableRow>
             {!disablePagination && (
               <TablePagination
-                rowsPerPageOptions={[5, 10, 25, {label: "All", value: data.length}]}
+                rowsPerPageOptions={[
+                  5,
+                  10,
+                  25,
+                  {label: "All", value: data.length},
+                ]}
                 colSpan={6}
                 count={data.length}
                 rowsPerPage={rowsPerPage}
