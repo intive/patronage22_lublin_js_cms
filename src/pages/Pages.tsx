@@ -31,9 +31,9 @@ const Pages: React.FC = () => {
       label: 'TITLE',
     },
     {
-      id: 'description',
+      id: 'slug',
       numeric: false,
-      label: 'DESCRIPTION',
+      label: 'SLUG',
     },
   ];
   return (

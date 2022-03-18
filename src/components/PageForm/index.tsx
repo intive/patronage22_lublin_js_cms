@@ -13,14 +13,14 @@ import { addPageRequest } from '../lib/pages';
 
 interface FormValues {
     title: string;
-    description: string;
+    slug: string;
 }
 
 const PageForm: React.FC = () => {
     const history = useHistory();
     const InitialValuesForm: FormValues = {
         title: '',
-        description: ''
+        slug: ''
     };
 
     const validationSchema = yup.object({
@@ -28,7 +28,7 @@ const PageForm: React.FC = () => {
             .string()
             .min(2, 'Title should be of minimum 2 characters length')
             .required('Title is required'),
-        description: yup
+        slug: yup
             .string(),
 
     });
@@ -67,8 +67,8 @@ const PageForm: React.FC = () => {
                         fullWidth={true}
                         multiline={true}
                         rows={4}
-                        label='Description'
-                        {...getFieldProps('description')} />
+                        label='Slug'
+                        {...getFieldProps('slug')} />
                 </Grid>
                 <Grid pt={5}>
                     <Button
