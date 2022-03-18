@@ -28,7 +28,7 @@ interface MyFormValues {
   category: string;
   description: string;
   photos: File[];
-  price: string;
+  price: number;
   quantity: number;
   status: string;
   published: boolean;
@@ -48,7 +48,7 @@ const AddProductForm = () => {
     category: "",
     description: "",
     photos: [],
-    price: "",
+    price: 0,
     quantity: 0,
     status: "",
     published: false,
@@ -75,6 +75,10 @@ const AddProductForm = () => {
       .max(50, "Max number of characters is 50")
       .required("Required"),
     category: Yup.string().required("Required"),
+    price: Yup.number()
+      .min(0, "Quantity can not be negative")
+      .max(10000, "Max 10000")
+      .required("Required"),
     quantity: Yup.number()
       .integer()
       .min(0, "Quantity can not be negative")
@@ -193,6 +197,7 @@ const AddProductForm = () => {
             },
           }}
         />
+        {errors.price && <p className={classes.errors}>{errors.price}</p>}
       </FormControl>
       <FormControl>
         <FormLabel htmlFor="quantity">Quantity</FormLabel>
