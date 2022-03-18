@@ -1,17 +1,23 @@
-import React, { ReactNode } from "react";
+import React, {ReactNode} from "react";
 
 export interface Product {
   id: number;
   title: string;
   price: number;
   // description ?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface Category {
+  id: number;
+  title: string;
   published: boolean;
   createdAt: string;
   updatedAt: string;
 }
 
 export interface CustomRowProps {
-  row : Product;
+  row: Product | Category | any;
   key: number;
 }
 
@@ -25,14 +31,14 @@ export interface TablePaginationActionsProps {
   ) => void;
 }
 export interface HeadCell {
-  id : keyof Product;
+  id: keyof Product | keyof Category;
   numeric: boolean;
   label: string;
 }
 export interface CustomTableHeadProps {
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof Product
+    property: keyof Product | keyof Category
   ) => void;
   order: Order;
   orderBy: string;
@@ -41,11 +47,10 @@ export interface CustomTableHeadProps {
 }
 
 export interface CustomTableProps {
-  data : Product[];
+  data: Product[] | Category[] | any;
   headCells: HeadCell[];
   disablePagination?: boolean;
-  customRow:ReactNode;
+  customRow: ReactNode;
 }
 
-export type Order = 'asc' | 'desc';
-
+export type Order = "asc" | "desc";
