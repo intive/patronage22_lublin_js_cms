@@ -7,12 +7,13 @@ import {
   StyledTableRow,
   StyledTableSortLabel,
 } from './styles';
-import { CustomTableHeadProps, Product, Page} from '../../types/table';
+import { CustomTableHeadProps, Product, Page, Category} from '../../types/table';
+
 
 export const CustomTableHead = (props: CustomTableHeadProps) => {
-  const { headCells, order, orderBy, onRequestSort } = props;
+  const {headCells, order, orderBy, onRequestSort} = props;
   const createSortHandler =
-    (property: keyof Product | keyof Page) => (event: MouseEvent<unknown>) => {
+    (property: keyof Product | keyof Page |keyof Category) => (event: MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
 
@@ -21,18 +22,18 @@ export const CustomTableHead = (props: CustomTableHeadProps) => {
       {headCells.map((headCell) => (
         <StyledTableCell
           key={headCell.id}
-          align={'center'}
+          align={"center"}
           sortDirection={orderBy === headCell.id ? order : false}
         >
           <StyledTableSortLabel
             active={orderBy === headCell.id}
-            direction={orderBy === headCell.id ? order : 'asc'}
+            direction={orderBy === headCell.id ? order : "asc"}
             onClick={createSortHandler(headCell.id)}
           >
             {headCell.label}
             {orderBy === headCell.id && (
-              <Box component="span" sx={visuallyHidden}>
-                {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+              <Box component='span' sx={visuallyHidden}>
+                {order === "desc" ? "sorted descending" : "sorted ascending"}
               </Box>
             )}
           </StyledTableSortLabel>

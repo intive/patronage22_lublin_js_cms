@@ -10,7 +10,7 @@ import { TableFooter, TablePagination } from '@mui/material';
 import { StyledTableCell, StyledTableRow } from './styles';
 import { CustomTableHead } from './CustomTableHead';
 import { getComparator, stableSort } from './sortUtils';
-import { CustomTableProps, Order, Page, Product } from '../../types/table';
+import { Category, CustomTableProps, Order, Page, Product } from '../../types/table';
 
 const CustomTable: React.FC<CustomTableProps> = ({
   headCells,
@@ -21,16 +21,17 @@ const CustomTable: React.FC<CustomTableProps> = ({
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const [order, setOrder] = useState<Order>('asc');
-  const [orderBy, setOrderBy] = useState<keyof Product |keyof Page>('id');
+  const [orderBy, setOrderBy] = useState<keyof Product |keyof Page |keyof Category >('id');
 
   const CustomRow: any = useMemo(() => customRow, [customRow]);
 
   const handleRequestSort = (
     event: MouseEvent<unknown>,
-    property: keyof Product | keyof Page
+    property: keyof Product | keyof Page | keyof Category
+
   ) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
+    const isAsc = orderBy === property && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
 
@@ -52,8 +53,8 @@ const CustomTable: React.FC<CustomTableProps> = ({
   };
 
   return (
-    <TableContainer component={Paper} sx={{ margin: '32px 0' }}>
-      <Table aria-label="simple table">
+    <TableContainer component={Paper} sx={{margin: "32px 0"}}>
+      <Table aria-label='simple table'>
         <TableHead>
           <CustomTableHead
             headCells={headCells}
@@ -66,9 +67,11 @@ const CustomTable: React.FC<CustomTableProps> = ({
         <TableBody>
           {stableSort(data, getComparator(order, orderBy))
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((row) => <CustomRow row={row} key={row.id}/>)}
+            .map((row) => (
+              <CustomRow row={row} key={row.id} />
+            ))}
           {emptyRows > 0 && (
-            <StyledTableRow style={{ height: 53 * emptyRows }}>
+            <StyledTableRow style={{height: 53 * emptyRows}}>
               <StyledTableCell colSpan={6} />
             </StyledTableRow>
           )}
@@ -77,21 +80,26 @@ const CustomTable: React.FC<CustomTableProps> = ({
           <StyledTableRow>
             {!disablePagination && (
               <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: data.length }]}
+                rowsPerPageOptions={[
+                  5,
+                  10,
+                  25,
+                  {label: "All", value: data.length},
+                ]}
                 colSpan={6}
                 count={data.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 SelectProps={{
                   inputProps: {
-                    'aria-label': 'rows per page',
+                    "aria-label": "rows per page",
                   },
                   native: true,
                 }}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 ActionsComponent={TablePaginationActions}
-                sx={{ width: 'auto' }}
+                sx={{width: "auto"}}
               />
             )}
           </StyledTableRow>
