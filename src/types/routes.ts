@@ -6,7 +6,7 @@ import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 
 export enum ROUTES {
-  AUTH = "/",
+  AUTH = "/auth",
   DASHBOARD = "/dashboard",
   PAGES = "/pages",
   CATEGORIES = "/categories",
@@ -20,11 +20,26 @@ export enum ROUTES {
 }
 
 const menuLinks = [
-  {id: 1, to: ROUTES.DASHBOARD, label: "Home", icon: HomeOutlinedIcon},
-  {id: 2, to: ROUTES.PAGES, label: "Strony", icon: AutoStoriesOutlinedIcon},
-  {id: 3, to: ROUTES.CATEGORIES, label: "Kategorie", icon: CategoryOutlinedIcon},
-  {id: 4, to: ROUTES.PRODUCTS, label: "Produkty", icon: Inventory2OutlinedIcon},
-  {id: 5, to: ROUTES.ORDERS, label: "Zamówienia", icon: SubscriptionsOutlinedIcon},
-  {id: 6, to: ROUTES.CLIENTS, label: "Klienci", icon: PeopleOutlinedIcon},
+  { id: 1, to: ROUTES.DASHBOARD, label: "Home", icon: HomeOutlinedIcon },
+  { id: 2, to: ROUTES.PAGES, label: "Strony", icon: AutoStoriesOutlinedIcon },
+  {
+    id: 3,
+    to: ROUTES.CATEGORIES,
+    label: "Kategorie",
+    icon: CategoryOutlinedIcon,
+  },
+  {
+    id: 4,
+    to: ROUTES.PRODUCTS,
+    label: "Produkty",
+    icon: Inventory2OutlinedIcon,
+  },
+  {
+    id: 5,
+    to: ROUTES.ORDERS,
+    label: "Zamówienia",
+    icon: SubscriptionsOutlinedIcon,
+  },
+  { id: 6, to: ROUTES.CLIENTS, label: "Klienci", icon: PeopleOutlinedIcon },
 ];
 export default menuLinks;
