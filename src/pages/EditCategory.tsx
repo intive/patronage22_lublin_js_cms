@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import EditCategoryForm from '../components/EditCategoryForm';
-import { getCategory } from "../components/lib/editCategory";
+import { editCategoryRequest, getCategory } from "../components/lib/editCategory";
 
 type UrlParams = {
     id: string
@@ -16,8 +16,8 @@ const EditCategory: React.FC = () => {
 
     const { id } = useParams<UrlParams>();
     const [category, setCategory] = useState<Category>();
-    const [title, setName] = useState<Category>();
-    const [description, setDescription = useState<Category>();
+    const [title, setTitle] = useState<Category>();
+    const [description, setDescription] = useState<Category>();
 
 
     useEffect(() => {
@@ -31,6 +31,20 @@ const EditCategory: React.FC = () => {
         console.log(error);
       });
   }, []);
+
+//   useEffect(() => {
+    editCategoryRequest(id, category.title , category.description)
+        .then((response) => {
+            console.log(response);
+            const title = response.data;
+            const description = response.data;
+            setTitle(title);
+            setDescription(description);
+        })
+      .catch((error) => {
+        console.log(error);
+      });
+//   }, []);
 
     return category ? <EditCategoryForm title={category.title} description={category.description}/> : null;
 }
