@@ -41,7 +41,6 @@ const EditCategoryForm = ({title, description }: FormProps) => {
                     <Grid item xs={10} className={classes.gridItem}>
                         <TextField
                             {...getFieldProps('title')}
-                            id="title"
                             label="New Title"
                             variant="outlined"
                             onChange={handleChange}
@@ -51,7 +50,6 @@ const EditCategoryForm = ({title, description }: FormProps) => {
                     <Grid item xs={10} className={classes.gridItem}>
                         <TextField
                             {...getFieldProps('description')}
-                            id="description"
                             label="Description"
                             variant="outlined"
                             onChange={handleChange}
