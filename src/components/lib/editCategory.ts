@@ -13,15 +13,15 @@ const getCategory = async (id: string) => {
   });
 };
 
-// const editCategoryRequest = async ( data ) => {
-//     return axios(`${CONSTANTS.URL}/api/categories/:id`, {
-//     method: "PUT",
-//     data: { title, description },
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${token}`
-//     },
-//   });
-// }
-  export { getCategory/*, editCategoryRequest*/ };
+const editCategoryRequest = async (id: string, title: string, description: string ) => {
+    return axios(`${CONSTANTS.URL}/api/categories/${id}`, {
+    method: "PUT",
+    data: { title, description },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+  });
+}
+  export { getCategory, editCategoryRequest };
   

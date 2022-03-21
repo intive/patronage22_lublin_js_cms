@@ -16,6 +16,9 @@ const EditCategory: React.FC = () => {
 
     const { id } = useParams<UrlParams>();
     const [category, setCategory] = useState<Category>();
+    const [title, setName] = useState<Category>();
+    const [description, setDescription = useState<Category>();
+
 
     useEffect(() => {
     getCategory(id)

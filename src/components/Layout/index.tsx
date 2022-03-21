@@ -13,12 +13,10 @@ import Products from "../../pages/Products";
 import ErrorPageInfo from "../Errors/ErrorPageInfo";
 import ProductDetails from "../../pages/ProductDetails";
 import AddProduct from "../../pages/AddProduct";
-<<<<<<< HEAD
-import EditCategory from "../../pages/EditCategory";
-=======
 import Categories from "../../pages/Categories";
 import AddCategory from "../../pages/AddCategory";
->>>>>>> main
+import EditCategory from "../../pages/EditCategory";
+
 
 const Layout = () => {
   let initialWidth: number;
@@ -56,14 +54,6 @@ const Layout = () => {
       >
         <Toolbar />
         <Switch>
-<<<<<<< HEAD
-          <Route exact path="/dashboard" render={() => <Dashboard/>}/>
-          <Route exact path="/add-product" render={() => <AddProduct/>} /> 
-          <Route exact path="/product/edit/:id" render={() => <ProductDetails />} />
-          <Route exact path="/category/edit/:id" render={() => <EditCategory />} />
-          <Route exact path="/products" component={Products} /><Route/>
-          <Route path='*' component={ErrorPageInfo}/>
-=======
           <Route exact path='/dashboard' render={() => <Dashboard />} />
           <Route exact path='/add-product' render={() => <AddProduct />} />
           <Route
@@ -75,9 +65,8 @@ const Layout = () => {
           <Route exact path='/categories' render={() => <Categories />} />
           <Route exact path='/products' component={Products} />
           <Route path='*' component={ErrorPageInfo} />
-
+          <Route exact path="/category/edit/:id" render={() => <EditCategory />} />
           <Route />
->>>>>>> main
         </Switch>
       </Box>
     </Box>

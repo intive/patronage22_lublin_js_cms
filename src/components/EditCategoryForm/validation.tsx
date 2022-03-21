@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const EditCategoryValidation = Yup.object().shape({
+export const EditCategoryValidation = Yup.object().shape({
     title: Yup.string()
     .min(2, "Title mush have at least 2 characters")
     .max(20, "Title must have less than 20 characters")
@@ -12,5 +12,3 @@ const EditCategoryValidation = Yup.object().shape({
     .max(30, "Title must have less than 30 characters")
     .required('Required'),
 });
-
-export default EditCategoryValidation;
