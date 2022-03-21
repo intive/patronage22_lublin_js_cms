@@ -9,8 +9,8 @@ import { useHistory } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import styles from '../CategoryForm/index.module.css';
-import addCategory from '../lib/addCategory';
-
+import addCategory from '@components/lib/addCategory';
+ 
 interface FormValues {
     title: string;
     description: string;
