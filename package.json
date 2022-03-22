@@ -55,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@types/date-fns": "^2.6.0",
     "@types/react-router-dom": "^5.3.3"
   }
 }
