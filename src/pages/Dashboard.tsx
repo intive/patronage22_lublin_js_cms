@@ -12,11 +12,11 @@ import { Typography } from '@mui/material';
 
 const Dashboard = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  
+
   useEffect(() => {
     getProducts()
       .then((response) => {
-        setProducts(response.data.slice(-6));
+        setProducts(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -72,7 +72,7 @@ const Dashboard = () => {
            <AddIcon /> Add Category
         </Link>
       </Button>
-      <CustomTable customRow={(props: CustomRowProps) => <ProductRow  {...props}/>} headCells={headCells} data={products} disablePagination={true} />
+      <CustomTable customRow={(props: CustomRowProps) => <ProductRow  {...props}/>} headCells={headCells} data={products} />
     </section>
   );
 };
