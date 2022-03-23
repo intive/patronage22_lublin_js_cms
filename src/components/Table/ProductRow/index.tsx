@@ -14,7 +14,11 @@ const ProductsRow: React.FC<CustomRowProps> = ({row}) => {
       </StyledTableCell>
       <StyledTableCell align='center'>{title}</StyledTableCell>
       <StyledTableCell align='center'>
-        <Chip clickable label={`${price.toLocaleString()} $`} variant='filled' />
+        <Chip
+          clickable
+          label={`${price.toLocaleString()} $`}
+          variant='filled'
+        />
       </StyledTableCell>
       <StyledTableCell align='center'>
         {published ? (
@@ -23,9 +27,12 @@ const ProductsRow: React.FC<CustomRowProps> = ({row}) => {
           <Chip clickable label='No' color='error' variant='filled' />
         )}
       </StyledTableCell>
-      <StyledTableCell align='center'>{`${format(parseISO(createdAt), "MM/dd/yyyy")}`}</StyledTableCell>
+      <StyledTableCell align='center'>{`${format(
+        parseISO(createdAt),
+        "MM/dd/yyyy"
+      )}`}</StyledTableCell>
       <StyledTableCell align='center'>
-        <EditButton id={id} linkURL={"product"}>
+        <EditButton id={id} linkURL={`/product/edit/${id}`}>
           Edit
         </EditButton>
       </StyledTableCell>

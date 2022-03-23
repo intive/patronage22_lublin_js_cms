@@ -12,7 +12,12 @@ const EditButton: React.FC<Props> = ({children, id, linkURL}) => {
   const history = useHistory();
 
   return (
-    <Button variant='text' color='primary' size='small' onClick={() => history.push(`/${linkURL}/edit/${id}`)}>
+    <Button
+      variant='text'
+      color='primary'
+      size='small'
+      onClick={() => history.push(linkURL)}
+    >
       {children}
     </Button>
   );
