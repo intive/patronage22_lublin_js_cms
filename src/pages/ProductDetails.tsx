@@ -22,8 +22,6 @@ interface ApiProducts {
   price: number;
   description: string;
   published: boolean;
-  quantity: number;
-  photos: [];
 }
 
 const ProductDetails: React.FC = () => {
@@ -34,7 +32,7 @@ const ProductDetails: React.FC = () => {
   useEffect(() => {
     getCategories()
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         const data = response.data;
         setApiCategories(data);
       })
@@ -46,7 +44,7 @@ const ProductDetails: React.FC = () => {
   useEffect(() => {
     getProducts()
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setApiProducts(response.data);
         setLoading(false);
       })
@@ -57,7 +55,6 @@ const ProductDetails: React.FC = () => {
 
   const { id } = useParams<UrlParams>();
   const apiProduct = apiProducts.find((post) => post.id.toString() === id);
-  console.log(apiProducts);
 
   if (isLoading) {
     return <div>Loading...</div>;
