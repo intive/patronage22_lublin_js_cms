@@ -27,9 +27,11 @@ const CategoryForm: React.FC = () => {
         title: yup
             .string()
             .min(2, 'Title should be of minimum 2 characters length')
+            .max(50, 'Title should be of maximun 50 characters length')
             .required('Title is required'),
         description: yup
             .string()
+            .max(400, 'Description should be of maximum 200 characters length')
     });
 
     const formik = useFormik({
@@ -38,12 +40,12 @@ const CategoryForm: React.FC = () => {
         onSubmit: (values) => {
             const payload = {...values};
             addCategory(payload)
-            history.push('/category');
+            history.push('/categories');
         },
     });
 
     const handleClose = () => {
-        history.push('/category');
+        history.push('/categories');
     }
 
     const {handleSubmit, getFieldProps, errors} = formik;
@@ -68,6 +70,7 @@ const CategoryForm: React.FC = () => {
                     rows={4}
                     label='Description'
                     {...getFieldProps('description')}/>  
+                    {errors.description ? <div>{errors.description}</div> : null}
                 </Grid>
                 <Grid pt={5}>
                     <Button 
