@@ -16,7 +16,7 @@ const EditCategory: React.FC = () => {
 
     const { id } = useParams<UrlParams>();
     const [category, setCategory] = useState<Category>();
-    const [formData, setFormData] = useState({title:"", decription:""});
+    const [formData, setFormData] = useState({title: "", decription: ""});
 
 
     useEffect(() => {
@@ -29,20 +29,6 @@ const EditCategory: React.FC = () => {
         console.log(error);
       });
   }, []);
-
-//    useEffect(() => {
-//     editCategoryRequest(id, category.title , category.description)
-//         .then((response) => {
-//             console.log(response);
-//             const title = response.data;
-//             const description = response.data;
-//             setTitle(title);
-//             setDescription(description);
-//         })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//    }, []);
 
     return category ? <EditCategoryForm title={category.title} description={category.description}/> : null;
 }
