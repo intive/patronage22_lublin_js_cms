@@ -210,7 +210,7 @@ const AddProductForm = () => {
           InputProps={{
             inputProps: {
               max: 100,
-              min: 1,
+              min: 0,
             },
           }}
         />
