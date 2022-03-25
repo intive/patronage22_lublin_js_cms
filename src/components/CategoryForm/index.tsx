@@ -31,7 +31,7 @@ const CategoryForm: React.FC = () => {
             .required('Title is required'),
         description: yup
             .string()
-            .max(400, 'Description should be of maximum 200 characters length')
+            .max(400, 'Description should be of maximum 400 characters length')
     });
 
     const formik = useFormik({
