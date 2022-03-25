@@ -76,7 +76,7 @@ const AddProductForm = () => {
       .required("Required"),
     category: Yup.string().required("Required"),
     price: Yup.number()
-      .min(0, "Quantity can not be negative")
+      .min(0, "Price can not be negative")
       .max(10000, "Max 10000")
       .required("Required"),
     quantity: Yup.number()
@@ -88,6 +88,7 @@ const AddProductForm = () => {
     description: Yup.string()
       .min(25, "Min number of characters is 25")
       .required("Required"),
+    status: Yup.string().required("Required"),
   });
 
   const formik = useFormik({
@@ -209,7 +210,7 @@ const AddProductForm = () => {
           InputProps={{
             inputProps: {
               max: 100,
-              min: 1,
+              min: 0,
             },
           }}
         />
@@ -229,6 +230,7 @@ const AddProductForm = () => {
               </MenuItem>
             ))}
           </Select>
+          {errors.status && <p className={classes.errors}>{errors.status}</p>}
         </FormControl>
       </Box>
       <FormControl>
