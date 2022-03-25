@@ -24,4 +24,15 @@ const addProductRequest = async (product: {}) => {
   });
 };
 
-export { getProducts, addProductRequest };
+const editProductRequest = async (editedProduct: {}, id:number) => {
+  return await axios(`${CONSTANTS.URL}/api/products/${id}`, {
+    method: "PUT",
+    data: JSON.stringify(editedProduct),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export { getProducts, addProductRequest, editProductRequest };
