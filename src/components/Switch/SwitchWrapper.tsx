@@ -8,13 +8,19 @@ import {
 } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 
-type SwitchWrapperProps  = {
+type SwitchWrapperProps = {
   name: string;
   label: string;
   legend: string;
+  ifChecked?: boolean;
 };
 
-const SwitchWrapper: React.FC<SwitchWrapperProps> = ({ name, label, legend }) => {
+const SwitchWrapper: React.FC<SwitchWrapperProps> = ({
+  name,
+  label,
+  legend,
+  ifChecked,
+}) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
 
@@ -25,6 +31,7 @@ const SwitchWrapper: React.FC<SwitchWrapperProps> = ({ name, label, legend }) =>
 
   const configCheckbox = {
     ...field,
+    checked: ifChecked,
     onChange: handleChange,
   };
 

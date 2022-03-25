@@ -28,7 +28,7 @@ interface MyFormValues {
   category: string;
   description: string;
   photos: File[];
-  price: string;
+  price: number;
   quantity: number;
   status: string;
   published: boolean;
@@ -48,7 +48,7 @@ const AddProductForm = () => {
     category: "",
     description: "",
     photos: [],
-    price: "",
+    price: 0,
     quantity: 0,
     status: "",
     published: false,
@@ -75,6 +75,10 @@ const AddProductForm = () => {
       .max(50, "Max number of characters is 50")
       .required("Required"),
     category: Yup.string().required("Required"),
+    price: Yup.number()
+      .min(0, "Price can not be negative")
+      .max(10000, "Max 10000")
+      .required("Required"),
     quantity: Yup.number()
       .integer()
       .min(0, "Quantity can not be negative")
@@ -84,6 +88,7 @@ const AddProductForm = () => {
     description: Yup.string()
       .min(25, "Min number of characters is 25")
       .required("Required"),
+    status: Yup.string().required("Required"),
   });
 
   const formik = useFormik({
@@ -193,6 +198,7 @@ const AddProductForm = () => {
             },
           }}
         />
+        {errors.price && <p className={classes.errors}>{errors.price}</p>}
       </FormControl>
       <FormControl>
         <FormLabel htmlFor="quantity">Quantity</FormLabel>
@@ -204,7 +210,7 @@ const AddProductForm = () => {
           InputProps={{
             inputProps: {
               max: 100,
-              min: 1,
+              min: 0,
             },
           }}
         />
@@ -224,6 +230,7 @@ const AddProductForm = () => {
               </MenuItem>
             ))}
           </Select>
+          {errors.status && <p className={classes.errors}>{errors.status}</p>}
         </FormControl>
       </Box>
       <FormControl>

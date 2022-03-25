@@ -6,17 +6,18 @@ import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 
 export enum ROUTES {
-  AUTH = "/",
-  DASHBOARD = "/dashboard",
-  PAGES = "/pages",
-  CATEGORIES = "/categories",
-  PRODUCTS = "/products",
-  ADD_PRODUCT = "/add-product",
-  ORDERS = "/orders",
-  CLIENTS = "/clients",
-  PRODUCT = "/product",
-  PRODUCT_DETAILS = "/product/edit/:id",
-  CATEGORY_ADD = "/add-category",
+  AUTH = '/',
+  DASHBOARD = '/dashboard',
+  PAGES = '/pages',
+  CATEGORIES = '/categories',
+  PRODUCTS = '/products',
+  ADD_PRODUCT = '/add-product',
+  ORDERS = '/orders',
+  CLIENTS = '/clients',
+  PRODUCT = '/product',
+  PRODUCT_DETAILS ='/product/edit/:id',
+  CATEGORY_ADD ='/add-category',
+  PAGE_ADD='/add-page',
   CATEGORY_EDIT ='/category/edit/:id',
 }
 

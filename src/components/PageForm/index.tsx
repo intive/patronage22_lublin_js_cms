@@ -2,88 +2,86 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SaveIcon from '@mui/icons-material/Save';
-import {useFormik} from 'formik';
+import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@mui/material/Button';
 import { useHistory } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import styles from '../CategoryForm/index.module.css';
-import addCategory from '../lib/addCategory';
+import { addPageRequest } from '../lib/pages';
 
 interface FormValues {
     title: string;
-    description: string;
+    slug: string;
 }
 
-const CategoryForm: React.FC = () => {
+const PageForm: React.FC = () => {
     const history = useHistory();
-    const InitialValuesForm: FormValues ={
+    const InitialValuesForm: FormValues = {
         title: '',
-        description: '',
+        slug: ''
     };
 
     const validationSchema = yup.object({
         title: yup
             .string()
             .min(2, 'Title should be of minimum 2 characters length')
-            .max(50, 'Title should be of maximun 50 characters length')
             .required('Title is required'),
-        description: yup
-            .string()
-            .max(400, 'Description should be of maximum 400 characters length')
+        slug: yup
+            .string(),
+
     });
 
     const formik = useFormik({
-        initialValues: InitialValuesForm, 
+        initialValues: InitialValuesForm,
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            const payload = {...values};
-            addCategory(payload)
-            history.push('/categories');
+            const payload = { ...values };
+            addPageRequest(payload)
+            history.push('/pages');
         },
     });
 
     const handleClose = () => {
-        history.push('/categories');
+        history.push('/pages');
     }
 
-    const {handleSubmit, getFieldProps, errors} = formik;
+    const { handleSubmit, getFieldProps, errors } = formik;
 
     return (
         <form onSubmit={handleSubmit} >
             <Box className={styles.background} >
                 <Typography variant="h6" component="h2">
-                    Add new category
+                    Add new page
                 </Typography>
-                <Grid  pt={2} item xs={6}>
-                    <TextField 
-                    fullWidth={true}
-                    label='Title'
-                    {...getFieldProps('title')}/>
-                    {errors.title ? <div>{errors.title}</div> : null}
-                </Grid>  
                 <Grid pt={2} item xs={6}>
                     <TextField
-                    fullWidth={true}
-                    multiline={true}
-                    rows={4}
-                    label='Description'
-                    {...getFieldProps('description')}/>  
-                    {errors.description ? <div>{errors.description}</div> : null}
+                        fullWidth={true}
+                        label='Title'
+                        {...getFieldProps('title')} />
+                    {errors.title ? <div>{errors.title}</div> : null}
+                </Grid>
+                <Grid pt={2} item xs={6}>
+                    <TextField
+                        fullWidth={true}
+                        multiline={true}
+                        rows={4}
+                        label='Slug'
+                        {...getFieldProps('slug')} />
                 </Grid>
                 <Grid pt={5}>
-                    <Button 
+                    <Button
                         type="submit"
                         variant="contained"
                         color="secondary"
                         startIcon={<SaveIcon />}
                     >Save</Button>
                     <Button variant="contained" onClick={handleClose}>Cancel</Button>
-                </Grid> 
+                </Grid>
             </Box>
-        </form>   
+        </form>
     );
 }
 
-export default CategoryForm;
+export default PageForm;

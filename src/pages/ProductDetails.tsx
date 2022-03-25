@@ -1,42 +1,77 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { EditProductForm } from "../components/EditProductForm/EditProductForm";
+import getCategories from "../components/lib/categories";
+import { useParams } from "react-router-dom";
+import { getProducts } from "../components/lib/products";
+
+type UrlParams = {
+  id: string;
+};
+
+interface ApiCategories {
+  id: number;
+  title: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface ApiProducts {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  published: boolean;
+}
 
 const ProductDetails: React.FC = () => {
-  const categories = [
-    {
-      id: 3,
-      title: "Electronics",
-      description: "Electronics products",
-      createdAt: "2022-02-16T09:36:41.000Z",
-      updatedAt: "2022-02-16T09:36:41.000Z",
-    },
-    {
-      id: 4,
-      title: "Clothing",
-      description: "Clothing products",
-      createdAt: "2022-02-16T09:58:06.000Z",
-      updatedAt: "2022-02-16T09:58:06.000Z",
-    },
-    {
-      id: 5,
-      title: "Books",
-      description: "Enjoy reading books",
-      createdAt: "2022-02-16T21:04:55.000Z",
-      updatedAt: "2022-02-16T21:17:35.000Z",
-    },
-  ];
+  const [apiCategories, setApiCategories] = useState<ApiCategories[]>([]);
+  const [apiProducts, setApiProducts] = useState<ApiProducts[]>([]);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getCategories()
+      .then((response) => {
+        // console.log(response.data);
+        const data = response.data;
+        setApiCategories(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    getProducts()
+      .then((response) => {
+        // console.log(response.data);
+        setApiProducts(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const { id } = useParams<UrlParams>();
+  const apiProduct = apiProducts.find((post) => post.id.toString() === id);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   const product = {
-    id: 1,
-    title: "First Product",
+    id: apiProduct?.id,
+    title: apiProduct?.title,
     category: "Books",
-    quantity: 10000,
-    description: "First Product description...",
+    price: apiProduct?.price,
+    quantity: "",
+    description: apiProduct?.description,
     status: false,
-    published: false,
+    published: apiProduct?.published,
   };
 
-  return <EditProductForm product={product} categories={categories} />;
+  return <EditProductForm product={product} categories={apiCategories} />;
 };
 
 export default ProductDetails;
