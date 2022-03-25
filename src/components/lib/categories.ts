@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CONSTANTS } from "../../types/constants";
+import {CONSTANTS} from "../../types/constants";
 
 const token = window.localStorage.getItem("token");
 
