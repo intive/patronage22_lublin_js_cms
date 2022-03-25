@@ -1,25 +1,30 @@
 import React from "react";
-import {Switch, Route} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import AuthLayout from "../Layout/AuthLayout";
 import Layout from "../Layout";
-import {ROUTES} from "../../types/routes";
+import { ROUTES } from "../../types/routes";
 import AuthGuard from "../HOC/AuthGuard";
 
 const Router = () => {
   return (
-      <Switch>
-        <Route exact path={ROUTES.AUTH} component={AuthLayout}/>
-        <Route exact path={ROUTES.ADD_PRODUCT} component={AuthGuard(Layout)} />
-        <Route exact path={ROUTES.DASHBOARD} component={AuthGuard(Layout)}/>
-        <Route exact path={ROUTES.PAGES} component={AuthGuard(Layout)}/>
-        <Route exact path={ROUTES.PRODUCT} component={AuthGuard(Layout)} />
-        <Route exact path={ROUTES.PRODUCTS} component={AuthGuard(Layout)} />
-        <Route exact path={ROUTES.PRODUCT_DETAILS} component={AuthGuard(Layout)} />
-        <Route exact path={ROUTES.CATEGORY_ADD} component={AuthGuard(Layout)} />
-        <Route exact path={ROUTES.CATEGORIES} component={AuthGuard(Layout)} />
-        <Route exact path={ROUTES.PAGE_ADD} component={AuthGuard(Layout)} />
-        <Route component={AuthGuard(Layout)}/>
-      </Switch>
+    <Switch>
+      <Route exact path={ROUTES.AUTH} component={AuthLayout} />
+      <Route exact path={ROUTES.ADD_PRODUCT} component={AuthGuard(Layout)} />
+      <Route exact path={ROUTES.DASHBOARD} component={AuthGuard(Layout)} />
+      <Route exact path={ROUTES.PAGES} component={AuthGuard(Layout)} />
+      <Route exact path={ROUTES.PRODUCT} component={AuthGuard(Layout)} />
+      <Route exact path={ROUTES.PRODUCTS} component={AuthGuard(Layout)} />
+      <Route
+        exact
+        path={ROUTES.PRODUCT_DETAILS}
+        component={AuthGuard(Layout)}
+      />
+      <Route exact path={ROUTES.CATEGORY_ADD} component={AuthGuard(Layout)} />
+      <Route exact path={ROUTES.CATEGORIES} component={AuthGuard(Layout)} />
+      <Route exact path={ROUTES.ORDERS} component={AuthGuard(Layout)} />
+      <Route exact path={ROUTES.PAGE_ADD} component={AuthGuard(Layout)} />
+      <Route component={AuthGuard(Layout)} />
+    </Switch>
   );
 };
 export default Router;
