@@ -27,30 +27,61 @@ const Dropzone: React.FC<FilesListProps> = ({ setFilesList }) => {
       maxFiles: 4,
     });
 
-  const acceptedFileItems = acceptedFiles.map((file) => (
-    <ListItem
-      key={file.name}
-      secondaryAction={
-        <IconButton edge="end" aria-label="delete">
-          <DeleteIcon />
-        </IconButton>
-      }
-    >
-      <ListItemAvatar>
-        <Avatar>
-          <FolderIcon />
-        </Avatar>
-      </ListItemAvatar>
-      <ListItemText primary={`${file.name} - ${file.size} bytes`} />
-    </ListItem>
-  ));
+  const handleRemove = (name: any) => {
+    const newList = acceptedFiles.filter((item) => item.name !== name);
+    setFilesList(newList);
+  };
 
-  const fileRejectionItems = fileRejections.map(({ file, errors }) => {
+  // eslint-disable-next-line array-callback-return
+  const acceptedFileItems = acceptedFiles.map((file) => {
+    const fileName = file.name;
+    const filePos = acceptedFiles.findIndex((item) => item.name === fileName);
+
     return (
       <ListItem
         key={file.name}
+        onClick={handleRemove}
         secondaryAction={
-          <IconButton edge="end" aria-label="delete">
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            onClick={() => {
+              acceptedFiles.splice(filePos, 1);
+              console.log(acceptedFiles);
+            }}
+          >
+            <DeleteIcon />
+          </IconButton>
+        }
+      >
+        <ListItemAvatar>
+          <Avatar>
+            <FolderIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={`${file.name} - ${file.size} bytes`} />
+      </ListItem>
+    );
+  });
+
+  const fileRejectionItems = fileRejections.map(({ file, errors }) => {
+    const fileName = file.name;
+    const filePos = fileRejections.findIndex(
+      (item) => item.file.name === fileName
+    );
+    return (
+      <ListItem
+        onClick={handleRemove}
+        key={file.name}
+        secondaryAction={
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            onClick={() => {
+              fileRejections.splice(filePos, 1);
+              console.log(fileRejections);
+            }}
+          >
             <DeleteIcon />
           </IconButton>
         }
