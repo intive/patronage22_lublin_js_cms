@@ -28,8 +28,8 @@ const EditCategoryForm = ({title, description }: FormProps) => {
         validationSchema: EditCategoryValidation
     });
 
-    const { handleSubmit, handleChange, getFieldProps} = formik;
-
+    const { handleSubmit, handleChange, handleBlur} = formik;
+    
     return (
         <Container className={classes.editForm} >
             <form onSubmit={handleSubmit} >
@@ -40,19 +40,27 @@ const EditCategoryForm = ({title, description }: FormProps) => {
 
                     <Grid item xs={10} className={classes.gridItem}>
                         <TextField
-                            {...getFieldProps('title')}
+                            name="title"
                             label="New Title"
                             variant="outlined"
                             onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={formik.values.title}
+                            error={formik.errors.title && Boolean(formik.errors.title)}
+                            helperText={formik.touched.title && formik.errors.title}
                         />
                     </Grid>
 
                     <Grid item xs={10} className={classes.gridItem}>
                         <TextField
-                            {...getFieldProps('description')}
+                            name="description"
                             label="Description"
                             variant="outlined"
                             onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={formik.values.description}
+                            error={formik.errors.description && Boolean(formik.errors.description)}
+                            helperText={formik.touched.description && formik.errors.description}
                         />
                     </Grid>
 

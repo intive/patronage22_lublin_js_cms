@@ -16,14 +16,12 @@ const EditCategory: React.FC = () => {
 
     const { id } = useParams<UrlParams>();
     const [category, setCategory] = useState<Category>();
-    const [title, setTitle] = useState<Category>();
-    const [description, setDescription] = useState<Category>();
+    const [formData, setFormData] = useState({title:"", decription:""});
 
 
     useEffect(() => {
     getCategory(id)
         .then((response) => {
-            console.log(response);
             const data = response.data;
             setCategory(data);
         })
