@@ -25,6 +25,7 @@ const Dropzone: React.FC<FilesListProps> = ({ setFilesList }) => {
     useDropzone({
       onDrop,
       maxFiles: 4,
+      accept: "image/jpeg,image/png",
     });
 
   const handleRemove = (name: any) => {
@@ -109,6 +110,7 @@ const Dropzone: React.FC<FilesListProps> = ({ setFilesList }) => {
         <input {...getInputProps()} />
         <p>Drag 'n' drop some files here, or click to select files</p>
         <em>(4 files are the maximum number of files you can drop here)</em>
+        <em>(Only *.jpeg and *.png images will be accepted)</em>
       </div>
       <aside>
         {acceptedFileItems.length === 0 ? null : (
