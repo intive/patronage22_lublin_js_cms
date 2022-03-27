@@ -13,6 +13,25 @@ interface FilesListProps {
   setFilesList: (file: File[]) => void;
 }
 
+const maxSize = 10000000;
+const minSize = 300000;
+
+function fileSizeValidator(file: File) {
+  if (file.size > maxSize) {
+    return {
+      code: "file-too-large",
+      message: `File is larger than ${maxSize} bytes`,
+    };
+  } else if (file.size < minSize) {
+    return {
+      code: "file-too-small",
+      message: `File is smaller than ${maxSize} bytes`,
+    };
+  }
+
+  return null;
+}
+
 const Dropzone: React.FC<FilesListProps> = ({ setFilesList }) => {
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -26,6 +45,7 @@ const Dropzone: React.FC<FilesListProps> = ({ setFilesList }) => {
       onDrop,
       maxFiles: 4,
       accept: "image/jpeg,image/png",
+      validator: fileSizeValidator,
     });
 
   const handleRemove = (name: any) => {
