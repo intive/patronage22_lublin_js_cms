@@ -20,8 +20,8 @@ const OrderRow: React.FC<CustomRowProps> = ({ row }) => {
       )}`}</StyledTableCell>
       <StyledTableCell align='center'>{paymentStatus}</StyledTableCell>
       <StyledTableCell align='center'>
-        <EditButton id={id} linkURL={`/order/edit/${id}`}>
-          Edit
+        <EditButton id={id} linkURL={`/order/details/${id}`}>
+          Details
         </EditButton>
       </StyledTableCell>
     </StyledTableRow>
