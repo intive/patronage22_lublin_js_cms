@@ -94,7 +94,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
                   25,
                   { label: "All", value: data.length },
                 ]}
-                colSpan={6}
+                colSpan={7}
                 count={data.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
