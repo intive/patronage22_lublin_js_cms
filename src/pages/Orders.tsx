@@ -1,27 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import CustomTable from "../components/Table";
-import {
-  OrderObject,
-  PaymentStatus,
-  CustomRowProps,
-  HeadCell,
-} from "../types/table";
-import getOrders from "../components/lib/orders";
+import { PaymentStatus, CustomRowProps, HeadCell } from "../types/table";
+// import getOrders from "../components/lib/orders";
 import OrderRow from "../components/Table/OrderRow";
 import { Typography } from "@mui/material";
 
 const Orders: React.FC = () => {
-  const [orders, setOrders] = useState<OrderObject[]>([]);
+  // const [orders, setOrders] = useState<OrderObject[]>([]);
 
-  useEffect(() => {
-    getOrders()
-      .then((response) => {
-        setOrders(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   getOrders()
+  //     .then((response) => {
+  //       setOrders(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   const mockOrders = [
     {
