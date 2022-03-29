@@ -1,19 +1,27 @@
-import React from 'react';
-import type { MouseEvent } from 'react';
-import { Box } from '@mui/material';
-import { visuallyHidden } from '@mui/utils';
+import React from "react";
+import type { MouseEvent } from "react";
+import { Box } from "@mui/material";
+import { visuallyHidden } from "@mui/utils";
 import {
   StyledTableCell,
   StyledTableRow,
   StyledTableSortLabel,
-} from './styles';
-import { CustomTableHeadProps, Product, Page, Category} from '../../types/table';
-
+} from "./styles";
+import {
+  CustomTableHeadProps,
+  Product,
+  Page,
+  Category,
+  OrderObject,
+} from "../../types/table";
 
 export const CustomTableHead = (props: CustomTableHeadProps) => {
-  const {headCells, order, orderBy, onRequestSort} = props;
+  const { headCells, order, orderBy, onRequestSort } = props;
   const createSortHandler =
-    (property: keyof Product | keyof Page |keyof Category) => (event: MouseEvent<unknown>) => {
+    (
+      property: keyof Product | keyof Page | keyof Category | keyof OrderObject
+    ) =>
+    (event: MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
 
