@@ -2,7 +2,7 @@ import React from "react";
 import { EditCategoryValidation } from "./validation";
 import { useFormik }  from "formik";
 import { Button } from "@material-ui/core";
-import classes from "../EditCategoryForm/EditCategoryForm.module.css";
+import classes from "../EditCategoryForm/styles.module.css";
 import { Container, Grid, Typography, TextField } from "@mui/material";
 
 type FormProps = {

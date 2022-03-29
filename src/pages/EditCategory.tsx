@@ -30,7 +30,7 @@ const EditCategory: React.FC = () => {
       });
   }, []);
 
-    return category ? <EditCategoryForm title={category.title} description={category.description}/> : null;
+    return <EditCategoryForm title={category.title} description={category.description}/>;
 }
 
 export default EditCategory; 
