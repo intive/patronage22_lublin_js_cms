@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import styles from '../CategoryForm/index.module.css';
 import addCategory from '../lib/addCategory';
+import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 
 interface FormValues {
     title: string;
@@ -31,7 +32,7 @@ const CategoryForm: React.FC = () => {
             .required('Title is required'),
         description: yup
             .string()
-            .max(400, 'Description should be of maximum 400 characters length')
+            .max(400, 'Description should be of maximum 400 characters length'),
     });
 
     const formik = useFormik({
@@ -61,7 +62,7 @@ const CategoryForm: React.FC = () => {
                     fullWidth={true}
                     label='Title'
                     {...getFieldProps('title')}/>
-                    {errors.title ? <div>{errors.title}</div> : null}
+                    {errors.title &&  <div className={classes.errors}>{errors.title}</div>}
                 </Grid>  
                 <Grid pt={2} item xs={6}>
                     <TextField
@@ -70,7 +71,7 @@ const CategoryForm: React.FC = () => {
                     rows={4}
                     label='Description'
                     {...getFieldProps('description')}/>  
-                    {errors.description ? <div>{errors.description}</div> : null}
+                    {errors.description && <div className={classes.errors}>{errors.description}</div>}
                 </Grid>
                 <Grid pt={5}>
                     <Button 

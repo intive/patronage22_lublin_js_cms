@@ -4,6 +4,11 @@ import {Category, CustomRowProps, HeadCell} from "../types/table";
 import getCategories from "../components/lib/categories";
 import CategoryRow from "../components/Table/CategoryRow";
 import {Typography} from "@mui/material";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import AddIcon from "@mui/icons-material/Add";
+import { ROUTES } from "../types/routes";
+import classes from '../components/Layout/Layout.module.css'
 
 const Categories: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -50,6 +55,11 @@ const Categories: React.FC = () => {
       <Typography variant='h4' p={2} sx={{color: "#0f0f0f"}}>
         Categories
       </Typography>
+      <Button type="submit" variant="contained">
+        <Link to={ROUTES.CATEGORY_ADD} className={classes.link}>
+           <AddIcon /> Add Category
+        </Link>
+      </Button>
       <CustomTable
         customRow={(props: CustomRowProps) => <CategoryRow {...props} />}
         headCells={headCells}
