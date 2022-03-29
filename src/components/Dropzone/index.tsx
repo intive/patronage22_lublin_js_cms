@@ -14,7 +14,7 @@ interface FilesListProps {
 }
 
 const maxSize = 10000000;
-const minSize = 300000;
+const minSize = 10000;
 
 function fileSizeValidator(file: File) {
   if (file.size > maxSize) {
@@ -25,7 +25,7 @@ function fileSizeValidator(file: File) {
   } else if (file.size < minSize) {
     return {
       code: "file-too-small",
-      message: `File is smaller than ${maxSize} bytes`,
+      message: `File is smaller than ${minSize} bytes`,
     };
   }
 
@@ -48,8 +48,12 @@ const Dropzone: React.FC<FilesListProps> = ({ setFilesList }) => {
       validator: fileSizeValidator,
     });
 
-  const handleRemove = (name: any) => {
-    const newList = acceptedFiles.filter((item) => item.name !== name);
+  const handleRemove = (name: void | any) => {
+    const newList = acceptedFiles.filter(
+      (item) =>
+        item.name.replace(/\s+/g, "").toLocaleLowerCase() !==
+        String(name).replace(/\s+/g, "").toLocaleLowerCase()
+    );
     setFilesList(newList);
   };
 
@@ -100,7 +104,6 @@ const Dropzone: React.FC<FilesListProps> = ({ setFilesList }) => {
             aria-label="delete"
             onClick={() => {
               fileRejections.splice(filePos, 1);
-              console.log(fileRejections);
             }}
           >
             <DeleteIcon />
