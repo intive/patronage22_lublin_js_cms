@@ -7,12 +7,11 @@ const PagesRow: React.FC<CustomRowProps> = ({ row }) => {
   const { title, slug} = row;
 
   return (
-    <StyledTableRow>
-      <StyledTableCell component="th" scope="row" align="center">
+    <StyledTableRow overflow-wrap='anywhere'>
+      <StyledTableCell component="th" scope="row" align="center" width='50%'>
         {title}
       </StyledTableCell>
       <StyledTableCell align="center">{slug}</StyledTableCell>
-
     </StyledTableRow>
   );
 };
