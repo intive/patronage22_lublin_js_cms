@@ -26,6 +26,11 @@ const Pages: React.FC = () => {
 
   const headCells: HeadCell[] = [
     {
+      id: "id",
+      numeric: true,
+      label: "ID",
+    },
+    {
       id: 'title',
       numeric: false,
       label: 'TITLE',
