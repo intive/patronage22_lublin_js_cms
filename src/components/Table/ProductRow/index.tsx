@@ -8,12 +8,12 @@ import {parseISO, format} from "date-fns";
 const ProductsRow: React.FC<CustomRowProps> = ({row}) => {
   const {id, title, price, published, createdAt} = row;
   return (
-    <StyledTableRow>
+    <StyledTableRow overflow-wrap='anywhere'>
       <StyledTableCell component='th' scope='row' align='center'>
         {id}
       </StyledTableCell>
-      <StyledTableCell align='center'>{title}</StyledTableCell>
-      <StyledTableCell align='center'>
+      <StyledTableCell width='378.5px' align='center'>{title}</StyledTableCell>
+      <StyledTableCell width='151px' align='center' >
         <Chip
           clickable
           label={`${price.toLocaleString()} $`}
