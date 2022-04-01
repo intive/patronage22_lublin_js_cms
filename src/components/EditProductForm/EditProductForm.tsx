@@ -22,6 +22,7 @@ import Dropzone from "../Dropzone";
 import { CONSTANTS } from "../../types/constants";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
+import statuses from "../../types/statuses";
 
 
 type EditProductFormProps = {
@@ -119,6 +120,8 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
                   name="category"
                   label="Select Category"
                   options={categories}
+                  idKey="id"
+                  nameKey="title"
                 />
               </Grid>
 
@@ -178,16 +181,9 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
                 <SelectWrapper
                   name="status"
                   label="Select Status"
-                  options={[
-                    {
-                      id: 1,
-                      title: "Available",
-                    },
-                    {
-                      id: 2,
-                      title: "Unavailable",
-                    },
-                  ]}
+                  options={statuses}
+                  idKey="id"
+                  nameKey="status"
                 />
               </Grid>
 
