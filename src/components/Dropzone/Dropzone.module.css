@@ -8,3 +8,7 @@
   padding: 0.5rem 1rem;
   border: 2px dotted gray;
 }
+
+.dropzone:hover {
+  cursor: pointer;
+}

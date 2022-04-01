@@ -1,4 +1,4 @@
-import React, {ReactNode} from "react";
+import React, { ReactNode } from "react";
 
 export interface Product {
   id: number;
@@ -15,6 +15,23 @@ export interface Category {
   createdAt: string;
   updatedAt: string;
 }
+
+export enum PaymentStatus {
+  PENDING = "pending",
+  CANCELLED = "cancelled",
+  DONE = "done",
+  REJECTED = "rejected",
+}
+
+export interface OrderObject {
+  id: number;
+  userName: string;
+  userSurname: string;
+  amount: number;
+  orderDate: string;
+  paymentStatus: PaymentStatus;
+}
+
 export interface Page {
   id?: number;
   title: string;
@@ -23,7 +40,7 @@ export interface Page {
 }
 
 export interface CustomRowProps {
-  row: Product | Page | Category | any;
+  row: Product | Page | Category | OrderObject | any;
   key: number;
 }
 
@@ -37,14 +54,14 @@ export interface TablePaginationActionsProps {
   ) => void;
 }
 export interface HeadCell {
-  id: keyof Product | keyof Page | keyof Category;
+  id: keyof Product | keyof Page | keyof Category | keyof OrderObject;
   numeric: boolean;
   label: string;
 }
 export interface CustomTableHeadProps {
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof Product | keyof Page | keyof Category
+    property: keyof Product | keyof Page | keyof Category | keyof OrderObject
   ) => void;
   order: Order;
   orderBy: string;
@@ -53,11 +70,10 @@ export interface CustomTableHeadProps {
 }
 
 export interface CustomTableProps {
-  data : Product[] | Page [] | Category [] | any;
+  data: Product[] | Page[] | Category[] | OrderObject[] | any;
   headCells: HeadCell[];
   disablePagination?: boolean;
   customRow: ReactNode;
 }
 
 export type Order = "asc" | "desc";
-

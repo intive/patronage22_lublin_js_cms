@@ -76,14 +76,14 @@ const AddProductForm = () => {
       .required("Required"),
     category: Yup.string().required("Required"),
     price: Yup.number()
-      .min(0, "Price can not be negative")
+      .min(0, "Price cannot be negative")
       .max(10000, "Max 10000")
       .required("Required"),
     quantity: Yup.number()
       .integer()
-      .min(0, "Quantity can not be negative")
+      .min(0, "quantity cannot be negative")
       .max(10000, "Max 10000")
-      .typeError("Quantity must be an integer")
+      .typeError("quantity must be an integer")
       .required("Required"),
     description: Yup.string()
       .min(25, "Min number of characters is 25")
