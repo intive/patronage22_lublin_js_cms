@@ -22,25 +22,25 @@ export enum ROUTES {
 
 const menuLinks = [
   { id: 1, to: ROUTES.DASHBOARD, label: "Home", icon: HomeOutlinedIcon },
-  { id: 2, to: ROUTES.PAGES, label: "Strony", icon: AutoStoriesOutlinedIcon },
+  { id: 2, to: ROUTES.PAGES, label: "Pages", icon: AutoStoriesOutlinedIcon },
   {
     id: 3,
     to: ROUTES.CATEGORIES,
-    label: "Kategorie",
+    label: "Categories",
     icon: CategoryOutlinedIcon,
   },
   {
     id: 4,
     to: ROUTES.PRODUCTS,
-    label: "Produkty",
+    label: "Products",
     icon: Inventory2OutlinedIcon,
   },
   {
     id: 5,
     to: ROUTES.ORDERS,
-    label: "Zamówienia",
+    label: "Orders",
     icon: SubscriptionsOutlinedIcon,
   },
-  { id: 6, to: ROUTES.CLIENTS, label: "Klienci", icon: PeopleOutlinedIcon },
+  { id: 6, to: ROUTES.CLIENTS, label: "Clients", icon: PeopleOutlinedIcon },
 ];
 export default menuLinks;
