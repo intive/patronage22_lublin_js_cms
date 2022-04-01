@@ -22,9 +22,8 @@ export const FORM_VALIDATION = Yup.object().shape({
     description: Yup.string()
       .min(25, "Min number of characters is 25")
       .required("Required"),
-    status: Yup.boolean()
-      .oneOf([true, false], "Invalid value")
-      .required("Required"),
+    status: Yup.string()
+    .required("Required"),
     published: Yup.boolean()
       .oneOf([true, false], "Invalid value")
       .required("Required"),

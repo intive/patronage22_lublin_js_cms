@@ -131,6 +131,8 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
                   apiProductPhotos.map((photo: any) => {
                     return (
                       <Grid
+                        key={photo.id}
+                        item
                         xs={6}
                         container
                         alignItems="center"
@@ -172,15 +174,24 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
                 <TextfieldWrapper name="quantity" label="Quantity" />
               </Grid>
 
-              <Grid item xs={6}>
-                <SwitchWrapper
+              <Grid item xs={12}>
+                <SelectWrapper
                   name="status"
-                  legend="Status"
-                  label={props.values.status ? "Available" : "Unavailable"}
+                  label="Select Status"
+                  options={[
+                    {
+                      id: 1,
+                      title: "Available",
+                    },
+                    {
+                      id: 2,
+                      title: "Unavailable",
+                    },
+                  ]}
                 />
               </Grid>
 
-              <Grid item xs={6}>
+              <Grid item xs={6} sx={{pl:1}}>
                 <SwitchWrapper
                   name="published"
                   legend="Published"
