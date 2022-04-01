@@ -48,7 +48,7 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [product.id]);
 
   const deleteHandler = (id: number) => {
     deletePhoto(id)
