@@ -13,6 +13,25 @@ interface FilesListProps {
   setFilesList: (file: File[]) => void;
 }
 
+const maxSize = 10000000;
+const minSize = 10000;
+
+function fileSizeValidator(file: File) {
+  if (file.size > maxSize) {
+    return {
+      code: "file-too-large",
+      message: `File is larger than ${maxSize} bytes`,
+    };
+  } else if (file.size < minSize) {
+    return {
+      code: "file-too-small",
+      message: `File is smaller than ${minSize} bytes`,
+    };
+  }
+
+  return null;
+}
+
 const Dropzone: React.FC<FilesListProps> = ({ setFilesList }) => {
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -25,32 +44,68 @@ const Dropzone: React.FC<FilesListProps> = ({ setFilesList }) => {
     useDropzone({
       onDrop,
       maxFiles: 4,
+      accept: "image/jpeg,image/png",
+      validator: fileSizeValidator,
     });
 
-  const acceptedFileItems = acceptedFiles.map((file) => (
-    <ListItem
-      key={file.name}
-      secondaryAction={
-        <IconButton edge="end" aria-label="delete">
-          <DeleteIcon />
-        </IconButton>
-      }
-    >
-      <ListItemAvatar>
-        <Avatar>
-          <FolderIcon />
-        </Avatar>
-      </ListItemAvatar>
-      <ListItemText primary={`${file.name} - ${file.size} bytes`} />
-    </ListItem>
-  ));
+  const handleRemove = (name: void | any) => {
+    const newList = acceptedFiles.filter(
+      (item) =>
+        item.name.replace(/\s+/g, "").toLocaleLowerCase() !==
+        String(name).replace(/\s+/g, "").toLocaleLowerCase()
+    );
+    setFilesList(newList);
+  };
 
-  const fileRejectionItems = fileRejections.map(({ file, errors }) => {
+  // eslint-disable-next-line array-callback-return
+  const acceptedFileItems = acceptedFiles.map((file) => {
+    const fileName = file.name;
+    const filePos = acceptedFiles.findIndex((item) => item.name === fileName);
+
     return (
       <ListItem
         key={file.name}
+        onClick={handleRemove}
         secondaryAction={
-          <IconButton edge="end" aria-label="delete">
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            onClick={() => {
+              acceptedFiles.splice(filePos, 1);
+              console.log(acceptedFiles);
+            }}
+          >
+            <DeleteIcon />
+          </IconButton>
+        }
+      >
+        <ListItemAvatar>
+          <Avatar>
+            <FolderIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={`${file.name} - ${file.size} bytes`} />
+      </ListItem>
+    );
+  });
+
+  const fileRejectionItems = fileRejections.map(({ file, errors }) => {
+    const fileName = file.name;
+    const filePos = fileRejections.findIndex(
+      (item) => item.file.name === fileName
+    );
+    return (
+      <ListItem
+        onClick={handleRemove}
+        key={file.name}
+        secondaryAction={
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            onClick={() => {
+              fileRejections.splice(filePos, 1);
+            }}
+          >
             <DeleteIcon />
           </IconButton>
         }
@@ -78,6 +133,7 @@ const Dropzone: React.FC<FilesListProps> = ({ setFilesList }) => {
         <input {...getInputProps()} />
         <p>Drag 'n' drop some files here, or click to select files</p>
         <em>(4 files are the maximum number of files you can drop here)</em>
+        <em>(Only *.jpeg and *.png images will be accepted)</em>
       </div>
       <aside>
         {acceptedFileItems.length === 0 ? null : (
