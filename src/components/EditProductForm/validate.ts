@@ -7,6 +7,12 @@ export const FORM_VALIDATION = Yup.object().shape({
       .required("Required"),
     category: Yup.string()
       .required("Required"),
+    price: Yup.number()
+      .integer()
+      .min(0, "Price can not be negative")
+      .max(10000, "Max 10000")
+      .typeError("Price must be an integer")
+      .required("Required"),
     quantity: Yup.number()
       .integer()
       .min(0, "Quantity can not be negative")

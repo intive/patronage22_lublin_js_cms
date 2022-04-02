@@ -20,9 +20,14 @@ const CategoryRow: React.FC<CustomRowProps> = ({row}) => {
           <Chip clickable label='No' color='error' variant='filled' />
         )}
       </StyledTableCell>
-      <StyledTableCell align='center'>{`${format(parseISO(createdAt), "MM/dd/yyyy")}`}</StyledTableCell>
+      <StyledTableCell align='center'>{`${format(
+        parseISO(createdAt),
+        "dd/MM/yyyy"
+      )}`}</StyledTableCell>
       <StyledTableCell align='center'>
-        <EditButton id={id}>Edit</EditButton>
+        <EditButton id={id} linkURL={`/category/edit/${id}`}>
+          Edit
+        </EditButton>
       </StyledTableCell>
     </StyledTableRow>
   );

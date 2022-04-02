@@ -1,10 +1,10 @@
 import axios from "axios";
-import {CONSTANTS} from "../../types/constants";
+import { CONSTANTS } from "../../types/constants";
 
 const token = window.localStorage.getItem("token");
 
-const getCategories = async () => {
-  return await axios(`${CONSTANTS.URL}/api/categories`, {
+const getOrders = async () => {
+  return await axios(`${CONSTANTS.URL}/api/orders`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -13,4 +13,4 @@ const getCategories = async () => {
   });
 };
 
-export default getCategories;
+export default getOrders;

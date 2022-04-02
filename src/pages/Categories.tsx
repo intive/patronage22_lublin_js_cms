@@ -1,37 +1,27 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import CustomTable from "../components/Table";
-import {CustomRowProps, HeadCell} from "../types/table";
-//import {getCategories} from "../components/lib/categories";
+import {Category, CustomRowProps, HeadCell} from "../types/table";
+import getCategories from "../components/lib/categories";
 import CategoryRow from "../components/Table/CategoryRow";
 import {Typography} from "@mui/material";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import AddIcon from "@mui/icons-material/Add";
+import { ROUTES } from "../types/routes";
+import classes from '../components/Layout/Layout.module.css'
 
 const Categories: React.FC = () => {
-  const initialState = [
-    {
-      id: 3,
-      title: "Electronics",
-      published: true,
-      description: "Electronics products",
-      createdAt: "2022-02-16T09:36:41.000Z",
-      updatedAt: "2022-02-16T09:36:41.000Z",
-    },
-    {
-      id: 4,
-      title: "Clothing",
-      published: true,
-      description: "Clothing products",
-      createdAt: "2022-02-16T09:58:06.000Z",
-      updatedAt: "2022-02-16T09:58:06.000Z",
-    },
-    {
-      id: 5,
-      title: "Books",
-      published: true,
-      description: "Enjoy reading books",
-      createdAt: "2022-02-16T21:04:55.000Z",
-      updatedAt: "2022-02-16T21:17:35.000Z",
-    },
-  ];
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    getCategories()
+      .then((response) => {
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const headCells: HeadCell[] = [
     {
@@ -65,10 +55,15 @@ const Categories: React.FC = () => {
       <Typography variant='h4' p={2} sx={{color: "#0f0f0f"}}>
         Categories
       </Typography>
+      <Button type="submit" variant="contained">
+        <Link to={ROUTES.CATEGORY_ADD} className={classes.link}>
+           <AddIcon /> Add Category
+        </Link>
+      </Button>
       <CustomTable
         customRow={(props: CustomRowProps) => <CategoryRow {...props} />}
         headCells={headCells}
-        data={initialState}
+        data={categories}
       />
     </section>
   );
