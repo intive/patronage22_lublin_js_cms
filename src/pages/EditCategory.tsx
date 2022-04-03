@@ -16,7 +16,7 @@ const EditCategory: React.FC = () => {
 
     const { id } = useParams<UrlParams>();
     const [category, setCategory] = useState<Category>();
-    const [formData, setFormData] = useState({title: "", decription: ""});
+    const [formData, setFormData] = useState({title: "", description: ""});
 
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const EditCategory: React.FC = () => {
       });
   }, []);
 
-  return <EditCategoryForm title={category.title} description={category.description}/>;
+  return <EditCategoryForm title={formData.title} description={formData.description}/>;
 }
 
 export default EditCategory; 
