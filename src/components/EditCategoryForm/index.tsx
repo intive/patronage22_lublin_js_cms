@@ -8,9 +8,10 @@ import { Container, Grid, Typography, TextField } from "@mui/material";
 type FormProps = {
     title: string;
     description: string;
+    onSubmit: (formValues: { title: string, description: string}) => void;
 };
  
-const EditCategoryForm = ({title, description }: FormProps) => {
+const EditCategoryForm = ({title, description, onSubmit }: FormProps) => {
     const initialFormValues = {
         title: title,
         description: description
@@ -18,17 +19,15 @@ const EditCategoryForm = ({title, description }: FormProps) => {
 
     const formik = useFormik({
         initialValues: initialFormValues,
-             
-        onSubmit: (values, actions) => {
-            console.log({ values, actions });
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
+        onSubmit: (values) => {
+            onSubmit(values);
         },
-
-        validationSchema: EditCategoryValidation
+        enableReinitialize: true,
+        validationSchema: EditCategoryValidation,
+        validateOnChange: true
     });
 
-    const { handleSubmit, handleChange, handleBlur} = formik;
+    const { handleSubmit, handleChange, handleBlur } = formik;
     
     return (
         <Container className={classes.editForm} >
@@ -46,7 +45,7 @@ const EditCategoryForm = ({title, description }: FormProps) => {
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={formik.values.title}
-                            error={formik.errors.title && Boolean(formik.errors.title)}
+                            error={Boolean(formik.errors.title)}
                             helperText={formik.touched.title && formik.errors.title}
                         />
                     </Grid>
@@ -59,7 +58,7 @@ const EditCategoryForm = ({title, description }: FormProps) => {
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={formik.values.description}
-                            error={formik.errors.description && Boolean(formik.errors.description)}
+                            error={Boolean(formik.errors.description)}
                             helperText={formik.touched.description && formik.errors.description}
                         />
                     </Grid>
