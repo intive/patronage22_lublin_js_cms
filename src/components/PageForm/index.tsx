@@ -27,9 +27,12 @@ const PageForm: React.FC = () => {
         title: yup
             .string()
             .min(2, 'Title should be of minimum 2 characters length')
-            .required('Title is required'),
+            .required('Title is required')
+            .matches(/^[^\s].+[^\s]$/,'No white space in the beginning'),
+
         slug: yup
-            .string(),
+            .string()
+            .matches(/^[^\s].+[^\s]$/,'No white space in the beginning'),
 
     });
 
@@ -69,6 +72,7 @@ const PageForm: React.FC = () => {
                         rows={4}
                         label='Slug'
                         {...getFieldProps('slug')} />
+                        {errors.slug ? <div>{errors.slug}</div> : null}
                 </Grid>
                 <Grid pt={5}>
                     <Button
