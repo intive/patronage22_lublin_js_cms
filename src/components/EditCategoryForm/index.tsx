@@ -46,7 +46,7 @@ const EditCategoryForm = ({title, description }: FormProps) => {
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={formik.values.title}
-                            //error={formik.errors.title && Boolean(formik.errors.title)}
+                            error={formik.errors.title && Boolean(formik.errors.title)}
                             helperText={formik.touched.title && formik.errors.title}
                         />
                     </Grid>
@@ -59,7 +59,7 @@ const EditCategoryForm = ({title, description }: FormProps) => {
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={formik.values.description}
-                            //error={formik.errors.description && Boolean(formik.errors.description)}
+                            error={formik.errors.description && Boolean(formik.errors.description)}
                             helperText={formik.touched.description && formik.errors.description}
                         />
                     </Grid>
