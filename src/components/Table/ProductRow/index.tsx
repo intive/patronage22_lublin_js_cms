@@ -12,8 +12,12 @@ const ProductsRow: React.FC<CustomRowProps> = ({row}) => {
       <StyledTableCell component='th' scope='row' align='center'>
         {id}
       </StyledTableCell>
-      <StyledTableCell width='378.5px' align='center'>{title}</StyledTableCell>
-      <StyledTableCell width='151px' align='center' >
+      <StyledTableCell
+      width='20%'
+       align='center'>{title}</StyledTableCell>
+      <StyledTableCell 
+      width='20%' 
+      align='center' >
         <Chip
           clickable
           label={`${price.toLocaleString()} $`}
