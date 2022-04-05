@@ -24,12 +24,18 @@ export enum PaymentStatus {
 }
 
 export interface OrderObject {
-  id: number;
+  id: string;
   userName: string;
   userSurname: string;
-  amount: number;
+  totalPrice: number;
   orderDate: string;
   paymentStatus: PaymentStatus;
+}
+export interface OrderDetail {
+  id: number;
+  orderId: number;
+  productId: number;
+  quantity: number;
 }
 
 export interface Page {

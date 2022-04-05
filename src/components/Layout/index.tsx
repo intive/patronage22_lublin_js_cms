@@ -18,6 +18,7 @@ import AddCategory from "../../pages/AddCategory";
 import AddPage from "../../pages/AddPage";
 import Categories from "../../pages/Categories";
 import Orders from "../../pages/Orders";
+import OrderDetails from "../../pages/OrderDetails";
 
 const Layout = () => {
   let initialWidth: number;
@@ -67,6 +68,11 @@ const Layout = () => {
           <Route exact path='/add-category' render={() => <AddCategory />} />
           <Route exact path='/categories' render={() => <Categories />} />
           <Route exact path='/orders' render={() => <Orders />} />
+          <Route
+            exact
+            path='/order/details/:id'
+            render={() => <OrderDetails />}
+          />
           <Route exact path='/products' component={Products} />
           <Route path='*' component={ErrorPageInfo} />
           <Route />
