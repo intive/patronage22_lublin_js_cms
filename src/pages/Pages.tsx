@@ -52,7 +52,6 @@ const Pages: React.FC = () => {
         </Link>
       </Button>
       <CustomTable customRow={(props: CustomRowProps) => <PagesRow {...props} />} headCells={headCells} data={pages} 
-      // disablePagination={true} 
       />
     </section>
   );
