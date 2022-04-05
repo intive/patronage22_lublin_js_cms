@@ -16,7 +16,7 @@ const AuthForm = () => {
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const authCtx = useContext(AuthContext);
   const history = useHistory();
 
@@ -41,7 +41,7 @@ const AuthForm = () => {
         if (error.response.status === 401) {
           setError(error.response.data.msg);
         } else {
-          setError(error.response.data.errors[0].msg);
+          setError("Invalid credentials");
         }
         console.log(error);
         setIsLoading(false);

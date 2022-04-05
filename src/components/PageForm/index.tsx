@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import styles from '../CategoryForm/index.module.css';
 import { addPageRequest } from '../lib/pages';
+import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 
 interface FormValues {
     title: string;
@@ -27,13 +28,15 @@ const PageForm: React.FC = () => {
         title: yup
             .string()
             .min(2, 'Title should be of minimum 2 characters length')
+            .max(20, 'Title should be of maximun 20 characters length')
             .required('Title is required')
             .matches(/^[^\s].+[^\s]$/,'No white space in the beginning'),
-
         slug: yup
             .string()
-            .matches(/^[^\s].+[^\s]$/,'No white space in the beginning'),
-
+            .matches(/^[^\s].+[^\s]$/,'No white space in the beginning')
+            .min(2, 'Slug should be of minimum 2 characters length')
+            .max(20, 'Slug should be of maximum 20 characters length')
+            .required('Slug is required'),
     });
 
     const formik = useFormik({
@@ -63,7 +66,7 @@ const PageForm: React.FC = () => {
                         fullWidth={true}
                         label='Title'
                         {...getFieldProps('title')} />
-                    {errors.title ? <div>{errors.title}</div> : null}
+                   {errors.title ? <div>{errors.title}</div> : null}
                 </Grid>
                 <Grid pt={2} item xs={6}>
                     <TextField
