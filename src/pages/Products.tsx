@@ -4,6 +4,11 @@ import {CustomRowProps, HeadCell, Product } from '../types/table';
 import {getProducts} from '../components/lib/products';
 import ProductRow from "../components/Table/ProductRow";
 import { Typography } from '@mui/material';
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import AddIcon from "@mui/icons-material/Add";
+import { ROUTES } from "../types/routes";
+import classes from '../components/Layout/Layout.module.css'
 
 
 const Products: React.FC = ( )=> {
@@ -56,6 +61,11 @@ const Products: React.FC = ( )=> {
       <Typography variant="h4" p={2} sx={{ color: '#0f0f0f' }}>
         Products
       </Typography>
+      <Button type="submit" variant="contained">
+        <Link to={ROUTES.ADD_PRODUCT} className={classes.link}>
+           <AddIcon /> Add Product
+        </Link>
+      </Button>
       <CustomTable customRow={(props: CustomRowProps) => <ProductRow  {...props}/>} headCells={headCells} data={products}/>
     </section>
   );
