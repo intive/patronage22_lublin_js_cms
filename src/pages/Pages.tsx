@@ -26,6 +26,11 @@ const Pages: React.FC = () => {
 
   const headCells: HeadCell[] = [
     {
+      id: "id",
+      numeric: true,
+      label: "ID",
+    },
+    {
       id: 'title',
       numeric: false,
       label: 'TITLE',
@@ -46,7 +51,8 @@ const Pages: React.FC = () => {
            <AddIcon /> Add Page
         </Link>
       </Button>
-      <CustomTable customRow={(props: CustomRowProps) => <PagesRow {...props} />} headCells={headCells} data={pages} disablePagination={true} />
+      <CustomTable customRow={(props: CustomRowProps) => <PagesRow {...props} />} headCells={headCells} data={pages} 
+      />
     </section>
   );
 };
