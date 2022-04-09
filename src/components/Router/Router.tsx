@@ -1,14 +1,23 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React, { useContext } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 import AuthLayout from "../Layout/AuthLayout";
 import Layout from "../Layout";
 import { ROUTES } from "../../types/routes";
 import AuthGuard from "../HOC/AuthGuard";
+import AuthContext from "../../store/auth-context";
 
 const Router = () => {
+  const authCtx = useContext(AuthContext);
+
   return (
     <Switch>
-      <Route exact path={ROUTES.AUTH} component={AuthLayout} />
+      {!authCtx.isLoggedIn ? (
+        <Route exact path={ROUTES.AUTH} component={AuthLayout} />
+      ) : (
+        <Route path={ROUTES.AUTH} exact>
+          <Redirect to={ROUTES.DASHBOARD} />
+        </Route>
+      )}
       <Route exact path={ROUTES.ADD_PRODUCT} component={AuthGuard(Layout)} />
       <Route exact path={ROUTES.DASHBOARD} component={AuthGuard(Layout)} />
       <Route exact path={ROUTES.PAGES} component={AuthGuard(Layout)} />
@@ -24,6 +33,7 @@ const Router = () => {
       <Route exact path={ROUTES.ORDERS} component={AuthGuard(Layout)} />
       <Route exact path={ROUTES.ORDER_DETAILS} component={AuthGuard(Layout)} />
       <Route exact path={ROUTES.PAGE_ADD} component={AuthGuard(Layout)} />
+      <Route exact path={ROUTES.CATEGORY_EDIT} component={AuthGuard(Layout)}/>
       <Route component={AuthGuard(Layout)} />
     </Switch>
   );
