@@ -38,6 +38,14 @@ export interface OrderDetail {
   quantity: number;
 }
 
+export interface OrderDetailRow {
+  id: number;
+  name: string;
+  unitCost: number;
+  quantity: number;
+  totalPrice: number;
+}
+
 export interface Page {
   id?: number;
   title: string;
@@ -46,7 +54,7 @@ export interface Page {
 }
 
 export interface CustomRowProps {
-  row: Product | Page | Category | OrderObject | any;
+  row: Product | Page | Category | OrderObject | OrderDetailRow | any;
   key: number;
 }
 
@@ -60,14 +68,24 @@ export interface TablePaginationActionsProps {
   ) => void;
 }
 export interface HeadCell {
-  id: keyof Product | keyof Page | keyof Category | keyof OrderObject;
+  id:
+    | keyof Product
+    | keyof Page
+    | keyof Category
+    | keyof OrderObject
+    | keyof OrderDetailRow;
   numeric: boolean;
   label: string;
 }
 export interface CustomTableHeadProps {
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof Product | keyof Page | keyof Category | keyof OrderObject
+    property:
+      | keyof Product
+      | keyof Page
+      | keyof Category
+      | keyof OrderObject
+      | keyof OrderDetailRow
   ) => void;
   order: Order;
   orderBy: string;
@@ -76,7 +94,13 @@ export interface CustomTableHeadProps {
 }
 
 export interface CustomTableProps {
-  data: Product[] | Page[] | Category[] | OrderObject[] | any;
+  data:
+    | Product[]
+    | Page[]
+    | Category[]
+    | OrderObject[]
+    | OrderDetailRow[]
+    | any;
   headCells: HeadCell[];
   disablePagination?: boolean;
   customRow: ReactNode;

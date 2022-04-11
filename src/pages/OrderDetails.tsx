@@ -1,26 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
-  OrderDetail,
   Product,
   PaymentStatus,
   OrderObject,
+  HeadCell,
+  CustomRowProps,
 } from "../types/table";
 import { getProducts } from "../components/lib/products";
-import { DataGrid } from "@mui/x-data-grid";
 import { Card, CardContent, Typography } from "@mui/material";
 import CustomerDataCard from "../components/OrderDataCard";
+import CustomTable from "../components/Table";
+import OrderDetailRowElement from "../components/Table/OrderDetailRow";
+import { getOrderDetailRows } from "../components/utils/orderDetailRows";
 
 type UrlParams = {
   id: string;
-};
-
-type OrderDetailRow = {
-  id: number;
-  name: string;
-  unitCost: number;
-  quantity: number;
-  totalPrice: number;
 };
 
 const mockOrders = [
@@ -63,35 +58,6 @@ const mockedOrderDetails = [
 ];
 //The same as above
 
-const setOrderDetailRows = (
-  orderDetails: OrderDetail[],
-  products: Product[],
-  currentOrderId: string
-): OrderDetailRow[] => {
-  let orderDetailRows: Array<OrderDetailRow> = [];
-
-  const currentOrderDetails = orderDetails.filter(
-    (e) => e.orderId.toString() === currentOrderId
-  );
-
-  const currentProducts = products.filter((product) =>
-    currentOrderDetails.map((e) => e.productId).includes(product.id)
-  );
-
-  for (let index = 0; index < currentOrderDetails.length; index++) {
-    orderDetailRows.push({
-      id: index + 1,
-      name: currentProducts[index].title,
-      unitCost: currentProducts[index].price,
-      quantity: currentOrderDetails[index].quantity,
-      totalPrice:
-        currentOrderDetails[index].quantity * currentProducts[index].price,
-    });
-  }
-
-  return orderDetailRows;
-};
-
 const OrderDetails: React.FC = () => {
   // const [orderDetails, setOrderDetails] = useState<OrderDetail[]>([]);
   // const [apiOrders, setApiOrders] = useState<OrderObject[]>([]);
@@ -112,11 +78,39 @@ const OrderDetails: React.FC = () => {
 
   if (isLoading) return <div>Loading ...</div>;
 
-  const detailRows = setOrderDetailRows(mockedOrderDetails, apiProducts, id);
+  const detailRows = getOrderDetailRows(mockedOrderDetails, apiProducts, id);
   const currentOrder = mockOrders.find((e) => e.id === id) as OrderObject;
   const totalPrice = detailRows
     .map((e) => e.totalPrice)
     .reduce((partialSum, e) => partialSum + e, 0);
+
+  const headCells: HeadCell[] = [
+    {
+      id: "id",
+      numeric: true,
+      label: "ID",
+    },
+    {
+      id: "name",
+      numeric: false,
+      label: "PRODUCT NAME",
+    },
+    {
+      id: "unitCost",
+      numeric: true,
+      label: "UNIT COST",
+    },
+    {
+      id: "quantity",
+      numeric: true,
+      label: "QUANTITY",
+    },
+    {
+      id: "totalPrice",
+      numeric: true,
+      label: "TOTAL PRICE",
+    },
+  ];
 
   return (
     <>
@@ -130,63 +124,12 @@ const OrderDetails: React.FC = () => {
           paymentStatus={currentOrder.paymentStatus}
         />
       </Card>
-      <DataGrid
-        sx={{
-          ".light-blue--header": {
-            backgroundColor: "rgba(116,182,247,0.4)",
-          },
-        }}
-        autoHeight
-        disableSelectionOnClick
-        disableColumnMenu
-        columns={[
-          {
-            field: "id",
-            headerName: "#",
-            sortable: false,
-            flex: 1,
-            headerClassName: "light-blue--header",
-            align: "center",
-            headerAlign: "center",
-          },
-          {
-            field: "name",
-            headerName: "PRODUCT NAME",
-            sortable: false,
-            flex: 3,
-            headerClassName: "light-blue--header",
-            align: "center",
-            headerAlign: "center",
-          },
-          {
-            field: "unitCost",
-            headerName: "UNIT COST",
-            sortable: false,
-            flex: 1,
-            headerClassName: "light-blue--header",
-            align: "center",
-            headerAlign: "center",
-          },
-          {
-            field: "quantity",
-            headerName: "QUANTITY",
-            sortable: false,
-            flex: 1,
-            headerClassName: "light-blue--header",
-            align: "center",
-            headerAlign: "center",
-          },
-          {
-            field: "totalPrice",
-            headerName: "PRICE",
-            sortable: false,
-            flex: 1,
-            headerClassName: "light-blue--header",
-            align: "center",
-            headerAlign: "center",
-          },
-        ]}
-        rows={detailRows}
+      <CustomTable
+        customRow={(props: CustomRowProps) => (
+          <OrderDetailRowElement {...props} />
+        )}
+        headCells={headCells}
+        data={detailRows}
       />
       <Card sx={{ display: "flex", justifyContent: "flex-end" }}>
         <CardContent>
@@ -194,14 +137,9 @@ const OrderDetails: React.FC = () => {
           <Typography
             sx={{
               fontSize: "1.5em",
-              width: "200px",
-              display: "flex",
-              justifyContent: "center",
-              marginRight: "24px",
-              flex: 2,
             }}
           >
-            Grand Total: {totalPrice}
+            Grand Total: {`${totalPrice} $`}
           </Typography>
         </CardContent>
       </Card>
