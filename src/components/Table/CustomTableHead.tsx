@@ -13,13 +13,14 @@ import {
   Page,
   Category,
   OrderObject,
+  Client
 } from "../../types/table";
 
 export const CustomTableHead = (props: CustomTableHeadProps) => {
   const { headCells, order, orderBy, onRequestSort } = props;
   const createSortHandler =
     (
-      property: keyof Product | keyof Page | keyof Category | keyof OrderObject
+      property: keyof Product | keyof Page | keyof Category | keyof OrderObject | keyof Client 
     ) =>
     (event: MouseEvent<unknown>) => {
       onRequestSort(event, property);
