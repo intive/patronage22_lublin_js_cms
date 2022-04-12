@@ -13,7 +13,7 @@ const OrderRow: React.FC<CustomRowProps> = ({ row }) => {
       </StyledTableCell>
       <StyledTableCell align='center'>{userName}</StyledTableCell>
       <StyledTableCell align='center'>{userSurname}</StyledTableCell>
-      <StyledTableCell align='center'>{amount}</StyledTableCell>
+      <StyledTableCell align='center'>{`${amount} $`}</StyledTableCell>
       <StyledTableCell align='center'>{`${format(
         parseISO(orderDate),
         "MM/dd/yyyy"

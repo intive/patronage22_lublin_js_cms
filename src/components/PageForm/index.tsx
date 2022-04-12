@@ -29,14 +29,14 @@ const PageForm: React.FC = () => {
             .string()
             .min(2, 'Title should be of minimum 2 characters length')
             .max(20, 'Title should be of maximun 20 characters length')
-            .required('Title is required'),
+            .required('Title is required')
+            .matches(/^[^\s].+[^\s]$/,'No white space in the beginning'),
         slug: yup
             .string()
+            .matches(/^[^\s].+[^\s]$/,'No white space in the beginning')
             .min(2, 'Slug should be of minimum 2 characters length')
             .max(20, 'Slug should be of maximum 20 characters length')
             .required('Slug is required'),
-            
-
     });
 
     const formik = useFormik({
@@ -66,7 +66,7 @@ const PageForm: React.FC = () => {
                         fullWidth={true}
                         label='Title'
                         {...getFieldProps('title')} />
-                   {errors.title &&  <div className={classes.errors}>{errors.title}</div>}
+                   {errors.title ? <div>{errors.title}</div> : null}
                 </Grid>
                 <Grid pt={2} item xs={6}>
                     <TextField
@@ -75,7 +75,7 @@ const PageForm: React.FC = () => {
                         rows={4}
                         label='Slug'
                         {...getFieldProps('slug')} />
-                         {errors.slug &&  <div className={classes.errors}>{errors.slug}</div>}
+                        {errors.slug ? <div>{errors.slug}</div> : null}
                 </Grid>
                 <Grid pt={5}>
                     <Button
