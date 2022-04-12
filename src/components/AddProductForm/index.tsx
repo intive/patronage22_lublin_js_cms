@@ -126,28 +126,32 @@ const AddProductForm = () => {
     validationSchema,
   });
 
-  const { handleSubmit, getFieldProps, errors } = formik;
+  const { handleSubmit, handleReset, getFieldProps, errors } = formik;
 
   return (
-    <form onSubmit={handleSubmit} className={classes.form}>
+    <form
+      onSubmit={handleSubmit}
+      className={classes.form}
+      onReset={handleReset}
+    >
       <h1>Add Product</h1>
       <FormControl>
-        <FormLabel htmlFor="title">Title</FormLabel>
+        <FormLabel htmlFor='title'>Title</FormLabel>
         <TextField
-          id="title"
-          type="text"
-          placeholder="Enter title"
+          id='title'
+          type='text'
+          placeholder='Enter title'
           {...getFieldProps("title")}
         />
         {errors.title && <p className={classes.errors}>{errors.title}</p>}
       </FormControl>
       <Box sx={{ minWidth: 420 }}>
         <FormControl fullWidth>
-          <FormLabel htmlFor="demo-simple-select">Select Category</FormLabel>
+          <FormLabel htmlFor='demo-simple-select'>Select Category</FormLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            label="Category"
+            labelId='demo-simple-select-label'
+            id='demo-simple-select'
+            label='Category'
             {...getFieldProps("category")}
           >
             {categories.map((item) => (
@@ -162,11 +166,11 @@ const AddProductForm = () => {
         </FormControl>
       </Box>
       <FormControl>
-        <FormLabel htmlFor="description">Description</FormLabel>
+        <FormLabel htmlFor='description'>Description</FormLabel>
         <TextField
-          id="description"
+          id='description'
           multiline
-          placeholder="Enter description"
+          placeholder='Enter description'
           rows={4}
           {...getFieldProps("description")}
         />
@@ -175,9 +179,9 @@ const AddProductForm = () => {
         )}
       </FormControl>
       <FormControl>
-        <Stack direction="column" alignItems="left" spacing={1}>
+        <Stack direction='column' alignItems='left' spacing={1}>
           <FormLabel
-            htmlFor="contained-button-file"
+            htmlFor='contained-button-file'
             style={{ marginTop: "1rem" }}
           >
             Select Image/-s
@@ -186,11 +190,11 @@ const AddProductForm = () => {
         </Stack>
       </FormControl>
       <FormControl>
-        <FormLabel htmlFor="price">Price</FormLabel>
+        <FormLabel htmlFor='price'>Price</FormLabel>
         <TextField
-          id="price"
-          type="number"
-          placeholder="Enter price"
+          id='price'
+          type='number'
+          placeholder='Enter price'
           {...getFieldProps("price")}
           InputProps={{
             inputProps: {
@@ -201,11 +205,11 @@ const AddProductForm = () => {
         {errors.price && <p className={classes.errors}>{errors.price}</p>}
       </FormControl>
       <FormControl>
-        <FormLabel htmlFor="quantity">Quantity</FormLabel>
+        <FormLabel htmlFor='quantity'>Quantity</FormLabel>
         <TextField
-          id="quantity"
-          type="number"
-          placeholder="Enter quantity"
+          id='quantity'
+          type='number'
+          placeholder='Enter quantity'
           {...getFieldProps("quantity")}
           InputProps={{
             inputProps: {
@@ -218,10 +222,10 @@ const AddProductForm = () => {
       </FormControl>
       <Box sx={{ minWidth: 420 }}>
         <FormControl fullWidth>
-          <FormLabel htmlFor="select-status">Select Status</FormLabel>
+          <FormLabel htmlFor='select-status'>Select Status</FormLabel>
           <Select
-            labelId="select-label-status"
-            id="select-status"
+            labelId='select-label-status'
+            id='select-status'
             {...getFieldProps("status")}
           >
             {statuses.map((item) => (
@@ -236,12 +240,13 @@ const AddProductForm = () => {
       <FormControl>
         <FormControlLabel
           control={<Checkbox {...getFieldProps("published")} />}
-          label="Published"
+          label='Published'
         />
       </FormControl>
-      <Button type="submit" variant="contained">
+      <Button type='submit' variant='contained'>
         Add Product
       </Button>
+      <Button type='reset'>Clear</Button>
     </form>
   );
 };
