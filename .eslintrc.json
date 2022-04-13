@@ -22,5 +22,25 @@
     "project": "./tsconfig.json"
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
-  "rules": {}
+  "rules": {
+    "import/prefer-default-export": "off",
+    "react/destructuring-assignment": "off",
+    "react/jsx-no-constructed-context-values": "off",
+    "@typescript-eslint/no-shadow": "off",
+    "react/function-component-definition": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-console": "off",
+    "react/no-unstable-nested-components": "off",
+    "react/require-default-props": "off",
+    "import/no-extraneous-dependencies": "off",
+    "prefer-const": "off",
+    "consistent-return": "off",
+    "react/prop-types": "off",
+    "no-plusplus": "off",
+    "import/no-named-as-default": "off",
+    "react/no-unescaped-entities": "off",
+    "react/button-has-type": "off",
+    "no-alert": "off"
+  }
 }
