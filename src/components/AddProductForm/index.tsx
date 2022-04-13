@@ -25,7 +25,7 @@ import { CONSTANTS } from "../../types/constants";
 
 interface MyFormValues {
   title: string;
-  category: string;
+  category: number;
   description: string;
   photos: File[];
   price: number;
@@ -45,7 +45,7 @@ interface MyCategories {
 const AddProductForm = () => {
   const initialValuesForm: MyFormValues = {
     title: "",
-    category: "",
+    category: 0,
     description: "",
     photos: [],
     price: 0,
@@ -152,10 +152,10 @@ const AddProductForm = () => {
             labelId='demo-simple-select-label'
             id='demo-simple-select'
             label='Category'
-            {...getFieldProps("category")}
+            {...getFieldProps("categoryId")}
           >
             {categories.map((item) => (
-              <MenuItem key={item.id} value={item.title}>
+              <MenuItem key={item.id} value={item.id}>
                 {item.title}
               </MenuItem>
             ))}
