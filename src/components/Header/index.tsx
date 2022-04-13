@@ -3,13 +3,13 @@ import NavBarContainer from "../NavBarContainer";
 import LogoType from "../LogoType";
 import HeaderMenu from "../HeaderMenu";
 
-const Header = () => {
+function Header() {
   return (
     <NavBarContainer>
       <LogoType />
       <HeaderMenu />
     </NavBarContainer>
   );
-};
+}
 
 export default Header;

@@ -12,14 +12,14 @@ import {
   Checkbox,
   Stack,
 } from "@mui/material";
+import * as Yup from "yup";
+import { useHistory } from "react-router-dom";
 import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 import getCategories from "../lib/categories";
 import statuses from "../../types/statuses";
 import Dropzone from "../Dropzone";
-import * as Yup from "yup";
 import uploadRequest from "../lib/uploadImage";
 import { addProductRequest } from "../lib/products";
-import { useHistory } from "react-router-dom";
 import { ROUTES } from "../../types/routes";
 import { CONSTANTS } from "../../types/constants";
 
@@ -42,7 +42,7 @@ interface MyCategories {
   updatedAt: string;
 }
 
-const AddProductForm = () => {
+function AddProductForm() {
   const initialValuesForm: MyFormValues = {
     title: "",
     category: "",
@@ -62,7 +62,7 @@ const AddProductForm = () => {
     getCategories()
       .then((response) => {
         console.log(response);
-        const data = response.data;
+        const { data } = response;
         setCategories(data);
       })
       .catch((error) => {
@@ -244,6 +244,6 @@ const AddProductForm = () => {
       </Button>
     </form>
   );
-};
+}
 
 export default AddProductForm;

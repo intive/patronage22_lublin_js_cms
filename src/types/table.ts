@@ -58,18 +58,28 @@ export interface TablePaginationActionsProps {
   rowsPerPage: number;
   onPageChange: (
     event: React.MouseEvent<HTMLButtonElement>,
-    newPage: number
+    newPage: number,
   ) => void;
 }
 export interface HeadCell {
-  id: keyof Product | keyof Page | keyof Category | keyof OrderObject | keyof Client;
+  id:
+    | keyof Product
+    | keyof Page
+    | keyof Category
+    | keyof OrderObject
+    | keyof Client;
   numeric: boolean;
   label: string;
 }
 export interface CustomTableHeadProps {
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof Product | keyof Page | keyof Category | keyof OrderObject | keyof Client
+    property:
+      | keyof Product
+      | keyof Page
+      | keyof Category
+      | keyof OrderObject
+      | keyof Client,
   ) => void;
   order: Order;
   orderBy: string;
