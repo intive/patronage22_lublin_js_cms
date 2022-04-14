@@ -1,8 +1,8 @@
 import React from "react";
+import { Chip } from "@mui/material";
 import { CustomRowProps } from "../../../types/table";
 import { StyledTableCell, StyledTableRow } from "../styles";
 import EditButton from "../../EditButton";
-import { Chip } from "@mui/material";
 
 const ClientRow: React.FC<CustomRowProps> = ({ row }) => {
   const { id, active, firstName, lastName, email, phone } = row;

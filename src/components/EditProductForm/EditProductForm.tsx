@@ -8,21 +8,21 @@ import {
   FormLabel,
   Button,
 } from "@mui/material";
+import { useHistory } from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 import TextfieldWrapper from "../Textfield/TextfieldWrapper";
 import SelectWrapper from "../Select/SelectWrapper";
 import ButtonWrapper from "../Button/ButtonWrapper";
 import SwitchWrapper from "../Switch/SwitchWrapper";
-import classes from "../EditProductForm/EditProductForm.module.css";
+import classes from "./EditProductForm.module.css";
 import { FORM_VALIDATION } from "./validate";
-import { editProductRequest } from "../../components/lib/products";
+import { editProductRequest } from "../lib/products";
 import { getAllPhotosByProductId, deletePhoto } from "../lib/photos";
 import uploadRequest from "../lib/uploadImage";
-import { useHistory } from "react-router-dom";
 import { ROUTES } from "../../types/routes";
 import Dropzone from "../Dropzone";
 import { CONSTANTS } from "../../types/constants";
-import DeleteIcon from "@mui/icons-material/Delete";
-import IconButton from "@mui/material/IconButton";
 import statuses from "../../types/statuses";
 
 type EditProductFormProps = {
@@ -107,27 +107,27 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
           <Form>
             <Grid container className={classes.gridContainer}>
               <Grid item>
-                <Typography variant='h4'>Edit product Form</Typography>
+                <Typography variant="h4">Edit product Form</Typography>
               </Grid>
 
               <Grid item xs={12}>
-                <TextfieldWrapper name='title' label='Title' />
+                <TextfieldWrapper name="title" label="Title" />
               </Grid>
 
               <Grid item xs={12}>
                 <SelectWrapper
-                  name='category'
-                  label='Select Category'
+                  name="category"
+                  label="Select Category"
                   options={categories}
-                  idKey='id'
-                  nameKey='title'
+                  idKey="id"
+                  nameKey="title"
                 />
               </Grid>
 
               <Grid item container xs={12}>
                 {apiProductPhotos.length === 0 ? (
                   <Grid item xs={12}>
-                    <Typography variant='h6'>No photos yet...</Typography>
+                    <Typography variant="h6">No photos yet...</Typography>
                   </Grid>
                 ) : (
                   apiProductPhotos.map((photo: any) => {
@@ -137,18 +137,18 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
                         item
                         xs={6}
                         container
-                        alignItems='center'
+                        alignItems="center"
                         sx={{ p: 1 }}
                       >
                         <img
-                          src={`${CONSTANTS.URL}/` + photo.url}
-                          width='150'
-                          alt='product'
+                          src={`${CONSTANTS.URL}/${photo.url}`}
+                          width="150"
+                          alt="product"
                           style={{ marginRight: "0.5rem" }}
                         />
                         <IconButton
                           onClick={() => deleteHandler(photo.id)}
-                          aria-label='delete'
+                          aria-label="delete"
                         >
                           <DeleteIcon />
                         </IconButton>
@@ -158,9 +158,9 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
                 )}
               </Grid>
 
-              <Stack direction='column' alignItems='left' spacing={1}>
+              <Stack direction="column" alignItems="left" spacing={1}>
                 <FormLabel
-                  htmlFor='contained-button-file'
+                  htmlFor="contained-button-file"
                   style={{ marginTop: "1rem" }}
                 >
                   Add Image/-s
@@ -169,41 +169,41 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
               </Stack>
 
               <Grid item xs={12}>
-                <TextfieldWrapper name='price' label='Price' />
+                <TextfieldWrapper name="price" label="Price" />
               </Grid>
 
               <Grid item xs={12}>
-                <TextfieldWrapper name='quantity' label='Quantity' />
+                <TextfieldWrapper name="quantity" label="Quantity" />
               </Grid>
 
               <Grid item xs={12}>
                 <SelectWrapper
-                  name='status'
-                  label='Select Status'
+                  name="status"
+                  label="Select Status"
                   options={statuses}
-                  idKey='id'
-                  nameKey='status'
+                  idKey="id"
+                  nameKey="status"
                 />
               </Grid>
 
               <Grid item xs={6} sx={{ pl: 1 }}>
                 <SwitchWrapper
-                  name='published'
-                  legend='Published'
+                  name="published"
+                  legend="Published"
                   label={props.values.published ? "Published" : "Unpublished"}
                   ifChecked={props.values.published}
                 />
               </Grid>
 
               <Grid item xs={12}>
-                <Typography variant='h6'>Description</Typography>
+                <Typography variant="h6">Description</Typography>
               </Grid>
 
               <Grid item xs={12}>
                 <TextfieldWrapper
-                  name='description'
-                  label='Description...'
-                  multiline={true}
+                  name="description"
+                  label="Description..."
+                  multiline
                   rows={5}
                 />
               </Grid>
@@ -212,7 +212,7 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
                 <ButtonWrapper>Edit Product</ButtonWrapper>
               </Grid>
               <Grid item xs={12}>
-                <Button sx={{ width: "100%" }} type='reset'>
+                <Button sx={{ width: "100%" }} type="reset">
                   Cancel
                 </Button>
               </Grid>

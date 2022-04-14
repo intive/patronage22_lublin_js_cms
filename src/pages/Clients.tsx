@@ -1,8 +1,9 @@
 import React from "react";
+import { Typography } from "@mui/material";
 import ClientRow from "../components/Table/ClientRow";
 import { CustomRowProps, HeadCell } from "../types/table";
 import CustomTable from "../components/Table";
-import { Typography } from "@mui/material";
+
 
 const mockClients = [
   {
@@ -105,7 +106,7 @@ const headCells: HeadCell[] = [
   },
 ];
 
-const Clients = () => {
+function Clients() {
   return (
     <section>
       <Typography variant="h4" p={2} sx={{ color: "#0f0f0f" }}>
@@ -118,5 +119,5 @@ const Clients = () => {
       />
     </section>
   );
-};
+}
 export default Clients;

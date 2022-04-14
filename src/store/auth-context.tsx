@@ -32,7 +32,7 @@ export const AuthContextProvider: React.FC = (props) => {
   };
 
   const contextValue = {
-    token: token,
+    token,
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,

@@ -12,14 +12,14 @@ import {
   Checkbox,
   Stack,
 } from "@mui/material";
+import * as Yup from "yup";
+import { useHistory } from "react-router-dom";
 import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 import getCategories from "../lib/categories";
 import statuses from "../../types/statuses";
 import Dropzone from "../Dropzone";
-import * as Yup from "yup";
 import uploadRequest from "../lib/uploadImage";
 import { addProductRequest } from "../lib/products";
-import { useHistory } from "react-router-dom";
 import { ROUTES } from "../../types/routes";
 import { CONSTANTS } from "../../types/constants";
 
@@ -42,7 +42,7 @@ interface MyCategories {
   updatedAt: string;
 }
 
-const AddProductForm = () => {
+function AddProductForm() {
   const initialValuesForm: MyFormValues = {
     title: "",
     category: 0,
@@ -62,7 +62,7 @@ const AddProductForm = () => {
     getCategories()
       .then((response) => {
         console.log(response);
-        const data = response.data;
+        const { data } = response;
         setCategories(data);
       })
       .catch((error) => {
@@ -136,22 +136,22 @@ const AddProductForm = () => {
     >
       <h1>Add Product</h1>
       <FormControl>
-        <FormLabel htmlFor='title'>Title</FormLabel>
+        <FormLabel htmlFor="title">Title</FormLabel>
         <TextField
-          id='title'
-          type='text'
-          placeholder='Enter title'
+          id="title"
+          type="text"
+          placeholder="Enter title"
           {...getFieldProps("title")}
         />
         {errors.title && <p className={classes.errors}>{errors.title}</p>}
       </FormControl>
       <Box sx={{ minWidth: 420 }}>
         <FormControl fullWidth>
-          <FormLabel htmlFor='demo-simple-select'>Select Category</FormLabel>
+          <FormLabel htmlFor="demo-simple-select">Select Category</FormLabel>
           <Select
-            labelId='demo-simple-select-label'
-            id='demo-simple-select'
-            label='Category'
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Category"
             {...getFieldProps("categoryId")}
           >
             {categories.map((item) => (
@@ -166,11 +166,11 @@ const AddProductForm = () => {
         </FormControl>
       </Box>
       <FormControl>
-        <FormLabel htmlFor='description'>Description</FormLabel>
+        <FormLabel htmlFor="description">Description</FormLabel>
         <TextField
-          id='description'
+          id="description"
           multiline
-          placeholder='Enter description'
+          placeholder="Enter description"
           rows={4}
           {...getFieldProps("description")}
         />
@@ -179,9 +179,9 @@ const AddProductForm = () => {
         )}
       </FormControl>
       <FormControl>
-        <Stack direction='column' alignItems='left' spacing={1}>
+        <Stack direction="column" alignItems="left" spacing={1}>
           <FormLabel
-            htmlFor='contained-button-file'
+            htmlFor="contained-button-file"
             style={{ marginTop: "1rem" }}
           >
             Select Image/-s
@@ -190,11 +190,11 @@ const AddProductForm = () => {
         </Stack>
       </FormControl>
       <FormControl>
-        <FormLabel htmlFor='price'>Price</FormLabel>
+        <FormLabel htmlFor="price">Price</FormLabel>
         <TextField
-          id='price'
-          type='number'
-          placeholder='Enter price'
+          id="price"
+          type="number"
+          placeholder="Enter price"
           {...getFieldProps("price")}
           InputProps={{
             inputProps: {
@@ -205,11 +205,11 @@ const AddProductForm = () => {
         {errors.price && <p className={classes.errors}>{errors.price}</p>}
       </FormControl>
       <FormControl>
-        <FormLabel htmlFor='quantity'>Quantity</FormLabel>
+        <FormLabel htmlFor="quantity">Quantity</FormLabel>
         <TextField
-          id='quantity'
-          type='number'
-          placeholder='Enter quantity'
+          id="quantity"
+          type="number"
+          placeholder="Enter quantity"
           {...getFieldProps("quantity")}
           InputProps={{
             inputProps: {
@@ -222,10 +222,10 @@ const AddProductForm = () => {
       </FormControl>
       <Box sx={{ minWidth: 420 }}>
         <FormControl fullWidth>
-          <FormLabel htmlFor='select-status'>Select Status</FormLabel>
+          <FormLabel htmlFor="select-status">Select Status</FormLabel>
           <Select
-            labelId='select-label-status'
-            id='select-status'
+            labelId="select-label-status"
+            id="select-status"
             {...getFieldProps("status")}
           >
             {statuses.map((item) => (
@@ -240,15 +240,15 @@ const AddProductForm = () => {
       <FormControl>
         <FormControlLabel
           control={<Checkbox {...getFieldProps("published")} />}
-          label='Published'
+          label="Published"
         />
       </FormControl>
-      <Button type='submit' variant='contained'>
+      <Button type="submit" variant="contained">
         Add Product
       </Button>
-      <Button type='reset'>Clear</Button>
+      <Button type="reset">Clear</Button>
     </form>
   );
-};
+}
 
 export default AddProductForm;

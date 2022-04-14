@@ -1,6 +1,6 @@
 import React from "react";
-import {Button} from "@mui/material";
-import {useHistory} from "react-router-dom";
+import { Button } from "@mui/material";
+import { useHistory } from "react-router-dom";
 
 interface Props {
   children: React.ReactNode;
@@ -8,14 +8,14 @@ interface Props {
   linkURL: string;
 }
 
-const EditButton: React.FC<Props> = ({children, id, linkURL}) => {
+const EditButton: React.FC<Props> = ({ children, id, linkURL }) => {
   const history = useHistory();
 
   return (
     <Button
-      variant='text'
-      color='primary'
-      size='small'
+      variant="text"
+      color="primary"
+      size="small"
       onClick={() => history.push(linkURL)}
     >
       {children}

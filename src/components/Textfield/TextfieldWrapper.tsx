@@ -9,7 +9,10 @@ type TextFieldProps = {
   rows?: number;
 };
 
-export const TextfieldWrapper: React.FC<TextFieldProps> = ({ name, ...otherProps }) => {
+export const TextfieldWrapper: React.FC<TextFieldProps> = ({
+  name,
+  ...otherProps
+}) => {
   const [field, mata] = useField(name);
 
   const configTextfield = {
