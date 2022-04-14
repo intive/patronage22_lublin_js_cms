@@ -40,16 +40,6 @@ const PageForm: React.FC = () => {
       .required("Description is required"),
   });
 
-  // const formik = useFormik({
-  //   initialValues: InitialValuesForm,
-  //   validationSchema,
-  //   onSubmit: (values) => {
-  //     const payload = { ...values };
-  //     addPageRequest(payload);
-  //     history.push("/pages");
-  //   },
-  // });
-
   const formik = useFormik({
     initialValues: InitialValuesForm,
     onSubmit(values) {
