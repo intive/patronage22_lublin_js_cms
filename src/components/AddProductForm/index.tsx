@@ -25,7 +25,7 @@ import { CONSTANTS } from "../../types/constants";
 
 interface MyFormValues {
   title: string;
-  category: string;
+  category: number;
   description: string;
   photos: File[];
   price: number;
@@ -45,7 +45,7 @@ interface MyCategories {
 function AddProductForm() {
   const initialValuesForm: MyFormValues = {
     title: "",
-    category: "",
+    category: 0,
     description: "",
     photos: [],
     price: 0,
@@ -126,10 +126,14 @@ function AddProductForm() {
     validationSchema,
   });
 
-  const { handleSubmit, getFieldProps, errors } = formik;
+  const { handleSubmit, handleReset, getFieldProps, errors } = formik;
 
   return (
-    <form onSubmit={handleSubmit} className={classes.form}>
+    <form
+      onSubmit={handleSubmit}
+      className={classes.form}
+      onReset={handleReset}
+    >
       <h1>Add Product</h1>
       <FormControl>
         <FormLabel htmlFor="title">Title</FormLabel>
@@ -148,10 +152,10 @@ function AddProductForm() {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="Category"
-            {...getFieldProps("category")}
+            {...getFieldProps("categoryId")}
           >
             {categories.map((item) => (
-              <MenuItem key={item.id} value={item.title}>
+              <MenuItem key={item.id} value={item.id}>
                 {item.title}
               </MenuItem>
             ))}
@@ -242,6 +246,7 @@ function AddProductForm() {
       <Button type="submit" variant="contained">
         Add Product
       </Button>
+      <Button type="reset">Clear</Button>
     </form>
   );
 }

@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
-import { Container, Grid, Typography, Stack, FormLabel } from "@mui/material";
+import {
+  Container,
+  Grid,
+  Typography,
+  Stack,
+  FormLabel,
+  Button,
+} from "@mui/material";
 import { useHistory } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
@@ -203,6 +210,11 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
 
               <Grid item xs={12}>
                 <ButtonWrapper>Edit Product</ButtonWrapper>
+              </Grid>
+              <Grid item xs={12}>
+                <Button sx={{ width: "100%" }} type="reset">
+                  Cancel
+                </Button>
               </Grid>
             </Grid>
           </Form>
