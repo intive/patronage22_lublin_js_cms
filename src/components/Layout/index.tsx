@@ -19,6 +19,7 @@ import AddPage from "../../pages/AddPage";
 import Categories from "../../pages/Categories";
 import Orders from "../../pages/Orders";
 import EditCategory from "../../pages/EditCategory";
+import Clients from "../../pages/Clients";
 
 const Layout = () => {
   let initialWidth: number;
@@ -70,6 +71,7 @@ const Layout = () => {
           <Route exact path='/orders' render={() => <Orders />} />
           <Route exact path='/products' component={Products} />
           <Route exact path="/category/edit/:id" render={() => <EditCategory />} />
+          <Route exact path='/clients' render={() => <Clients />} />
           <Route path='*' component={ErrorPageInfo} />
           <Route />
         </Switch>

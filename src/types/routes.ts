@@ -42,7 +42,11 @@ const menuLinks = [
     label: "Orders",
     icon: SubscriptionsOutlinedIcon,
   },
-  { id: 6, to: ROUTES.CLIENTS, label: "Clients", icon: PeopleOutlinedIcon },
+  { 
+    id: 6,
+    to: ROUTES.CLIENTS,
+    label: "Clients",
+    icon: PeopleOutlinedIcon },
 ];
 
 export default menuLinks;

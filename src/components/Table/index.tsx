@@ -17,6 +17,7 @@ import {
   Order,
   Page,
   Product,
+  Client
 } from "../../types/table";
 
 const CustomTable: React.FC<CustomTableProps> = ({
@@ -29,14 +30,14 @@ const CustomTable: React.FC<CustomTableProps> = ({
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const [order, setOrder] = useState<Order>("asc");
   const [orderBy, setOrderBy] = useState<
-    keyof Product | keyof Page | keyof Category | keyof OrderObject
+    keyof Product | keyof Page | keyof Category | keyof OrderObject | keyof Client 
   >("id");
 
   const CustomRow: any = useMemo(() => customRow, [customRow]);
 
   const handleRequestSort = (
     event: MouseEvent<unknown>,
-    property: keyof Product | keyof Page | keyof Category | keyof OrderObject
+    property: keyof Product | keyof Page | keyof Category | keyof OrderObject | keyof Client
   ) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
