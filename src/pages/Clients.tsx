@@ -4,6 +4,7 @@ import ClientRow from "../components/Table/ClientRow";
 import { CustomRowProps, HeadCell } from "../types/table";
 import CustomTable from "../components/Table";
 
+
 const mockClients = [
   {
     id: 1,
