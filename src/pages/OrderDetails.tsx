@@ -47,14 +47,14 @@ const mockOrders = [
 
 //Every mockedOrderDetails data, juz for exercising purposes, in future, fetched from API
 const mockedOrderDetails = [
-  { id: 1, orderId: 2, productId: 101, quantity: 3 },
-  { id: 2, orderId: 1, productId: 245, quantity: 8 },
-  { id: 3, orderId: 2, productId: 102, quantity: 4 },
-  { id: 4, orderId: 3, productId: 184, quantity: 7 },
-  { id: 5, orderId: 2, productId: 103, quantity: 1 },
-  { id: 6, orderId: 1, productId: 102, quantity: 11 },
-  { id: 7, orderId: 3, productId: 102, quantity: 2 },
-  { id: 12, orderId: 3, productId: 99, quantity: 2 },
+  { id: 1, orderId: 1, productId: 1, quantity: 3 },
+  { id: 2, orderId: 1, productId: 2, quantity: 8 },
+  { id: 3, orderId: 1, productId: 3, quantity: 4 },
+  { id: 4, orderId: 2, productId: 1, quantity: 7 },
+  { id: 5, orderId: 2, productId: 2, quantity: 1 },
+  { id: 6, orderId: 2, productId: 3, quantity: 11 },
+  { id: 7, orderId: 3, productId: 1, quantity: 2 },
+  { id: 12, orderId: 3, productId: 2, quantity: 2 },
 ];
 //The same as above
 
