@@ -18,7 +18,6 @@ import AddCategory from "../../pages/AddCategory";
 import AddPage from "../../pages/AddPage";
 import Categories from "../../pages/Categories";
 import Orders from "../../pages/Orders";
-import OrderDetails from "../../pages/OrderDetails";
 import EditCategory from "../../pages/EditCategory";
 import Clients from "../../pages/Clients";
 
