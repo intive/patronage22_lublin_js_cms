@@ -20,6 +20,7 @@ import Categories from "../../pages/Categories";
 import Orders from "../../pages/Orders";
 import EditCategory from "../../pages/EditCategory";
 import Clients from "../../pages/Clients";
+import OrderDetails from "../../pages/OrderDetails";
 
 function Layout() {
   let initialWidth: number;
@@ -69,6 +70,11 @@ function Layout() {
           <Route exact path="/add-category" render={() => <AddCategory />} />
           <Route exact path="/categories" render={() => <Categories />} />
           <Route exact path="/orders" render={() => <Orders />} />
+          <Route
+            exact
+            path="/order/details/:id"
+            render={() => <OrderDetails />}
+          />
           <Route exact path="/products" component={Products} />
           <Route
             exact

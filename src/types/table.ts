@@ -16,6 +16,15 @@ export interface Category {
   updatedAt: string;
 }
 
+export interface Client {
+  id: number;
+  active: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+}
+
 export enum PaymentStatus {
   PENDING = "pending",
   CANCELLED = "cancelled",
@@ -54,7 +63,7 @@ export interface Page {
 }
 
 export interface CustomRowProps {
-  row: Product | Page | Category | OrderObject | OrderDetailRow | any;
+  row: Product | Page | Category | OrderObject | OrderDetailRow | Client | any;
   key: number;
 }
 
@@ -73,6 +82,7 @@ export interface HeadCell {
     | keyof Page
     | keyof Category
     | keyof OrderObject
+    | keyof Client
     | keyof OrderDetailRow;
   numeric: boolean;
   label: string;
@@ -85,6 +95,7 @@ export interface CustomTableHeadProps {
       | keyof Page
       | keyof Category
       | keyof OrderObject
+      | keyof Client
       | keyof OrderDetailRow,
   ) => void;
   order: Order;
@@ -99,6 +110,7 @@ export interface CustomTableProps {
     | Page[]
     | Category[]
     | OrderObject[]
+    | Client[]
     | OrderDetailRow[]
     | any;
   headCells: HeadCell[];

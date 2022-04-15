@@ -18,6 +18,7 @@ import {
   Page,
   Product,
   OrderDetailRow,
+  Client,
 } from "../../types/table";
 
 const CustomTable: React.FC<CustomTableProps> = ({
@@ -34,6 +35,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
     | keyof Page
     | keyof Category
     | keyof OrderObject
+    | keyof Client
     | keyof OrderDetailRow
   >("id");
 
@@ -46,6 +48,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
       | keyof Page
       | keyof Category
       | keyof OrderObject
+      | keyof Client
       | keyof OrderDetailRow,
   ) => {
     const isAsc = orderBy === property && order === "asc";

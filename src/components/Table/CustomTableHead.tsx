@@ -14,6 +14,7 @@ import {
   Category,
   OrderObject,
   OrderDetailRow,
+  Client,
 } from "../../types/table";
 
 export const CustomTableHead = (props: CustomTableHeadProps) => {
@@ -25,6 +26,7 @@ export const CustomTableHead = (props: CustomTableHeadProps) => {
         | keyof Page
         | keyof Category
         | keyof OrderObject
+        | keyof Client
         | keyof OrderDetailRow,
     ) =>
     (event: MouseEvent<unknown>) => {
