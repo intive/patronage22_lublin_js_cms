@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
-import CustomTable from "../components/Table";
-import { CustomRowProps, HeadCell, Product } from "../types/table";
-import {getProducts} from "../components/lib/products";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
+import CustomTable from "../components/Table";
+import { CustomRowProps, HeadCell, Product } from "../types/table";
+import { getProducts } from "../components/lib/products";
 import { ROUTES } from "../types/routes";
-import classes from '../components/Layout/Layout.module.css'
+import classes from "../components/Layout/Layout.module.css";
 import ProductRow from "../components/Table/ProductRow";
-import { Typography } from '@mui/material';
 
-const Dashboard = () => {
+function Dashboard() {
   const [products, setProducts] = useState<Product[]>([]);
-  
+
   useEffect(() => {
     getProducts()
       .then((response) => {
@@ -25,56 +24,60 @@ const Dashboard = () => {
 
   const headCells: HeadCell[] = [
     {
-      id: 'id',
+      id: "id",
       numeric: true,
-      label: 'ID',
+      label: "ID",
     },
     {
-      id: 'title',
+      id: "title",
       numeric: false,
-      label: 'TITLE',
+      label: "TITLE",
     },
     {
-      id: 'price',
+      id: "price",
       numeric: true,
-      label: 'PRICE',
+      label: "PRICE",
     },
     {
-      id: 'published',
+      id: "published",
       numeric: false,
-      label: 'PUBLISHED',
+      label: "PUBLISHED",
     },
     {
-      id: 'createdAt',
+      id: "createdAt",
       numeric: true,
-      label: 'CREATED',
+      label: "CREATED",
     },
     {
-      id: 'updatedAt',
+      id: "updatedAt",
       numeric: false,
-      label: '',
+      label: "",
     },
   ];
 
-
   return (
     <section>
-       <Typography variant="h4" p={2} sx={{ color: '#0f0f0f' }}>
+      <Typography variant="h4" p={2} sx={{ color: "#0f0f0f" }}>
         Products
       </Typography>
       <Button type="submit" variant="contained">
         <Link to={ROUTES.ADD_PRODUCT} className={classes.link}>
-           <AddIcon /> Add Product
+          <AddIcon /> Add Product
         </Link>
       </Button>
       <Button type="submit" variant="contained">
         <Link to={ROUTES.CATEGORY_ADD} className={classes.link}>
-           <AddIcon /> Add Category
+          <AddIcon /> Add Category
         </Link>
       </Button>
-      <CustomTable customRow={(props: CustomRowProps) => <ProductRow  {...props}/>} headCells={headCells} data={products} disablePagination={true} />
+      <CustomTable
+        customRow={(props: CustomRowProps) => <ProductRow {...props} />}
+        headCells={headCells}
+        data={products}
+        disablePagination
+      />
     </section>
   );
-};
+}
 
 export default Dashboard;

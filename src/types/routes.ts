@@ -19,7 +19,7 @@ export enum ROUTES {
   ORDER_DETAILS = "/order/details/:id",
   CATEGORY_ADD = "/add-category",
   PAGE_ADD = "/add-page",
-  CATEGORY_EDIT ='/category/edit/:id'
+  CATEGORY_EDIT = "/category/edit/:id",
 }
 
 const menuLinks = [
@@ -43,7 +43,12 @@ const menuLinks = [
     label: "Orders",
     icon: SubscriptionsOutlinedIcon,
   },
-  { id: 6, to: ROUTES.CLIENTS, label: "Clients", icon: PeopleOutlinedIcon },
+  {
+    id: 6,
+    to: ROUTES.CLIENTS,
+    label: "Clients",
+    icon: PeopleOutlinedIcon,
+  },
 ];
 
 export default menuLinks;

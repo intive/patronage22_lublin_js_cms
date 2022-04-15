@@ -2,8 +2,8 @@ import ReactDOM from "react-dom";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import { AuthContextProvider } from "./store/auth-context";
 import { StyledEngineProvider } from "@mui/material/styles";
+import { AuthContextProvider } from "./store/auth-context";
 
 import "./index.css";
 import App from "./App";
@@ -16,5 +16,5 @@ ReactDOM.render(
       </StyledEngineProvider>
     </BrowserRouter>
   </AuthContextProvider>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );

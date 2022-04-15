@@ -1,9 +1,9 @@
 import React from "react";
+import { Typography } from "@mui/material";
 import CustomTable from "../components/Table";
 import { PaymentStatus, CustomRowProps, HeadCell } from "../types/table";
 // import getOrders from "../components/lib/orders";
 import OrderRow from "../components/Table/OrderRow";
-import { Typography } from "@mui/material";
 
 export const mockOrders = [
   {
@@ -84,7 +84,7 @@ const Orders: React.FC = () => {
   ];
   return (
     <section>
-      <Typography variant='h4' p={2} sx={{ color: "#0f0f0f" }}>
+      <Typography variant="h4" p={2} sx={{ color: "#0f0f0f" }}>
         Orders
       </Typography>
       <CustomTable
