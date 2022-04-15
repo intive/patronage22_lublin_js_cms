@@ -13,7 +13,6 @@ import {
   Page,
   Category,
   OrderObject,
-  OrderDetailRow,
   Client,
 } from "../../types/table";
 
@@ -26,7 +25,6 @@ export function CustomTableHead(props: CustomTableHeadProps) {
         | keyof Page
         | keyof Category
         | keyof OrderObject
-        | keyof OrderDetailRow
         | keyof Client,
     ) =>
     (event: MouseEvent<unknown>) => {
