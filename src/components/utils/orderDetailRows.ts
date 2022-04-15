@@ -3,16 +3,16 @@ import { OrderDetail, Product, OrderDetailRow } from "../../types/table";
 const getOrderDetailRows = (
   orderDetails: OrderDetail[],
   products: Product[],
-  currentOrderId: string
+  currentOrderId: string,
 ): OrderDetailRow[] => {
   let orderDetailRows: Array<OrderDetailRow> = [];
 
   const currentOrderDetails = orderDetails.filter(
-    (e) => e.orderId.toString() === currentOrderId
+    (e) => e.orderId.toString() === currentOrderId,
   );
 
   const currentProducts = products.filter((product) =>
-    currentOrderDetails.map((e) => e.productId).includes(product.id)
+    currentOrderDetails.map((e) => e.productId).includes(product.id),
   );
 
   for (let index = 0; index < currentOrderDetails.length; index++) {

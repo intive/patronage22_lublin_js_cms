@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Card, CardContent, Typography } from "@mui/material";
 import {
   Product,
   PaymentStatus,
@@ -8,7 +9,6 @@ import {
   CustomRowProps,
 } from "../types/table";
 import { getProducts } from "../components/lib/products";
-import { Card, CardContent, Typography } from "@mui/material";
 import CustomerDataCard from "../components/OrderDataCard";
 import CustomTable from "../components/Table";
 import OrderDetailRowElement from "../components/Table/OrderDetailRow";
@@ -45,7 +45,7 @@ const mockOrders = [
   },
 ];
 
-//Every mockedOrderDetails data, juz for exercising purposes, in future, fetched from API
+// Every mockedOrderDetails data, juz for exercising purposes, in future, fetched from API
 const mockedOrderDetails = [
   { id: 1, orderId: 1, productId: 1, quantity: 3 },
   { id: 2, orderId: 1, productId: 2, quantity: 8 },
@@ -56,7 +56,7 @@ const mockedOrderDetails = [
   { id: 7, orderId: 3, productId: 1, quantity: 2 },
   { id: 12, orderId: 3, productId: 2, quantity: 2 },
 ];
-//The same as above
+// The same as above
 
 const OrderDetails: React.FC = () => {
   // const [orderDetails, setOrderDetails] = useState<OrderDetail[]>([]);
@@ -133,7 +133,7 @@ const OrderDetails: React.FC = () => {
       />
       <Card sx={{ display: "flex", justifyContent: "flex-end" }}>
         <CardContent>
-          <Typography sx={{ flex: 5 }}></Typography>
+          <Typography sx={{ flex: 5 }} />
           <Typography
             sx={{
               fontSize: "1.5em",

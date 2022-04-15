@@ -19,7 +19,7 @@ export enum ROUTES {
   ORDER_DETAILS = "/order/details/:id",
   CATEGORY_ADD = "/add-category",
   PAGE_ADD = "/add-page",
-  CATEGORY_EDIT ='/category/edit/:id'
+  CATEGORY_EDIT = "/category/edit/:id",
 }
 
 const menuLinks = [

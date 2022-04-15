@@ -64,7 +64,7 @@ export interface TablePaginationActionsProps {
   rowsPerPage: number;
   onPageChange: (
     event: React.MouseEvent<HTMLButtonElement>,
-    newPage: number
+    newPage: number,
   ) => void;
 }
 export interface HeadCell {
@@ -85,7 +85,7 @@ export interface CustomTableHeadProps {
       | keyof Page
       | keyof Category
       | keyof OrderObject
-      | keyof OrderDetailRow
+      | keyof OrderDetailRow,
   ) => void;
   order: Order;
   orderBy: string;
