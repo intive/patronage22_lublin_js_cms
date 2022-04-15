@@ -1,13 +1,13 @@
 import { IconButton, Box, Menu, MenuItem } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
-import React from "react";
-import { useContext, useState } from "react";
-import AuthContext from "../../store/auth-context";
+import React, { useContext, useState } from "react";
+
 import { useHistory } from "react-router-dom";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import AuthContext from "../../store/auth-context";
 import styles from "./index.module.css";
 
-const HeaderMenu = () => {
+function HeaderMenu() {
   const authCtx = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -53,6 +53,6 @@ const HeaderMenu = () => {
       </Menu>
     </Box>
   );
-};
+}
 
 export default HeaderMenu;

@@ -12,20 +12,20 @@ import {
   Checkbox,
   Stack,
 } from "@mui/material";
+import * as Yup from "yup";
+import { useHistory } from "react-router-dom";
 import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 import getCategories from "../lib/categories";
 import statuses from "../../types/statuses";
 import Dropzone from "../Dropzone";
-import * as Yup from "yup";
 import uploadRequest from "../lib/uploadImage";
 import { addProductRequest } from "../lib/products";
-import { useHistory } from "react-router-dom";
 import { ROUTES } from "../../types/routes";
 import { CONSTANTS } from "../../types/constants";
 
 interface MyFormValues {
   title: string;
-  category: string;
+  category: number;
   description: string;
   photos: File[];
   price: number;
@@ -42,10 +42,10 @@ interface MyCategories {
   updatedAt: string;
 }
 
-const AddProductForm = () => {
+function AddProductForm() {
   const initialValuesForm: MyFormValues = {
     title: "",
-    category: "",
+    category: 0,
     description: "",
     photos: [],
     price: 0,
@@ -62,7 +62,7 @@ const AddProductForm = () => {
     getCategories()
       .then((response) => {
         console.log(response);
-        const data = response.data;
+        const { data } = response;
         setCategories(data);
       })
       .catch((error) => {
@@ -126,10 +126,14 @@ const AddProductForm = () => {
     validationSchema,
   });
 
-  const { handleSubmit, getFieldProps, errors } = formik;
+  const { handleSubmit, handleReset, getFieldProps, errors } = formik;
 
   return (
-    <form onSubmit={handleSubmit} className={classes.form}>
+    <form
+      onSubmit={handleSubmit}
+      className={classes.form}
+      onReset={handleReset}
+    >
       <h1>Add Product</h1>
       <FormControl>
         <FormLabel htmlFor="title">Title</FormLabel>
@@ -148,10 +152,10 @@ const AddProductForm = () => {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="Category"
-            {...getFieldProps("category")}
+            {...getFieldProps("categoryId")}
           >
             {categories.map((item) => (
-              <MenuItem key={item.id} value={item.title}>
+              <MenuItem key={item.id} value={item.id}>
                 {item.title}
               </MenuItem>
             ))}
@@ -242,8 +246,9 @@ const AddProductForm = () => {
       <Button type="submit" variant="contained">
         Add Product
       </Button>
+      <Button type="reset">Clear</Button>
     </form>
   );
-};
+}
 
 export default AddProductForm;

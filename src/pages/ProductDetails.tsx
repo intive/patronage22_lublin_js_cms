@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { EditProductForm } from "../components/EditProductForm/EditProductForm";
 import getCategories from "../components/lib/categories";
-import { useParams } from "react-router-dom";
 import { getProducts } from "../components/lib/products";
 
 type UrlParams = {
@@ -35,7 +35,7 @@ const ProductDetails: React.FC = () => {
     getCategories()
       .then((response) => {
         // console.log(response.data);
-        const data = response.data;
+        const { data } = response;
         setApiCategories(data);
       })
       .catch((error) => {

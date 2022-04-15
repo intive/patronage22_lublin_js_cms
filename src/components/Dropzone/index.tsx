@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import classes from "./Dropzone.module.css";
 import { List, ListItem, ListItemText } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
@@ -8,6 +7,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Typography from "@mui/material/Typography";
 import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
+import classes from "./Dropzone.module.css";
 
 interface FilesListProps {
   setFilesList: (file: File[]) => void;
@@ -22,7 +22,8 @@ function fileSizeValidator(file: File) {
       code: "file-too-large",
       message: `File is larger than ${maxSize} bytes`,
     };
-  } else if (file.size < minSize) {
+  }
+  if (file.size < minSize) {
     return {
       code: "file-too-small",
       message: `File is smaller than ${minSize} bytes`,
@@ -38,7 +39,7 @@ const Dropzone: React.FC<FilesListProps> = ({ setFilesList }) => {
       console.log(acceptedFiles);
       setFilesList(acceptedFiles);
     },
-    [setFilesList]
+    [setFilesList],
   );
   const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
     useDropzone({
@@ -52,7 +53,7 @@ const Dropzone: React.FC<FilesListProps> = ({ setFilesList }) => {
     const newList = acceptedFiles.filter(
       (item) =>
         item.name.replace(/\s+/g, "").toLocaleLowerCase() !==
-        String(name).replace(/\s+/g, "").toLocaleLowerCase()
+        String(name).replace(/\s+/g, "").toLocaleLowerCase(),
     );
     setFilesList(newList);
   };
@@ -92,7 +93,7 @@ const Dropzone: React.FC<FilesListProps> = ({ setFilesList }) => {
   const fileRejectionItems = fileRejections.map(({ file, errors }) => {
     const fileName = file.name;
     const filePos = fileRejections.findIndex(
-      (item) => item.file.name === fileName
+      (item) => item.file.name === fileName,
     );
     return (
       <ListItem

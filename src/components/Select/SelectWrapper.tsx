@@ -43,7 +43,7 @@ const SelectWrapper: React.FC<SelectWrapperProps> = ({
     <TextField {...configSelect}>
       {options.map((option: any) => {
         return (
-          <MenuItem key={option[idKey]}  value={option[nameKey]}>
+          <MenuItem key={option[idKey]} value={option[nameKey]}>
             {option[nameKey]}
           </MenuItem>
         );

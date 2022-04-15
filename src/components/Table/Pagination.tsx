@@ -1,40 +1,40 @@
-import React from 'react';
-import type { MouseEventHandler } from 'react';
-import Box from '@mui/material/Box';
-import { useTheme } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import { TablePaginationActionsProps } from '../../types/table';
+import React from "react";
+import type { MouseEventHandler } from "react";
+import Box from "@mui/material/Box";
+import { useTheme } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import { TablePaginationActionsProps } from "../../types/table";
 
 export default function TablePaginationActions(
-  props: TablePaginationActionsProps
+  props: TablePaginationActionsProps,
 ) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
   const handleFirstPageButtonClick: MouseEventHandler<HTMLButtonElement> = (
-    event
+    event,
   ) => {
     onPageChange(event, 0);
   };
 
   const handleBackButtonClick: MouseEventHandler<HTMLButtonElement> = (
-    event
+    event,
   ) => {
     onPageChange(event, page - 1);
   };
 
   const handleNextButtonClick: MouseEventHandler<HTMLButtonElement> = (
-    event
+    event,
   ) => {
     onPageChange(event, page + 1);
   };
 
   const handleLastPageButtonClick: MouseEventHandler<HTMLButtonElement> = (
-    event
+    event,
   ) => {
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
@@ -46,14 +46,14 @@ export default function TablePaginationActions(
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label="previous page"
       >
-        {theme.direction === 'rtl' ? (
+        {theme.direction === "rtl" ? (
           <KeyboardArrowRight />
         ) : (
           <KeyboardArrowLeft />
@@ -64,7 +64,7 @@ export default function TablePaginationActions(
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === 'rtl' ? (
+        {theme.direction === "rtl" ? (
           <KeyboardArrowLeft />
         ) : (
           <KeyboardArrowRight />
@@ -75,7 +75,7 @@ export default function TablePaginationActions(
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
   );

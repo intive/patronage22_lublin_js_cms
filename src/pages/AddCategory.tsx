@@ -1,9 +1,7 @@
-import React from 'react';
-import CategoryForm from '../components/CategoryForm';
-
+import React from "react";
+import CategoryForm from "../components/CategoryForm";
 
 const AddCategory: React.FC = () => {
- 
   return (
     <section>
       <CategoryForm />
