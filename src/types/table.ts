@@ -32,12 +32,26 @@ export enum PaymentStatus {
 }
 
 export interface OrderObject {
-  id: number;
+  id: string;
   userName: string;
   userSurname: string;
-  amount: number;
+  totalPrice: number;
   orderDate: string;
   paymentStatus: PaymentStatus;
+}
+export interface OrderDetail {
+  id: number;
+  orderId: number;
+  productId: number;
+  quantity: number;
+}
+
+export interface OrderDetailRow {
+  id: number;
+  name: string;
+  unitCost: number;
+  quantity: number;
+  totalPrice: number;
 }
 
 export interface Page {
@@ -48,7 +62,7 @@ export interface Page {
 }
 
 export interface CustomRowProps {
-  row: Product | Page | Category | OrderObject | Client | any;
+  row: Product | Page | Category | OrderObject | OrderDetailRow |Client| any;
   key: number;
 }
 
@@ -67,6 +81,7 @@ export interface HeadCell {
     | keyof Page
     | keyof Category
     | keyof OrderObject
+    | keyof OrderDetailRow
     | keyof Client;
   numeric: boolean;
   label: string;
@@ -79,6 +94,7 @@ export interface CustomTableHeadProps {
       | keyof Page
       | keyof Category
       | keyof OrderObject
+      | keyof OrderDetailRow
       | keyof Client,
   ) => void;
   order: Order;
@@ -88,6 +104,15 @@ export interface CustomTableHeadProps {
 }
 
 export interface CustomTableProps {
+  data:
+    | Product[]
+    | Page[]
+    | Category[]
+    | OrderObject[]
+    | OrderDetailRow[]
+    |Client[]
+    | any;
+
   data: Product[] | Page[] | Category[] | OrderObject[] | Client[] | any;
   headCells: HeadCell[];
   disablePagination?: boolean;
