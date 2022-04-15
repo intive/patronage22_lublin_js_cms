@@ -11,17 +11,18 @@ import Grid from "@mui/material/Grid";
 import styles from "../CategoryForm/index.module.css";
 import { addPageRequest } from "../lib/pages";
 import classes from "../Layout/AuthLayout/AuthLayout.module.css";
+import { CONSTANTS } from "../../types/constants";
 
 interface FormValues {
   title: string;
-  slug: string;
+  description: string;
 }
 
 const PageForm: React.FC = () => {
   const history = useHistory();
   const InitialValuesForm: FormValues = {
     title: "",
-    slug: "",
+    description: "",
   };
 
   const validationSchema = yup.object({
@@ -31,22 +32,31 @@ const PageForm: React.FC = () => {
       .max(20, "Title should be of maximun 20 characters length")
       .required("Title is required")
       .matches(/^[^\s].+[^\s]$/, "No white space in the beginning"),
-    slug: yup
+    description: yup
       .string()
       .matches(/^[^\s].+[^\s]$/, "No white space in the beginning")
-      .min(2, "Slug should be of minimum 2 characters length")
-      .max(20, "Slug should be of maximum 20 characters length")
-      .required("Slug is required"),
+      .min(25, "Description should be of minimum 25 characters length")
+      .max(100, "Description should be of maximum 100 characters length")
+      .required("Description is required"),
   });
 
   const formik = useFormik({
     initialValues: InitialValuesForm,
-    validationSchema,
-    onSubmit: (values) => {
+    onSubmit(values) {
       const payload = { ...values };
-      addPageRequest(payload);
-      history.push("/pages");
+      console.log(payload);
+      addPageRequest(payload)
+        .then((response) => {
+          console.log(response.data);
+          if (response.status === CONSTANTS.RESPONSE_SUCCESS) {
+            history.push("/pages");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
+    validationSchema,
   });
 
   const handleClose = () => {
@@ -70,10 +80,10 @@ const PageForm: React.FC = () => {
             fullWidth
             multiline
             rows={4}
-            label="Slug"
-            {...getFieldProps("slug")}
+            label="Description"
+            {...getFieldProps("description")}
           />
-          {errors.slug ? <div>{errors.slug}</div> : null}
+          {errors.description ? <div>{errors.description}</div> : null}
         </Grid>
         <Grid pt={5}>
           <Button
