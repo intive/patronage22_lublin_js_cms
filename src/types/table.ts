@@ -8,6 +8,14 @@ export interface Product {
   createdAt: string;
   updatedAt: string;
 }
+export interface Category {
+  id: number;
+  title: string;
+  published: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface Client {
   id: number;
   active: string;
@@ -15,13 +23,6 @@ export interface Client {
   lastName: string;
   email: string;
   phone: string;
-}
-export interface Category {
-  id: number;
-  title: string;
-  published: boolean;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export enum PaymentStatus {
@@ -32,12 +33,26 @@ export enum PaymentStatus {
 }
 
 export interface OrderObject {
-  id: number;
+  id: string;
   userName: string;
   userSurname: string;
-  amount: number;
+  totalPrice: number;
   orderDate: string;
   paymentStatus: PaymentStatus;
+}
+export interface OrderDetail {
+  id: number;
+  orderId: number;
+  productId: number;
+  quantity: number;
+}
+
+export interface OrderDetailRow {
+  id: number;
+  name: string;
+  unitCost: number;
+  quantity: number;
+  totalPrice: number;
 }
 
 export interface Page {
@@ -48,7 +63,7 @@ export interface Page {
 }
 
 export interface CustomRowProps {
-  row: Product | Page | Category | OrderObject | Client | any;
+  row: Product | Page | Category | OrderObject | OrderDetailRow | Client | any;
   key: number;
 }
 
@@ -67,7 +82,8 @@ export interface HeadCell {
     | keyof Page
     | keyof Category
     | keyof OrderObject
-    | keyof Client;
+    | keyof Client
+    | keyof OrderDetailRow;
   numeric: boolean;
   label: string;
 }
@@ -79,7 +95,8 @@ export interface CustomTableHeadProps {
       | keyof Page
       | keyof Category
       | keyof OrderObject
-      | keyof Client,
+      | keyof Client
+      | keyof OrderDetailRow,
   ) => void;
   order: Order;
   orderBy: string;
@@ -88,7 +105,14 @@ export interface CustomTableHeadProps {
 }
 
 export interface CustomTableProps {
-  data: Product[] | Page[] | Category[] | OrderObject[] | Client[] | any;
+  data:
+    | Product[]
+    | Page[]
+    | Category[]
+    | OrderObject[]
+    | Client[]
+    | OrderDetailRow[]
+    | any;
   headCells: HeadCell[];
   disablePagination?: boolean;
   customRow: ReactNode;

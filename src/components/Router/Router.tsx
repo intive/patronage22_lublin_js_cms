@@ -6,7 +6,7 @@ import { ROUTES } from "../../types/routes";
 import AuthGuard from "../HOC/AuthGuard";
 import AuthContext from "../../store/auth-context";
 
-function Router() {
+const Router = () => {
   const authCtx = useContext(AuthContext);
 
   return (
@@ -31,10 +31,11 @@ function Router() {
       <Route exact path={ROUTES.CATEGORY_ADD} component={AuthGuard(Layout)} />
       <Route exact path={ROUTES.CATEGORIES} component={AuthGuard(Layout)} />
       <Route exact path={ROUTES.ORDERS} component={AuthGuard(Layout)} />
+      <Route exact path={ROUTES.ORDER_DETAILS} component={AuthGuard(Layout)} />
       <Route exact path={ROUTES.PAGE_ADD} component={AuthGuard(Layout)} />
       <Route exact path={ROUTES.CATEGORY_EDIT} component={AuthGuard(Layout)} />
       <Route component={AuthGuard(Layout)} />
     </Switch>
   );
-}
+};
 export default Router;

@@ -17,6 +17,7 @@ import {
   Order,
   Page,
   Product,
+  OrderDetailRow,
   Client,
 } from "../../types/table";
 
@@ -35,6 +36,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
     | keyof Category
     | keyof OrderObject
     | keyof Client
+    | keyof OrderDetailRow
   >("id");
 
   const CustomRow: any = useMemo(() => customRow, [customRow]);
@@ -46,7 +48,8 @@ const CustomTable: React.FC<CustomTableProps> = ({
       | keyof Page
       | keyof Category
       | keyof OrderObject
-      | keyof Client,
+      | keyof Client
+      | keyof OrderDetailRow,
   ) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
