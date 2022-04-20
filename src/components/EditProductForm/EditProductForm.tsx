@@ -64,6 +64,10 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
       });
   };
 
+  const handleClose = () => {
+    history.push("/products");
+  };
+
   const INITIAL_FORM_STATE = { ...product };
   return (
     <Container className={classes.container}>
@@ -212,7 +216,7 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({
                 <ButtonWrapper>Edit Product</ButtonWrapper>
               </Grid>
               <Grid item xs={12}>
-                <Button sx={{ width: "100%" }} type="reset">
+                <Button sx={{ width: "100%" }} onClick={handleClose}>
                   Cancel
                 </Button>
               </Grid>

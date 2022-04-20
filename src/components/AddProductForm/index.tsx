@@ -126,6 +126,10 @@ function AddProductForm() {
     validationSchema,
   });
 
+  const handleClose = () => {
+    history.push("/products");
+  };
+
   const { handleSubmit, handleReset, getFieldProps, errors } = formik;
 
   return (
@@ -246,7 +250,9 @@ function AddProductForm() {
       <Button type="submit" variant="contained">
         Add Product
       </Button>
-      <Button type="reset">Clear</Button>
+      <Button sx={{ width: "100%", mt: "15px" }} onClick={handleClose}>
+        Cancel
+      </Button>
     </form>
   );
 }
