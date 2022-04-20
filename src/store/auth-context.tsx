@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 type AuthContextObj = {
   token: string | null;
@@ -30,6 +30,15 @@ export const AuthContextProvider: React.FC = (props) => {
     setToken(null);
     localStorage.removeItem("token");
   };
+
+  useEffect(() => {
+    if (userIsLoggedIn) {
+      window.addEventListener("beforeunload", (e: Event) => {
+        e.preventDefault();
+        logoutHandler();
+      });
+    }
+  }, [userIsLoggedIn]);
 
   const contextValue = {
     token,
