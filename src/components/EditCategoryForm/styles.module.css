@@ -1,11 +1,11 @@
 .editForm {
   padding: 40px;
-  justify-content: space-between;
+  margin: 5vh auto;
   box-shadow: 0 4px 10px rgba(49, 43, 43, 0.2);
   border-radius: 16px;
-  text-align: center;
 }
 
 .editButton {
   background-color: #2074d4;
+  color: white;
 }

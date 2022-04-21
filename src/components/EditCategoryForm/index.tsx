@@ -32,7 +32,7 @@ const EditCategoryForm = ({title, description, onSubmit }: FormProps) => {
     return (
         <Container className={classes.editForm} >
             <form onSubmit={handleSubmit} >
-                <Grid container rowSpacing={4}>
+                <Grid container rowSpacing={4} className={classes.gridContainer}>
                     <Grid item className={classes.gridItem}>
                         <Typography variant="h4">Edit Category</Typography>
                     </Grid>
