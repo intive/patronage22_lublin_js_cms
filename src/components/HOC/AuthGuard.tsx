@@ -9,9 +9,8 @@ const AuthGuard = (component: any) => {
 
   if (authCtx.isLoggedIn) {
     return component;
-  } else {
-    history.replace(ROUTES.AUTH);
   }
+  history.replace(ROUTES.AUTH);
 };
 
 export default AuthGuard;

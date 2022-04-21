@@ -13,13 +13,21 @@ import {
   Page,
   Category,
   OrderObject,
+  OrderDetailRow,
+  Client,
 } from "../../types/table";
 
 export const CustomTableHead = (props: CustomTableHeadProps) => {
   const { headCells, order, orderBy, onRequestSort } = props;
   const createSortHandler =
     (
-      property: keyof Product | keyof Page | keyof Category | keyof OrderObject
+      property:
+        | keyof Product
+        | keyof Page
+        | keyof Category
+        | keyof OrderObject
+        | keyof Client
+        | keyof OrderDetailRow,
     ) =>
     (event: MouseEvent<unknown>) => {
       onRequestSort(event, property);
@@ -30,7 +38,7 @@ export const CustomTableHead = (props: CustomTableHeadProps) => {
       {headCells.map((headCell) => (
         <StyledTableCell
           key={headCell.id}
-          align={"center"}
+          align="center"
           sortDirection={orderBy === headCell.id ? order : false}
         >
           <StyledTableSortLabel
@@ -40,7 +48,7 @@ export const CustomTableHead = (props: CustomTableHeadProps) => {
           >
             {headCell.label}
             {orderBy === headCell.id && (
-              <Box component='span' sx={visuallyHidden}>
+              <Box component="span" sx={visuallyHidden}>
                 {order === "desc" ? "sorted descending" : "sorted ascending"}
               </Box>
             )}

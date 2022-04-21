@@ -5,8 +5,8 @@ import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import Paper from "@mui/material/Paper";
-import TablePaginationActions from "./Pagination";
 import { TableFooter, TablePagination } from "@mui/material";
+import TablePaginationActions from "./Pagination";
 import { StyledTableCell, StyledTableRow } from "./styles";
 import { CustomTableHead } from "./CustomTableHead";
 import { getComparator, stableSort } from "./sortUtils";
@@ -17,6 +17,8 @@ import {
   Order,
   Page,
   Product,
+  OrderDetailRow,
+  Client,
 } from "../../types/table";
 
 const CustomTable: React.FC<CustomTableProps> = ({
@@ -29,14 +31,25 @@ const CustomTable: React.FC<CustomTableProps> = ({
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const [order, setOrder] = useState<Order>("asc");
   const [orderBy, setOrderBy] = useState<
-    keyof Product | keyof Page | keyof Category | keyof OrderObject
+    | keyof Product
+    | keyof Page
+    | keyof Category
+    | keyof OrderObject
+    | keyof Client
+    | keyof OrderDetailRow
   >("id");
 
   const CustomRow: any = useMemo(() => customRow, [customRow]);
 
   const handleRequestSort = (
     event: MouseEvent<unknown>,
-    property: keyof Product | keyof Page | keyof Category | keyof OrderObject
+    property:
+      | keyof Product
+      | keyof Page
+      | keyof Category
+      | keyof OrderObject
+      | keyof Client
+      | keyof OrderDetailRow,
   ) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -49,12 +62,12 @@ const CustomTable: React.FC<CustomTableProps> = ({
 
   const handleChangePage = (
     event: MouseEvent<HTMLButtonElement> | null,
-    newPage: number
+    newPage: number,
   ) => {
     setPage(newPage);
   };
   const handleChangeRowsPerPage = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
@@ -62,7 +75,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
 
   return (
     <TableContainer component={Paper} sx={{ margin: "32px 0" }}>
-      <Table aria-label='simple table'>
+      <Table aria-label="simple table">
         <TableHead>
           <CustomTableHead
             headCells={headCells}

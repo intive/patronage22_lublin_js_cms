@@ -16,6 +16,15 @@ export interface Category {
   updatedAt: string;
 }
 
+export interface Client {
+  id: number;
+  active: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+}
+
 export enum PaymentStatus {
   PENDING = "pending",
   CANCELLED = "cancelled",
@@ -24,12 +33,26 @@ export enum PaymentStatus {
 }
 
 export interface OrderObject {
-  id: number;
+  id: string;
   userName: string;
   userSurname: string;
-  amount: number;
+  totalPrice: number;
   orderDate: string;
   paymentStatus: PaymentStatus;
+}
+export interface OrderDetail {
+  id: number;
+  orderId: number;
+  productId: number;
+  quantity: number;
+}
+
+export interface OrderDetailRow {
+  id: number;
+  name: string;
+  unitCost: number;
+  quantity: number;
+  totalPrice: number;
 }
 
 export interface Page {
@@ -40,7 +63,7 @@ export interface Page {
 }
 
 export interface CustomRowProps {
-  row: Product | Page | Category | OrderObject | any;
+  row: Product | Page | Category | OrderObject | OrderDetailRow | Client | any;
   key: number;
 }
 
@@ -50,18 +73,30 @@ export interface TablePaginationActionsProps {
   rowsPerPage: number;
   onPageChange: (
     event: React.MouseEvent<HTMLButtonElement>,
-    newPage: number
+    newPage: number,
   ) => void;
 }
 export interface HeadCell {
-  id: keyof Product | keyof Page | keyof Category | keyof OrderObject;
+  id:
+    | keyof Product
+    | keyof Page
+    | keyof Category
+    | keyof OrderObject
+    | keyof Client
+    | keyof OrderDetailRow;
   numeric: boolean;
   label: string;
 }
 export interface CustomTableHeadProps {
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof Product | keyof Page | keyof Category | keyof OrderObject
+    property:
+      | keyof Product
+      | keyof Page
+      | keyof Category
+      | keyof OrderObject
+      | keyof Client
+      | keyof OrderDetailRow,
   ) => void;
   order: Order;
   orderBy: string;
@@ -70,7 +105,14 @@ export interface CustomTableHeadProps {
 }
 
 export interface CustomTableProps {
-  data: Product[] | Page[] | Category[] | OrderObject[] | any;
+  data:
+    | Product[]
+    | Page[]
+    | Category[]
+    | OrderObject[]
+    | Client[]
+    | OrderDetailRow[]
+    | any;
   headCells: HeadCell[];
   disablePagination?: boolean;
   customRow: ReactNode;

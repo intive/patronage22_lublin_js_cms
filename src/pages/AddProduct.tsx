@@ -1,12 +1,12 @@
 import React from "react";
 import AddProductForm from "../components/AddProductForm";
 
-const AddProduct = () => {
+function AddProduct() {
   return (
     <section>
-      <AddProductForm  />
+      <AddProductForm />
     </section>
   );
-};
+}
 
 export default AddProduct;

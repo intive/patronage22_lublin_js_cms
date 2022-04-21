@@ -4,7 +4,7 @@ import { CONSTANTS } from "../../types/constants";
 const token = window.localStorage.getItem("token");
 
 const getPages = async () => {
-  return await axios(`${CONSTANTS.URL}/api/pages`, {
+  return axios(`${CONSTANTS.URL}/api/pages`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -14,7 +14,7 @@ const getPages = async () => {
 };
 
 const addPageRequest = async (payload: any) => {
-  return await axios(`${CONSTANTS.URL}/api/pages/addPage`, {
+  return axios(`${CONSTANTS.URL}/api/pages/addPage`, {
     method: "POST",
     data: JSON.stringify(payload),
     headers: {

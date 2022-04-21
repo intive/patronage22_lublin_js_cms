@@ -1,17 +1,17 @@
 import { FormControl, FormLabel, FormHelperText, Input } from "@mui/material";
 import React, { useRef, useContext, useState } from "react";
-import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 import { Formik, Form } from "formik";
+import { useHistory } from "react-router-dom";
+import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 import loginUserRequest from "../lib/authorization";
 import AuthContext from "../../store/auth-context";
-import { useHistory } from "react-router-dom";
 
 interface MyFormValues {
   email: string;
   password: string;
 }
 
-const AuthForm = () => {
+function AuthForm() {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
@@ -96,6 +96,6 @@ const AuthForm = () => {
       </Form>
     </Formik>
   );
-};
+}
 
 export default AuthForm;

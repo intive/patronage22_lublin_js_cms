@@ -4,7 +4,7 @@ import { CONSTANTS } from "../../types/constants";
 const token = window.localStorage.getItem("token");
 
 const uploadRequest = async (formData: FormData) => {
-  return await axios(`${CONSTANTS.URL}/uploadPhotos`, {
+  return axios(`${CONSTANTS.URL}/uploadPhotos`, {
     method: "POST",
     data: formData,
     headers: {
