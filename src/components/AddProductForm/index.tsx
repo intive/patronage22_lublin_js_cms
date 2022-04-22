@@ -25,7 +25,7 @@ import { CONSTANTS } from "../../types/constants";
 
 interface MyFormValues {
   title: string;
-  category: number;
+  categoryId: number;
   description: string;
   photos: File[];
   price: number;
@@ -45,7 +45,7 @@ interface MyCategories {
 function AddProductForm() {
   const initialValuesForm: MyFormValues = {
     title: "",
-    category: 0,
+    categoryId: 1,
     description: "",
     photos: [],
     price: 0,
@@ -147,7 +147,7 @@ function AddProductForm() {
       </FormControl>
       <Box sx={{ minWidth: 420 }}>
         <FormControl fullWidth>
-          <FormLabel htmlFor="demo-simple-select">Select Category</FormLabel>
+          <FormLabel htmlFor="demo-simple-select">Select Category ID</FormLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -156,12 +156,12 @@ function AddProductForm() {
           >
             {categories.map((item) => (
               <MenuItem key={item.id} value={item.id}>
-                {item.title}
+                {item.id}
               </MenuItem>
             ))}
           </Select>
-          {errors.category && (
-            <p className={classes.errors}>{errors.category}</p>
+          {errors.categoryId && (
+            <p className={classes.errors}>{errors.categoryId}</p>
           )}
         </FormControl>
       </Box>
