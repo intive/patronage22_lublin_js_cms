@@ -31,15 +31,6 @@ export const AuthContextProvider: React.FC = (props) => {
     localStorage.removeItem("token");
   };
 
-  useEffect(() => {
-    if (userIsLoggedIn) {
-      window.addEventListener("beforeunload", (e: Event) => {
-        e.preventDefault();
-        logoutHandler();
-      });
-    }
-  }, [userIsLoggedIn]);
-
   const contextValue = {
     token,
     isLoggedIn: userIsLoggedIn,

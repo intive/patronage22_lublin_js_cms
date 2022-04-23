@@ -32,7 +32,7 @@ function AuthForm() {
         if (response.status === 200) {
           console.log(response.data);
           authCtx.login(response.data.token);
-          history.replace("/dashboard");
+          history.push("/dashboard");
         } else {
           throw new Error("Authenfication Fail!");
         }
