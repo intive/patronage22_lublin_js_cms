@@ -29,7 +29,7 @@ function EditCategoryForm({ title, description, onSubmit }: FormProps) {
   const { handleSubmit, handleChange, handleBlur } = formik;
 
   return (
-    <Container className={classes.editForm}>
+    <Container maxWidth={false} className={classes.editForm}>
       <form onSubmit={handleSubmit}>
         <Grid container rowSpacing={4} className={classes.gridContainer}>
           <Grid item className={classes.gridItem}>
