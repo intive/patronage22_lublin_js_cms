@@ -17,10 +17,20 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*":["src/*"],
+      "@components/*": ["./components/*", "./components"],
+        "@pages/*": ["./pages/*"],
+        "@types/*": ["./types/*"],
+        "@store/*": ["./store/*"],
+        "@lib/*": ["./lib/*", "./lib"],
+    },
     "noEmit": true,
     "jsx": "react"
   },
   "include": [
-    "src"
+    "src",
+    "types"
   ]
 }

@@ -8,8 +8,8 @@ import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
+import addCategory from "@lib/addCategory";
 import styles from "./index.module.css";
-import addCategory from "../lib/addCategory";
 import classes from "../Layout/AuthLayout/AuthLayout.module.css";
 
 interface FormValues {
