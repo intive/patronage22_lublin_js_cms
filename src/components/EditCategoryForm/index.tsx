@@ -31,12 +31,12 @@ function EditCategoryForm({ title, description, onSubmit }: FormProps) {
   return (
     <Container className={classes.editForm}>
       <form onSubmit={handleSubmit}>
-        <Grid container rowSpacing={4}>
+        <Grid container rowSpacing={4} className={classes.gridContainer}>
           <Grid item className={classes.gridItem}>
             <Typography variant="h4">Edit Category</Typography>
           </Grid>
 
-          <Grid item xs={10} className={classes.gridItem}>
+          <Grid item xs={12} className={classes.gridItem}>
             <TextField
               name="title"
               label="New Title"
@@ -46,10 +46,11 @@ function EditCategoryForm({ title, description, onSubmit }: FormProps) {
               value={formik.values.title}
               error={Boolean(formik.errors.title)}
               helperText={formik.touched.title && formik.errors.title}
+              fullWidth
             />
           </Grid>
 
-          <Grid item xs={10} className={classes.gridItem}>
+          <Grid item xs={12} className={classes.gridItem}>
             <TextField
               name="description"
               label="Description"
@@ -61,6 +62,7 @@ function EditCategoryForm({ title, description, onSubmit }: FormProps) {
               helperText={
                 formik.touched.description && formik.errors.description
               }
+              fullWidth
             />
           </Grid>
 

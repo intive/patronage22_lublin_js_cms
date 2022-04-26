@@ -1,8 +1,13 @@
 .editForm {
-  padding: 40px;
   margin: 5vh auto;
+  min-width: 500px;
+}
+
+.gridContainer {
+  padding: 40px;
   box-shadow: 0 4px 10px rgba(49, 43, 43, 0.2);
   border-radius: 16px;
+  grid-row-gap: 24px;
 }
 
 .editButton {
