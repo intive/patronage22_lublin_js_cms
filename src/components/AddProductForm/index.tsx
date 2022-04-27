@@ -25,7 +25,7 @@ import { CONSTANTS } from "../../types/constants";
 
 interface MyFormValues {
   title: string;
-  categoryId: number;
+  categoryId: string;
   description: string;
   photos: File[];
   price: number;
@@ -45,7 +45,7 @@ interface MyCategories {
 function AddProductForm() {
   const initialValuesForm: MyFormValues = {
     title: "",
-    categoryId: 1,
+    categoryId: "",
     description: "",
     photos: [],
     price: 0,
@@ -74,7 +74,7 @@ function AddProductForm() {
     title: Yup.string()
       .max(50, "Max number of characters is 50")
       .required("Required"),
-    category: Yup.string().required("Required"),
+    categoryId: Yup.number().required("Required"),
     price: Yup.number()
       .min(0, "Price cannot be negative")
       .max(10000, "Max 10000")
@@ -130,14 +130,10 @@ function AddProductForm() {
     history.push("/products");
   };
 
-  const { handleSubmit, handleReset, getFieldProps, errors } = formik;
+  const { handleSubmit, getFieldProps, errors } = formik;
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={classes.form}
-      onReset={handleReset}
-    >
+    <form onSubmit={handleSubmit} className={classes.form}>
       <h1>Add Product</h1>
       <FormControl>
         <FormLabel htmlFor="title">Title</FormLabel>
@@ -160,7 +156,7 @@ function AddProductForm() {
           >
             {categories.map((item) => (
               <MenuItem key={item.id} value={item.id}>
-                {item.id}
+                {+item.id}
               </MenuItem>
             ))}
           </Select>

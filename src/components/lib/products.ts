@@ -13,7 +13,7 @@ const getProducts = async () => {
   });
 };
 
-const addProductRequest = async (product: {}) => {
+const addProductRequest = async (product: any) => {
   return axios(`${CONSTANTS.URL}/api/products/addProduct`, {
     method: "POST",
     data: JSON.stringify(product),
