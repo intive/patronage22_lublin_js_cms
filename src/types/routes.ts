@@ -8,10 +8,10 @@ import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 export enum ROUTES {
   AUTH = "/",
   DASHBOARD = "/dashboard",
+  ADD_PRODUCT = "/add-product",
   PAGES = "/pages",
   CATEGORIES = "/categories",
   PRODUCTS = "/products",
-  ADD_PRODUCT = "/add-product",
   ORDERS = "/orders",
   CLIENTS = "/clients",
   PRODUCT = "/product",

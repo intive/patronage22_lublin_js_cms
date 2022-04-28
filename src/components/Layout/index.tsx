@@ -59,9 +59,9 @@ function Layout() {
         <Toolbar />
         <Switch>
           <Route exact path="/dashboard" render={() => <Dashboard />} />
+          <Route exact path="/add-product" render={() => <AddProduct />} />
           <Route exact path="/pages" render={() => <Pages />} />
           <Route exact path="/add-page" render={() => <AddPage />} />
-          <Route exact path="/add-product" render={() => <AddProduct />} />
           <Route
             exact
             path="/product/edit/:id"

@@ -24,6 +24,7 @@ interface ApiProducts {
   quantity: number;
   description: string;
   published: boolean;
+  categoryId: number;
 }
 
 const ProductDetails: React.FC = () => {
@@ -65,7 +66,7 @@ const ProductDetails: React.FC = () => {
   const product = {
     id: apiProduct?.id,
     title: apiProduct?.title,
-    category: "Books",
+    category: apiProduct?.categoryId,
     price: apiProduct?.price,
     quantity: apiProduct?.quantity || "",
     description: apiProduct?.description,
