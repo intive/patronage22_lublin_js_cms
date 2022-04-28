@@ -72,7 +72,7 @@ function AddProductForm() {
 
   const validationSchema = Yup.object().shape({
     title: Yup.string()
-      .max(50, "Max number of characters is 50")
+      .max(150, "Max number of characters is 50")
       .required("Required"),
     categoryId: Yup.number().required("Required"),
     price: Yup.number()
@@ -94,8 +94,12 @@ function AddProductForm() {
   const formik = useFormik({
     initialValues: initialValuesForm,
     onSubmit(values) {
-      const payload = { ...values, photos: photosData };
-      console.log(payload);
+      const productStatus = values.status === "1" ? "Available" : "Unavailable";
+      const payload = {
+        ...values,
+        photos: photosData,
+        status: productStatus,
+      };
       addProductRequest(payload)
         .then((response) => {
           console.log(response.data);
@@ -156,7 +160,7 @@ function AddProductForm() {
           >
             {categories.map((item) => (
               <MenuItem key={item.id} value={item.id}>
-                {+item.id}
+                {item.title}
               </MenuItem>
             ))}
           </Select>
@@ -229,7 +233,7 @@ function AddProductForm() {
             {...getFieldProps("status")}
           >
             {statuses.map((item) => (
-              <MenuItem key={item.id} value={item.status}>
+              <MenuItem key={item.id} value={item.id}>
                 {item.status}
               </MenuItem>
             ))}

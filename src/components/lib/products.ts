@@ -16,7 +16,7 @@ const getProducts = async () => {
 const addProductRequest = async (product: any) => {
   return axios(`${CONSTANTS.URL}/api/products/addProduct`, {
     method: "POST",
-    data: JSON.stringify(product),
+    data: product,
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -27,7 +27,7 @@ const addProductRequest = async (product: any) => {
 const editProductRequest = async (editedProduct: {}, id: number) => {
   return axios(`${CONSTANTS.URL}/api/products/${id}`, {
     method: "PUT",
-    data: JSON.stringify(editedProduct),
+    data: editedProduct,
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

@@ -31,18 +31,18 @@ export const AuthContextProvider: React.FC = (props) => {
     localStorage.removeItem("token");
   };
 
-  const websocketConn = new WebSocket("ws://localhost:3000/ws");
+  // const websocketConn = new WebSocket("ws://localhost:3000/ws");
 
-  websocketConn.onopen = (e: Event) => {
-    e.preventDefault();
-    console.log("Connected!");
-  };
+  // websocketConn.onopen = (e: Event) => {
+  //   e.preventDefault();
+  //   console.log("Connected!");
+  // };
 
-  websocketConn.onclose = (e: Event) => {
-    e.preventDefault();
-    logoutHandler();
-    console.log("Disconnected!");
-  };
+  // websocketConn.onclose = (e: Event) => {
+  //   e.preventDefault();
+  //   logoutHandler();
+  //   console.log("Disconnected!");
+  // };
 
   const contextValue = {
     token,
